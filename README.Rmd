@@ -1,0 +1,147 @@
+rredlist
+========
+
+```{r echo=FALSE}
+```{r echo=FALSE}
+library("knitr")
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL,
+            x[lines],
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+[![Build Status](https://travis-ci.org/ropenscilabs/rredlist.svg?branch=master)](https://travis-ci.org/ropenscilabs/rredlist)
+[![codecov.io](https://codecov.io/github/ropenscilabs/rredlist/coverage.svg?branch=master)](https://codecov.io/github/ropenscilabs/rredlist?branch=master)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rredlist)](https://github.com/metacran/cranlogs.app)
+[![cran version](http://www.r-pkg.org/badges/version/rredlist)](http://cran.rstudio.com/web/packages/rredlist)
+
+[IUCN Red List docs][docs]
+
+## Authentication
+
+IUCN requires you to get your own API key, an alphanumeric string that you
+need to send in every request. Get it at [http://apiv3.iucnredlist.org/api/v3/token][token].
+Keep this key private. You can pass the key in to each function via the
+`key` parameter, but it's better to store the key either as a environment
+variable (`IUCN_REDLIST_KEY`) or an R option (`iucn_redlist_key`) - we
+suggest using the former option.
+
+## High vs. Low level package APIs
+
+__High level API__
+
+High level functions do the HTTP request and parse data to a data.frame for
+ease of downstream use. The high level functions have no underscore on the end
+of the function name, e.g., \code{\link{rl_search}}
+
+__Low level API__
+
+The parsing to data.frame in the high level API does take extra time. The low
+level API only does the HTTP request, and gives back JSON without doing any
+more parsing. The low level functions DO have an underscore on the end
+of the function name, e.g., \code{\link{rl_search_}}
+
+## No Spatial
+
+This package does not include support for the spatial API, described at
+[http://apiv3.iucnredlist.org/spatial][spatial].
+
+## Citing IUCN API
+
+use the function `rl_citation()`
+
+```{r}
+rl_citation()
+```
+
+
+## Install
+
+CRAN
+
+```{r eval=FALSE}
+install.packages("rredlist")
+```
+
+Development version
+
+```{r eval=FALSE}
+devtools::install_github("ropenscilabs/rredlist")
+```
+
+```{r}
+library("rredlist")
+```
+
+## High level API
+
+High level functions do the HTTP request and parse to data to a data.frame for ease
+of downstream use.
+
+```{r}
+rl_search('Fratercula arctica')
+```
+
+Likely a bit faster is to parse to a list only, and not take the extra data.frame parsing time
+
+```{r output.lines=1:10}
+rl_search('Fratercula arctica', parse = FALSE)
+```
+
+## Low level API
+
+The parsing to data.frame in the high level API does take extra time. The low level API
+only does the HTTP request, and gives back JSON without doing any more parsing
+
+```{r}
+rl_search_('Fratercula arctica')
+```
+
+To consume this JSON, you can use `jsonlite`
+
+```{r}
+library("jsonlite")
+jsonlite::fromJSON(rl_search_('Fratercula arctica'))
+```
+
+Or other tools, e.g., `jq` via the `jqr` R client
+
+```{r output.lines=1:20}
+# devtools::install_github("ropensci/jqr")
+library("jqr")
+rl_search_('Fratercula arctica') %>% dot()
+```
+
+## Meta
+
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[docs]: http://apiv3.iucnredlist.org/api/v3/docs
+[token]: http://apiv3.iucnredlist.org/api/v3/token
+[spatial]: http://apiv3.iucnredlist.org/spatial

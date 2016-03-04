@@ -1,0 +1,16 @@
+Package: cored
+Type: Package
+Title: CORE R Client
+Description: CORE R Client.
+Version: 0.0.1.9000
+Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com")
+License: MIT + file LICENSE
+URL: https://github.com/ropenscilabs/cored
+BugReports: https://github.com/ropenscilabs/cored/issues
+Imports:
+    httr (>= 1.1.0),
+    jsonlite (>= 0.9.19)
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
