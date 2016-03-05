@@ -11,11 +11,13 @@ CORE API R client
 
 Development version
 
-```{r eval=FALSE}
+
+```r
 devtools::install_github("ropenscilabs/cored")
 ```
 
-```{r}
+
+```r
 library("cored")
 ```
 
