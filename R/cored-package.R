@@ -1,6 +1,6 @@
 #' cored - CORE R client
 #'
-#' @importFrom httr GET content stop_for_status
+#' @importFrom httr GET POST content stop_for_status
 #' @importFrom jsonlite fromJSON
 #' @name cored-package
 #' @aliases cored

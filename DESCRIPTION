@@ -2,7 +2,7 @@ Package: cored
 Type: Package
 Title: CORE R Client
 Description: CORE R Client.
-Version: 0.0.1.9000
+Version: 0.0.1.9400
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
 License: MIT + file LICENSE
