@@ -19,6 +19,14 @@ core_POST <- function(path, key, args, body, ...){
   content(temp, as = 'text', encoding = "UTF-8")
 }
 
+core_GET_disk <- function(path, id, key, overwrite, ...){
+  temp <- GET(file.path(core_base(), path),
+              query = list(apiKey = check_key(key)),
+              write_disk(path = paste0(id, ".pdf"), overwrite = overwrite), ...)
+  stop_for_status(temp)
+  temp$request$output$path
+}
+
 # err_catcher <- function(x) {
 #   xx <- jsonlite::fromJSON(content(x, as = 'text', encoding = "UTF-8"))
 #   if (any(vapply(c("message", "error"), function(z) z %in% names(xx), logical(1)))) {
@@ -51,4 +59,8 @@ clog <- function(x){
   } else {
     if (x) 'true' else 'false'
   }
+}
+
+pdf_parse <- function(x, parse) {
+  if (parse) pdftools::pdf_text(x) else x
 }

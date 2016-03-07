@@ -10,7 +10,8 @@ URL: https://github.com/ropenscilabs/cored
 BugReports: https://github.com/ropenscilabs/cored/issues
 Imports:
     httr (>= 1.1.0),
-    jsonlite (>= 0.9.19)
+    jsonlite (>= 0.9.19),
+    pdftools (>= 0.2)
 Suggests:
     testthat
 RoxygenNote: 5.0.1
