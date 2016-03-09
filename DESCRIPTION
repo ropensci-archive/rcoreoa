@@ -1,8 +1,11 @@
 Package: cored
 Type: Package
-Title: CORE R Client
-Description: CORE R Client.
-Version: 0.0.1.9400
+Title: Client for the CORE API
+Description: Client for the CORE API (<https://core.ac.uk/docs/>).
+    CORE (<https://core.ac.uk>) aggregates open access research
+    outputs from repositories and journals worldwide and make them
+    available to the public.
+Version: 0.0.2.9000
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
 License: MIT + file LICENSE
@@ -13,5 +16,6 @@ Imports:
     jsonlite (>= 0.9.19),
     pdftools (>= 0.2)
 Suggests:
-    testthat
+    testthat,
+    rcrossref
 RoxygenNote: 5.0.1
