@@ -34,7 +34,7 @@ core_journals <- function(id, key = NULL, method = "GET", parse = TRUE, ...) {
 }
 
 #' @export
-#' @rdname core_articles_history
+#' @rdname core_journals
 core_journals_ <- function(id, key = NULL, method = "GET", ...) {
   if (!method %in% c('GET', 'POST')) stop("'method' must be one of 'GET' or 'POST'", call. = FALSE)
   switch(method,

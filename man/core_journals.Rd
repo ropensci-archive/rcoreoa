@@ -2,9 +2,12 @@
 % Please edit documentation in R/core_journals.R
 \name{core_journals}
 \alias{core_journals}
+\alias{core_journals_}
 \title{Get journal via its ISSN}
 \usage{
 core_journals(id, key = NULL, method = "GET", parse = TRUE, ...)
+
+core_journals_(id, key = NULL, method = "GET", ...)
 }
 \arguments{
 \item{id}{(integer) One or more journal ISSNs. Required}
