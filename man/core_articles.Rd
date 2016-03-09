@@ -62,10 +62,10 @@ These functions take one article ID at a time. Use lapply/loops/etc for many ids
 }
 \examples{
 \dontrun{
-core_articles(id = '21132995')
-core_articles(id = '21132995', similar = TRUE)
-core_articles(id = '21132995', fulltext = TRUE)
-core_articles(id = '21132995', citations = TRUE)
+core_articles(id = 21132995)
+core_articles(id = 21132995, similar = TRUE)
+core_articles(id = 21132995, fulltext = TRUE)
+core_articles(id = 21132995, citations = TRUE)
 
 ids <- c(20955435, 21132995, 21813171, 22815670, 14045109, 23828884,
    23465055, 23831838, 23923390, 22559733)

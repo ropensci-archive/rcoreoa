@@ -25,10 +25,10 @@
 #'
 #' These functions take one article ID at a time. Use lapply/loops/etc for many ids
 #' @examples \dontrun{
-#' core_articles(id = '21132995')
-#' core_articles(id = '21132995', similar = TRUE)
-#' core_articles(id = '21132995', fulltext = TRUE)
-#' core_articles(id = '21132995', citations = TRUE)
+#' core_articles(id = 21132995)
+#' core_articles(id = 21132995, similar = TRUE)
+#' core_articles(id = 21132995, fulltext = TRUE)
+#' core_articles(id = 21132995, citations = TRUE)
 #'
 #' ids <- c(20955435, 21132995, 21813171, 22815670, 14045109, 23828884,
 #'    23465055, 23831838, 23923390, 22559733)
@@ -62,8 +62,12 @@ core_articles_ <- function(id, metadata = TRUE, fulltext = FALSE, citations = FA
   args <- cp(list(metadata = clog(metadata), fulltext = clog(fulltext), citations = clog(citations),
                   similar = clog(similar), duplicate = clog(duplicate), urls = clog(urls),
                   extractedUrls = clog(extractedUrls), faithfulMetadata = clog(faithfulMetadata)))
+  if (!method %in% c('GET', 'POST')) stop("'method' must be one of 'GET' or 'POST'", call. = FALSE)
   switch(method,
-         `GET` = core_GET(path = file.path("articles/get", id), key, args, ...),
+         `GET` = {
+           if (length(id) > 1) stop("'id' must be of length 1 when 'method=GET'", call. = FALSE)
+           core_GET(path = file.path("articles/get", id), key, args, ...)
+          },
          `POST` = core_POST(path = "articles/get", key, args, id, ...)
   )
 }
