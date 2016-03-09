@@ -1,6 +1,40 @@
 cored
 =====
 
+```{r echo=FALSE}
+library("knitr")
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL,
+            x[lines],
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
 [![Build Status](https://travis-ci.org/ropenscilabs/cored.svg?branch=master)](https://travis-ci.org/ropenscilabs/cored)
 [![codecov.io](https://codecov.io/github/ropenscilabs/cored/coverage.svg?branch=master)](https://codecov.io/github/ropenscilabs/cored?branch=master)
 
@@ -20,12 +54,55 @@ devtools::install_github("ropenscilabs/cored")
 library("cored")
 ```
 
+## high- vs. low-level interfaces
+
+Each function has a higher level interface that does HTTP request for data and parses
+the JSON using `jsonlite`. This is meant for those who want everything done for them,
+but there's a time penalty for as the parsing adds extra time. If you just want raw JSON
+unparsed text, you can use the low level interface. 
+
+The low level version of each function has `_` at the end (e.g., `core_search_`), while the 
+high level version doesn't have the `_` (e.g., `core_search`). 
+
+The high level version of each function uses the low level method, and the low level method 
+does all the logic and HTTP requesting, whereas the high level simply parses the output.
+
 ## Search
 
 ```{r}
 core_search(query = 'ecology', limit = 12)
 ```
 
+```{r}
+core_search_(query = 'ecology', limit = 12)
+```
+
+# Articles
+
+```{r output.lines = 1:10}
+core_articles(id = 21132995)
+```
+
+# Aritcle history
+
+```{r output.lines = 1:5}
+core_articles_history(id = '21132995')
+```
+
+# Journals
+
+```{r output.lines = 1:10}
+core_journals(id = '2167-8359')
+```
+
+# Get PDFs
+
+The `_` for these methods means that you get a file path back to the PDF, while the 
+high level version without the `_` parses the pdf to text for you.
+
+```{r eval=FALSE}
+core_articles_pdf_(11549557)
+```
 
 ## Meta
 
