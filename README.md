@@ -2,6 +2,7 @@ cored
 =====
 
 [![Build Status](https://travis-ci.org/ropenscilabs/cored.svg?branch=master)](https://travis-ci.org/ropenscilabs/cored)
+[![codecov.io](https://codecov.io/github/ropenscilabs/cored/coverage.svg?branch=master)](https://codecov.io/github/ropenscilabs/cored?branch=master)
 
 CORE API R client
 
