@@ -1,29 +1,29 @@
 cp <- function(x) Filter(Negate(is.null), x)
 
 core_GET <- function(path, key, args, ...){
-  temp <- GET(file.path(core_base(), path),
+  temp <- httr::GET(file.path(core_base(), path),
               query = cp(c(args, list(apiKey = check_key(key)))), ...)
-  stop_for_status(temp)
+  httr::stop_for_status(temp)
   stopifnot(temp$headers$`content-type` == 'application/json')
   #err_catcher(temp)
-  content(temp, as = 'text', encoding = "UTF-8")
+  httr::content(temp, as = 'text', encoding = "UTF-8")
 }
 
 core_POST <- function(path, key, args, body, ...){
-  temp <- POST(file.path(core_base(), path),
+  temp <- httr::POST(file.path(core_base(), path),
               query = cp(c(args, list(apiKey = check_key(key)))),
               body = jsonlite::toJSON(body), encode = "json", ...)
-  stop_for_status(temp)
+  httr::stop_for_status(temp)
   stopifnot(temp$headers$`content-type` == 'application/json')
   #err_catcher(temp)
-  content(temp, as = 'text', encoding = "UTF-8")
+  httr::content(temp, as = 'text', encoding = "UTF-8")
 }
 
 core_GET_disk <- function(path, id, key, overwrite, ...){
-  temp <- GET(file.path(core_base(), path),
+  temp <- httr::GET(file.path(core_base(), path),
               query = list(apiKey = check_key(key)),
-              write_disk(path = paste0(id, ".pdf"), overwrite = overwrite), ...)
-  stop_for_status(temp)
+              httr::write_disk(path = paste0(id, ".pdf"), overwrite = overwrite), ...)
+  httr::stop_for_status(temp)
   temp$request$output$path
 }
 
