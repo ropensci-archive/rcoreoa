@@ -9,6 +9,8 @@
 #' string
 #'
 #' These functions take one article ID at a time. Use lapply/loops/etc for many ids
+#' @references \url{https://core.ac.uk/docs/#!/journals/getJournalByIssnBatch}
+#' \url{https://core.ac.uk/docs/#!/journals/getJournalByIssn}
 #' @examples \dontrun{
 #' core_journals(id = '2167-8359')
 #'

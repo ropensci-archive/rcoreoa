@@ -10,6 +10,7 @@
 #' string
 #'
 #' These functions take one article ID at a time. Use lapply/loops/etc for many ids
+#' @references \url{https://core.ac.uk/docs/#!/articles/getArticleHistoryByCoreId}
 #' @examples \dontrun{
 #' core_articles_history(id = '21132995')
 #'

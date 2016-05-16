@@ -24,6 +24,8 @@
 #' string
 #'
 #' These functions take one article ID at a time. Use lapply/loops/etc for many ids
+#' @references \url{https://core.ac.uk/docs/#!/articles/getArticleByCoreIdBatch}
+#' \url{https://core.ac.uk/docs/#!/articles/getArticleByCoreId}
 #' @examples \dontrun{
 #' core_articles(id = 21132995)
 #' core_articles(id = 21132995, similar = TRUE)

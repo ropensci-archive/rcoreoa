@@ -44,4 +44,7 @@ res <- lapply(ids, core_articles_pdf)
 vapply(res, "[[", "", 1)
 }
 }
+\references{
+\url{https://core.ac.uk/docs/#!/articles/getArticlePdfByCoreId}
+}
 

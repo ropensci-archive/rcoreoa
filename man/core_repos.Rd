@@ -37,18 +37,12 @@ ids <- c(507, 444, 70)
 res <- lapply(ids, core_repos)
 vapply(res, "[[", "", c("data", "name"))
 
-# just http request, get text back
+# just http request, get json as character vector back
 core_repos_(507)
-
-# post request, ideal for lots of ISSNs
-if (requireNamespace("rcrossref", quietly = TRUE)) {
-  res <- lapply(c("bmc", "peerj", "elife", "plos", "frontiers"), function(z)
-    core_repos(query = z))
-  ids <- unlist(lapply(res, function(b) b$data$issn))
-  out <- core_repos(ids, method = "POST")
-  head(out)
 }
-
 }
+\references{
+\url{https://core.ac.uk/docs/#!/repositories/getRepositoryById}
+\url{https://core.ac.uk/docs/#!/repositories/getRepositoryByIdBatch}
 }
 

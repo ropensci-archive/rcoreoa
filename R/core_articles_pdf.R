@@ -9,6 +9,7 @@
 #' string
 #'
 #' These functions take one article ID at a time. Use lapply/loops/etc for many ids
+#' @references \url{https://core.ac.uk/docs/#!/articles/getArticlePdfByCoreId}
 #' @examples \dontrun{
 #' # just http request, get file path back
 #' core_articles_pdf_(11549557)

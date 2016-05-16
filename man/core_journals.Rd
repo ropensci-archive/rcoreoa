@@ -56,4 +56,8 @@ if (requireNamespace("rcrossref", quietly = TRUE)) {
 
 }
 }
+\references{
+\url{https://core.ac.uk/docs/#!/journals/getJournalByIssnBatch}
+\url{https://core.ac.uk/docs/#!/journals/getJournalByIssn}
+}
 

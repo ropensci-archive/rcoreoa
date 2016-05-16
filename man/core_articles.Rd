@@ -83,4 +83,8 @@ core_articles_(id = '21132995')
 core_articles_(id = ids, method = "POST")
 }
 }
+\references{
+\url{https://core.ac.uk/docs/#!/articles/getArticleByCoreIdBatch}
+\url{https://core.ac.uk/docs/#!/articles/getArticleByCoreId}
+}
 

@@ -8,6 +8,7 @@
 #' @details \code{core_search} does the HTTP request and parses, while
 #' \code{core_search_} just does the HTTP request, gives back JSON as a character
 #' string
+#' @references \url{https://core.ac.uk/docs/#!/all/search}
 #' @examples \dontrun{
 #' core_search(query = 'ecology')
 #' core_search(query = 'ecology', parse = FALSE)

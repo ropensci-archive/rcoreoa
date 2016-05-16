@@ -9,6 +9,8 @@
 #' string
 #'
 #' These functions take one article ID at a time. Use lapply/loops/etc for many ids
+#' @references \url{https://core.ac.uk/docs/#!/repositories/getRepositoryById}
+#' \url{https://core.ac.uk/docs/#!/repositories/getRepositoryByIdBatch}
 #' @examples \dontrun{
 #' core_repos(id = 507)
 #' core_repos(id = 444)
@@ -17,18 +19,8 @@
 #' res <- lapply(ids, core_repos)
 #' vapply(res, "[[", "", c("data", "name"))
 #'
-#' # just http request, get text back
+#' # just http request, get json as character vector back
 #' core_repos_(507)
-#'
-#' # post request, ideal for lots of ISSNs
-#' if (requireNamespace("rcrossref", quietly = TRUE)) {
-#'   res <- lapply(c("bmc", "peerj", "elife", "plos", "frontiers"), function(z)
-#'     core_repos(query = z))
-#'   ids <- unlist(lapply(res, function(b) b$data$issn))
-#'   out <- core_repos(ids, method = "POST")
-#'   head(out)
-#' }
-#'
 #' }
 core_repos <- function(id, key = NULL, method = "GET", parse = TRUE, ...) {
   core_parse(core_repos_(id, key, method, ...), parse)
