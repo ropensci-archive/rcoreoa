@@ -29,10 +29,11 @@ Get journal via its ISSN
 }
 \details{
 \code{core_journals} does the HTTP request and parses, while
-\code{core_journals_} just does the HTTP request, gives back JSON as a character
-string
+\code{core_journals_} just does the HTTP request, gives back JSON as a
+character string
 
-These functions take one article ID at a time. Use lapply/loops/etc for many ids
+These functions take one article ID at a time. Use lapply/loops/etc for
+many ids
 }
 \examples{
 \dontrun{

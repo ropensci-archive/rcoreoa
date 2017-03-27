@@ -2,15 +2,18 @@
 #'
 #' @export
 #' @template all
-#' @param id (integer) CORE ID of the article that needs to be fetched. Required
+#' @param id (integer) CORE ID of the article that needs to be fetched.
+#' Required
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10), optional
-#' @details \code{core_articles_history} does the HTTP request and parses, while
-#' \code{core_articles_history_} just does the HTTP request, gives back JSON as a character
-#' string
+#' @param limit (character) records to return (default: 10, minimum: 10),
+#' optional
+#' @details `core_articles_history`} does the HTTP request and parses,
+#' while `core_articles_history_` just does the HTTP request, gives back JSON
+#' as a character string
 #'
-#' These functions take one article ID at a time. Use lapply/loops/etc for many ids
-#' @references \url{https://core.ac.uk/docs/#!/articles/getArticleHistoryByCoreId}
+#' These functions take one article ID at a time. Use lapply/loops/etc for
+#' many ids
+#' @references <https://core.ac.uk/docs/#!/articles/getArticleHistoryByCoreId>
 #' @examples \dontrun{
 #' core_articles_history(id = '21132995')
 #'

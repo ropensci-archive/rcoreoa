@@ -4,13 +4,14 @@
 #' @template all
 #' @param id (integer) One or more journal ISSNs. Required
 #' @param method (character) one of 'GET' (default) or 'POST'
-#' @details \code{core_journals} does the HTTP request and parses, while
-#' \code{core_journals_} just does the HTTP request, gives back JSON as a character
-#' string
+#' @details `core_journals` does the HTTP request and parses, while
+#' `core_journals_` just does the HTTP request, gives back JSON as a
+#' character string
 #'
-#' These functions take one article ID at a time. Use lapply/loops/etc for many ids
-#' @references \url{https://core.ac.uk/docs/#!/journals/getJournalByIssnBatch}
-#' \url{https://core.ac.uk/docs/#!/journals/getJournalByIssn}
+#' These functions take one article ID at a time. Use lapply/loops/etc for
+#' many ids
+#' @references <https://core.ac.uk/docs/#!/journals/getJournalByIssnBatch>
+#' <https://core.ac.uk/docs/#!/journals/getJournalByIssn>
 #' @examples \dontrun{
 #' core_journals(id = '2167-8359')
 #'

@@ -11,11 +11,13 @@ core_articles_history(id, page = 1, limit = 10, key = NULL,
 core_articles_history_(id, page = 1, limit = 10, key = NULL, ...)
 }
 \arguments{
-\item{id}{(integer) CORE ID of the article that needs to be fetched. Required}
+\item{id}{(integer) CORE ID of the article that needs to be fetched.
+Required}
 
 \item{page}{(character) page number (default: 1), optional}
 
-\item{limit}{(character) records to return (default: 10, minimum: 10), optional}
+\item{limit}{(character) records to return (default: 10, minimum: 10),
+optional}
 
 \item{key}{A IUCN API token}
 
@@ -26,13 +28,6 @@ data.frame (\code{TRUE}). Default: \code{TRUE}}
 }
 \description{
 Get article history
-}
-\details{
-\code{core_articles_history} does the HTTP request and parses, while
-\code{core_articles_history_} just does the HTTP request, gives back JSON as a character
-string
-
-These functions take one article ID at a time. Use lapply/loops/etc for many ids
 }
 \examples{
 \dontrun{

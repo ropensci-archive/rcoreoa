@@ -12,7 +12,8 @@ core_repos_search(query, page = 1, limit = 10, key = NULL, parse = TRUE,
 
 \item{page}{(character) page number (default: 1), optional}
 
-\item{limit}{(character) records to return (default: 10, minimum: 10), optional}
+\item{limit}{(character) records to return (default: 10, minimum: 10),
+optional}
 
 \item{key}{A IUCN API token}
 
@@ -26,8 +27,8 @@ Search CORE repositories
 }
 \details{
 \code{core_repos_search} does the HTTP request and parses, while
-\code{core_repos_search_} just does the HTTP request, gives back JSON as a character
-string
+\code{core_repos_search_} just does the HTTP request, gives back JSON as
+a character string
 
 A POST method is allowed on this route, but it's not supported yet.
 }

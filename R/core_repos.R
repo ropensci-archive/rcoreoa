@@ -4,13 +4,14 @@
 #' @template all
 #' @param id (integer) One or more repository IDs. Required
 #' @param method (character) one of 'GET' (default) or 'POST'
-#' @details \code{core_repos} does the HTTP request and parses, while
-#' \code{core_repos_} just does the HTTP request, gives back JSON as a character
-#' string
+#' @details `core_repos` does the HTTP request and parses, while
+#' `core_repos_` just does the HTTP request, gives back JSON as a
+#' character string
 #'
-#' These functions take one article ID at a time. Use lapply/loops/etc for many ids
-#' @references \url{https://core.ac.uk/docs/#!/repositories/getRepositoryById}
-#' \url{https://core.ac.uk/docs/#!/repositories/getRepositoryByIdBatch}
+#' These functions take one article ID at a time. Use lapply/loops/etc for
+#' many ids
+#' @references <https://core.ac.uk/docs/#!/repositories/getRepositoryById>
+#' <https://core.ac.uk/docs/#!/repositories/getRepositoryByIdBatch>
 #' @examples \dontrun{
 #' core_repos(id = 507)
 #' core_repos(id = 444)

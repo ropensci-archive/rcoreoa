@@ -17,7 +17,8 @@ core_search_(query, page = 1, limit = 10, key = NULL, ...)
 
 \item{page}{(character) page number (default: 1), optional}
 
-\item{limit}{(character) records to return (default: 10, minimum: 10), optional}
+\item{limit}{(character) records to return (default: 10, minimum: 10),
+optional}
 
 \item{key}{A IUCN API token}
 

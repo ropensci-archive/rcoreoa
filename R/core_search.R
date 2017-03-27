@@ -4,11 +4,12 @@
 #' @template all
 #' @param query (character) query string, required
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10), optional
-#' @details \code{core_search} does the HTTP request and parses, while
-#' \code{core_search_} just does the HTTP request, gives back JSON as a character
+#' @param limit (character) records to return (default: 10, minimum: 10),
+#' optional
+#' @details `core_search` does the HTTP request and parses, while
+#' `core_search_` just does the HTTP request, gives back JSON as a character
 #' string
-#' @references \url{https://core.ac.uk/docs/#!/all/search}
+#' @references <https://core.ac.uk/docs/#!/all/search>
 #' @examples \dontrun{
 #' core_search(query = 'ecology')
 #' core_search(query = 'ecology', parse = FALSE)

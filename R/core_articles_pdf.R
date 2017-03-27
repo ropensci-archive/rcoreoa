@@ -2,14 +2,16 @@
 #'
 #' @export
 #' @template all
-#' @param id (integer) CORE ID of the article that needs to be fetched. Required
-#' @param overwrite (logical) overwrite file or not. Default: \code{TRUE}
-#' @details \code{core_articles_history} does the HTTP request and parses, while
-#' \code{core_articles_history_} just does the HTTP request, gives back JSON as a character
-#' string
+#' @param id (integer) CORE ID of the article that needs to be fetched.
+#' Required
+#' @param overwrite (logical) overwrite file or not. Default: `TRUE`
+#' @details `core_articles_history` does the HTTP request and parses, while
+#' `core_articles_history_` just does the HTTP request, gives back JSON as
+#' a character string
 #'
-#' These functions take one article ID at a time. Use lapply/loops/etc for many ids
-#' @references \url{https://core.ac.uk/docs/#!/articles/getArticlePdfByCoreId}
+#' These functions take one article ID at a time. Use lapply/loops/etc for
+#' many ids
+#' @references <https://core.ac.uk/docs/#!/articles/getArticlePdfByCoreId>
 #' @examples \dontrun{
 #' # just http request, get file path back
 #' core_articles_pdf_(11549557)

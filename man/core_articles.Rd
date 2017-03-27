@@ -16,30 +16,36 @@ core_articles_(id, metadata = TRUE, fulltext = FALSE, citations = FALSE,
   method = "GET", ...)
 }
 \arguments{
-\item{id}{(integer) CORE ID of the article that needs to be fetched. Required}
+\item{id}{(integer) CORE ID of the article that needs to be fetched.
+Required}
 
-\item{metadata}{Whether to retrieve the full article metadata or only the ID.
-Default: \code{TRUE}}
+\item{metadata}{Whether to retrieve the full article metadata or only the
+ID. Default: \code{TRUE}}
 
-\item{fulltext}{Whether to retrieve full text of the article. Default: \code{FALSE}}
+\item{fulltext}{Whether to retrieve full text of the article. Default:
+\code{FALSE}}
 
-\item{citations}{Whether to retrieve citations found in the article. Default: \code{FALSE}}
-
-\item{similar}{Whether to retrieve a list of similar articles. Default: \code{FALSE}.
-Because the similar articles are calculated on demand, setting this parameter to true
-might slightly slow down the response time    query    boolean}
-
-\item{duplicate}{Whether to retrieve a list of CORE IDs of different versions of the article.
+\item{citations}{Whether to retrieve citations found in the article.
 Default: \code{FALSE}}
 
-\item{urls}{Whether to retrieve a list of URLs from which the article can be downloaded.
-This can include links to PDFs as well as HTML pages. Default: \code{FALSE}}
+\item{similar}{Whether to retrieve a list of similar articles.
+Default: \code{FALSE}
+Because the similar articles are calculated on demand, setting this
+parameter to true might slightly slow down the response time    query    boolean}
 
-\item{extractedUrls}{Whether to retrieve a list of URLs which were extracted from the
-article fulltext. Default: \code{FALSE}. This parameter is not available in CORE API v2.0 beta}
+\item{duplicate}{Whether to retrieve a list of CORE IDs of different
+versions of the article. Default: \code{FALSE}}
 
-\item{faithfulMetadata}{Whether to retrieve the raw XML metadata of the article.
+\item{urls}{Whether to retrieve a list of URLs from which the article can
+be downloaded. This can include links to PDFs as well as HTML pages.
 Default: \code{FALSE}}
+
+\item{extractedUrls}{Whether to retrieve a list of URLs which were extracted
+from the article fulltext. Default: \code{FALSE}. This parameter is not
+available in CORE API v2.0 beta}
+
+\item{faithfulMetadata}{Whether to retrieve the raw XML metadata of the
+article. Default: \code{FALSE}}
 
 \item{key}{A IUCN API token}
 
@@ -55,10 +61,11 @@ Get articles
 }
 \details{
 \code{core_articles} does the HTTP request and parses, while
-\code{core_articles_} just does the HTTP request, gives back JSON as a character
-string
+\code{core_articles_} just does the HTTP request, gives back JSON as a
+character string
 
-These functions take one article ID at a time. Use lapply/loops/etc for many ids
+These functions take one article ID at a time. Use lapply/loops/etc for
+many ids
 }
 \examples{
 \dontrun{

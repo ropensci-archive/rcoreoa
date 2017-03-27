@@ -10,7 +10,8 @@ core_articles_pdf(id, key = NULL, overwrite = TRUE, parse = TRUE, ...)
 core_articles_pdf_(id, key = NULL, overwrite = TRUE, ...)
 }
 \arguments{
-\item{id}{(integer) CORE ID of the article that needs to be fetched. Required}
+\item{id}{(integer) CORE ID of the article that needs to be fetched.
+Required}
 
 \item{key}{A IUCN API token}
 
@@ -26,10 +27,11 @@ Download article pdf
 }
 \details{
 \code{core_articles_history} does the HTTP request and parses, while
-\code{core_articles_history_} just does the HTTP request, gives back JSON as a character
-string
+\code{core_articles_history_} just does the HTTP request, gives back JSON as
+a character string
 
-These functions take one article ID at a time. Use lapply/loops/etc for many ids
+These functions take one article ID at a time. Use lapply/loops/etc for
+many ids
 }
 \examples{
 \dontrun{

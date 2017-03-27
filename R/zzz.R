@@ -22,17 +22,11 @@ core_POST <- function(path, key, args, body, ...){
 core_GET_disk <- function(path, id, key, overwrite, ...){
   temp <- httr::GET(file.path(core_base(), path),
               query = list(apiKey = check_key(key)),
-              httr::write_disk(path = paste0(id, ".pdf"), overwrite = overwrite), ...)
+              httr::write_disk(path = paste0(id, ".pdf"),
+                               overwrite = overwrite), ...)
   httr::stop_for_status(temp)
   temp$request$output$path
 }
-
-# err_catcher <- function(x) {
-#   xx <- jsonlite::fromJSON(content(x, as = 'text', encoding = "UTF-8"))
-#   if (any(vapply(c("message", "error"), function(z) z %in% names(xx), logical(1)))) {
-#     stop(xx[[1]], call. = FALSE)
-#   }
-# }
 
 core_parse <- function(x, parse) {
   jsonlite::fromJSON(x, parse)
