@@ -6,8 +6,34 @@
 \alias{cored}
 \title{cored - CORE R client}
 \description{
-cored - CORE R client
+CORE is a web service for metadata on scholarly journal articles. Find
+CORE at \url{https://core.ac.uk} and their API docs at
+\url{https://core.ac.uk/docs/}.
 }
+\section{Package API}{
+
+Each API endpoint has two functions that interface with it - a higher
+level interface and a lower level interface. The lower level functions
+have an underscore (\code{_}) at the end of the function name, while their
+corresponding higher level companions do not. The higher level functions
+parse to list/data.frame's (as tidy as possible). Lower level
+functions give back JSON (character class) thus are slightly faster not
+spending time on parsing to R structures.
+
+\itemize{
+\item \code{\link[=core_articles]{core_articles()}} / \code{\link[=core_articles_]{core_articles_()}} - get article metadata
+\item \code{\link[=core_articles_history]{core_articles_history()}} / \code{\link[=core_articles_history_]{core_articles_history_()}} - get
+article history metadata
+\item \code{\link[=core_articles_pdf]{core_articles_pdf()}} / \code{\link[=core_articles_pdf_]{core_articles_pdf_()}} - download
+article PDF, and optionally extract text
+\item \code{\link[=core_journals]{core_journals()}} / \code{\link[=core_journals_]{core_journals_()}} - get journal metadata
+\item \code{\link[=core_repos]{core_repos()}} / \code{\link[=core_repos_]{core_repos_()}} - get repository metadata
+\item \code{\link[=core_repos_search]{core_repos_search()}} / \code{\link[=core_repos_search_]{core_repos_search_()}} - search for
+repositories
+\item \code{\link[=core_search]{core_search()}} / \code{\link[=core_search_]{core_search_()}} - search articles
+}
+}
+
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
