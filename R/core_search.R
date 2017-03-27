@@ -13,15 +13,14 @@
 #' @examples \dontrun{
 #' core_search(query = 'ecology')
 #' core_search(query = 'ecology', parse = FALSE)
-#' core_search(query = 'ecology', limit = 2)
+#' core_search(query = 'ecology', limit = 12)
 #'
 #' core_search_(query = 'ecology')
 #' library("jsonlite")
 #' jsonlite::fromJSON(core_search_(query = 'ecology'))
-#'
-#' # core_search_(query = 'ecology', limit = 3)
 #' }
-core_search <- function(query, page = 1, limit = 10, key = NULL, parse = TRUE, ...) {
+core_search <- function(query, page = 1, limit = 10, key = NULL,
+                        parse = TRUE, ...) {
   core_parse(core_search_(query, page, limit, key, ...), parse)
 }
 
@@ -29,5 +28,6 @@ core_search <- function(query, page = 1, limit = 10, key = NULL, parse = TRUE, .
 #' @rdname core_search
 core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
   must_be(limit)
-  core_GET(path = file.path("search", query), key, list(page = page, pageSize = limit), ...)
+  core_GET(path = file.path("search", query), key,
+           list(page = page, pageSize = limit), ...)
 }

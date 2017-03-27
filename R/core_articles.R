@@ -55,29 +55,40 @@
 #' ## POST, can pass many at once
 #' core_articles_(id = ids, method = "POST")
 #' }
-core_articles <- function(id, metadata = TRUE, fulltext = FALSE, citations = FALSE,
-                          similar = FALSE, duplicate = FALSE, urls = FALSE,
-                          extractedUrls = FALSE, faithfulMetadata = FALSE,
-                          key = NULL, method = "GET", parse = TRUE, ...) {
-  core_parse(core_articles_(id, metadata, fulltext, citations, similar, duplicate,
-                            urls, extractedUrls, faithfulMetadata, key, method, ...), parse)
+core_articles <- function(id, metadata = TRUE, fulltext = FALSE,
+  citations = FALSE, similar = FALSE, duplicate = FALSE, urls = FALSE,
+  extractedUrls = FALSE, faithfulMetadata = FALSE, key = NULL,
+  method = "GET", parse = TRUE, ...) {
+
+  core_parse(core_articles_(
+    id, metadata, fulltext, citations, similar, duplicate,
+    urls, extractedUrls, faithfulMetadata, key, method, ...), parse)
 }
 
 #' @export
 #' @rdname core_articles
-core_articles_ <- function(id, metadata = TRUE, fulltext = FALSE, citations = FALSE,
-                           similar = FALSE, duplicate = FALSE, urls = FALSE,
-                           extractedUrls = FALSE, faithfulMetadata = FALSE, key = NULL,
-                           method = "GET", ...) {
-  args <- cp(list(metadata = clog(metadata), fulltext = clog(fulltext), citations = clog(citations),
-                  similar = clog(similar), duplicate = clog(duplicate), urls = clog(urls),
-                  extractedUrls = clog(extractedUrls), faithfulMetadata = clog(faithfulMetadata)))
-  if (!method %in% c('GET', 'POST')) stop("'method' must be one of 'GET' or 'POST'", call. = FALSE)
-  switch(method,
-         `GET` = {
-           if (length(id) > 1) stop("'id' must be of length 1 when 'method=GET'", call. = FALSE)
-           core_GET(path = file.path("articles/get", id), key, args, ...)
-          },
-         `POST` = core_POST(path = "articles/get", key, args, id, ...)
+core_articles_ <- function(id, metadata = TRUE, fulltext = FALSE,
+  citations = FALSE, similar = FALSE, duplicate = FALSE, urls = FALSE,
+  extractedUrls = FALSE, faithfulMetadata = FALSE, key = NULL,
+  method = "GET", ...) {
+
+  args <- cp(list(
+    metadata = clog(metadata), fulltext = clog(fulltext),
+    citations = clog(citations), similar = clog(similar),
+    duplicate = clog(duplicate), urls = clog(urls),
+    extractedUrls = clog(extractedUrls),
+    faithfulMetadata = clog(faithfulMetadata))
+  )
+  if (!method %in% c('GET', 'POST')) {
+    stop("'method' must be one of 'GET' or 'POST'", call. = FALSE)
+  }
+  switch(
+    method,
+    `GET` = {
+      if (length(id) > 1) stop("'id' must be of length 1 when 'method=GET'",
+                               call. = FALSE)
+      core_GET(path = file.path("articles/get", id), key, args, ...)
+    },
+    `POST` = core_POST(path = "articles/get", key, args, id, ...)
   )
 }

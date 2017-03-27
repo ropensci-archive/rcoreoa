@@ -21,13 +21,21 @@ optional}
 
 \item{key}{A IUCN API token}
 
-\item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
-data.frame (\code{TRUE}). Default: \code{TRUE}}
+\item{parse}{(logical) Whether to parse to list (`FALSE`) or
+data.frame (`TRUE`). Default: `TRUE`}
 
-\item{...}{Curl options passed to \code{\link[httr]{GET}}}
+\item{...}{Curl options passed to [crul::HttpClient()]}
 }
 \description{
 Get article history
+}
+\details{
+\code{core_articles_history} does the HTTP request and parses,
+while \code{core_articles_history_} just does the HTTP request, gives back JSON
+as a character string
+
+These functions take one article ID at a time. Use lapply/loops/etc for
+many ids
 }
 \examples{
 \dontrun{

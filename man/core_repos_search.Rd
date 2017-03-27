@@ -17,10 +17,10 @@ optional}
 
 \item{key}{A IUCN API token}
 
-\item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
-data.frame (\code{TRUE}). Default: \code{TRUE}}
+\item{parse}{(logical) Whether to parse to list (`FALSE`) or
+data.frame (`TRUE`). Default: `TRUE`}
 
-\item{...}{Curl options passed to \code{\link[httr]{GET}}}
+\item{...}{Curl options passed to [crul::HttpClient()]}
 }
 \description{
 Search CORE repositories

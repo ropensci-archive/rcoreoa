@@ -1,31 +1,39 @@
 cp <- function(x) Filter(Negate(is.null), x)
 
 core_GET <- function(path, key, args, ...){
-  temp <- httr::GET(file.path(core_base(), path),
-              query = cp(c(args, list(apiKey = check_key(key)))), ...)
-  httr::stop_for_status(temp)
-  stopifnot(temp$headers$`content-type` == 'application/json')
-  #err_catcher(temp)
-  httr::content(temp, as = 'text', encoding = "UTF-8")
+  cli <- crul::HttpClient$new(url = core_base())
+  temp <- cli$get(
+    path = file.path("api-v2", path),
+    query = cp(c(args, list(apiKey = check_key(key)))),
+    ...
+  )
+  temp$raise_for_status()
+  stopifnot(temp$response_headers$`content-type` == 'application/json')
+  temp$parse("UTF-8")
 }
 
 core_POST <- function(path, key, args, body, ...){
-  temp <- httr::POST(file.path(core_base(), path),
-              query = cp(c(args, list(apiKey = check_key(key)))),
-              body = jsonlite::toJSON(body), encode = "json", ...)
-  httr::stop_for_status(temp)
-  stopifnot(temp$headers$`content-type` == 'application/json')
-  #err_catcher(temp)
-  httr::content(temp, as = 'text', encoding = "UTF-8")
+  cli <- crul::HttpClient$new(url = core_base())
+  temp <- cli$post(
+    path = file.path("api-v2", path),
+    query = cp(c(args, list(apiKey = check_key(key)))),
+    body = jsonlite::toJSON(body), encode = "json", ...
+  )
+  temp$raise_for_status()
+  stopifnot(temp$response_headers$`content-type` == 'application/json')
+  temp$parse("UTF-8")
 }
 
 core_GET_disk <- function(path, id, key, overwrite, ...){
-  temp <- httr::GET(file.path(core_base(), path),
-              query = list(apiKey = check_key(key)),
-              httr::write_disk(path = paste0(id, ".pdf"),
-                               overwrite = overwrite), ...)
-  httr::stop_for_status(temp)
-  temp$request$output$path
+  cli <- crul::HttpClient$new(url = core_base())
+  temp <- cli$get(
+    path = file.path("api-v2", path),
+    query = list(apiKey = check_key(key)),
+    disk = paste0(id, ".pdf"),
+    ...
+  )
+  temp$raise_for_status()
+  temp$content
 }
 
 core_parse <- function(x, parse) {
@@ -45,7 +53,7 @@ must_be <- function(x, y = 10) {
   if (x < y) stop("limit must be >= 10", call. = FALSE)
 }
 
-core_base <- function() "https://core.ac.uk/api-v2"
+core_base <- function() "https://core.ac.uk"
 
 clog <- function(x){
   if (is.null(x)) {

@@ -7,7 +7,7 @@
 #' @param page (character) page number (default: 1), optional
 #' @param limit (character) records to return (default: 10, minimum: 10),
 #' optional
-#' @details `core_articles_history`} does the HTTP request and parses,
+#' @details `core_articles_history` does the HTTP request and parses,
 #' while `core_articles_history_` just does the HTTP request, gives back JSON
 #' as a character string
 #'
@@ -25,7 +25,9 @@
 #' # just http request, get text back
 #' core_articles_history_('21132995')
 #' }
-core_articles_history <- function(id, page = 1, limit = 10, key = NULL, parse = TRUE, ...) {
+core_articles_history <- function(id, page = 1, limit = 10, key = NULL,
+                                  parse = TRUE, ...) {
+
   core_parse(core_articles_history_(id, page, limit, key, ...), parse)
 }
 
@@ -33,5 +35,6 @@ core_articles_history <- function(id, page = 1, limit = 10, key = NULL, parse = 
 #' @rdname core_articles_history
 core_articles_history_ <- function(id, page = 1, limit = 10, key = NULL, ...) {
   must_be(limit)
-  core_GET(path = sprintf("articles/get/%s/history", id), key, list(page = page, pageSize = limit), ...)
+  core_GET(path = sprintf("articles/get/%s/history", id), key,
+           list(page = page, pageSize = limit), ...)
 }

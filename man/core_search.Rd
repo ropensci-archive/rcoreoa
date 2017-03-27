@@ -22,10 +22,10 @@ optional}
 
 \item{key}{A IUCN API token}
 
-\item{...}{Curl options passed to \code{\link[httr]{GET}}}
+\item{...}{Curl options passed to [crul::HttpClient()]}
 
-\item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
-data.frame (\code{TRUE}). Default: \code{TRUE}}
+\item{parse}{(logical) Whether to parse to list (`FALSE`) or
+data.frame (`TRUE`). Default: `TRUE`}
 }
 \description{
 Search CORE
@@ -39,13 +39,11 @@ string
 \dontrun{
 core_search(query = 'ecology')
 core_search(query = 'ecology', parse = FALSE)
-core_search(query = 'ecology', limit = 2)
+core_search(query = 'ecology', limit = 12)
 
 core_search_(query = 'ecology')
 library("jsonlite")
 jsonlite::fromJSON(core_search_(query = 'ecology'))
-
-# core_search_(query = 'ecology', limit = 3)
 }
 }
 \references{

@@ -23,12 +23,14 @@
 #' res <- lapply(ids, core_articles_pdf)
 #' vapply(res, "[[", "", 1)
 #' }
-core_articles_pdf <- function(id, key = NULL, overwrite = TRUE, parse = TRUE, ...) {
+core_articles_pdf <- function(id, key = NULL, overwrite = TRUE, parse = TRUE,
+                              ...) {
   pdf_parse(core_articles_pdf_(id, key, overwrite, ...), parse)
 }
 
 #' @export
 #' @rdname core_articles_pdf
 core_articles_pdf_ <- function(id, key = NULL, overwrite = TRUE, ...) {
-  core_GET_disk(path = sprintf("articles/get/%s/download/pdf", id), id, key, overwrite, ...)
+  core_GET_disk(path = sprintf("articles/get/%s/download/pdf", id), id,
+                key, overwrite, ...)
 }

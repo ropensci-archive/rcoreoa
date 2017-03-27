@@ -13,10 +13,10 @@ core_repos(id, key = NULL, method = "GET", parse = TRUE, ...)
 
 \item{method}{(character) one of 'GET' (default) or 'POST'}
 
-\item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
-data.frame (\code{TRUE}). Default: \code{TRUE}}
+\item{parse}{(logical) Whether to parse to list (`FALSE`) or
+data.frame (`TRUE`). Default: `TRUE`}
 
-\item{...}{Curl options passed to \code{\link[httr]{GET}}}
+\item{...}{Curl options passed to [crul::HttpClient()]}
 }
 \description{
 Get repositories via their repository IDs
