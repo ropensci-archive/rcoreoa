@@ -3,8 +3,10 @@ cored
 
 
 
+[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.org/ropenscilabs/cored.svg?branch=master)](https://travis-ci.org/ropenscilabs/cored)
 [![codecov.io](https://codecov.io/github/ropenscilabs/cored/coverage.svg?branch=master)](https://codecov.io/github/ropenscilabs/cored?branch=master)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/cored)](https://github.com/metacran/cranlogs.app)
 
 CORE API R client
 
@@ -131,4 +133,9 @@ core_articles_pdf_(11549557)
 
 ## Meta
 
+* Please [report any issues or bugs](https://github.com/ropenscilabs/cored/issues).
+* License: MIT
+* Get citation information for `cored` in R doing `citation(package = 'cored')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
