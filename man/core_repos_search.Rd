@@ -45,4 +45,3 @@ jsonlite::fromJSON(core_repos_search_(query = 'pubmed'))
 \references{
 \url{https://core.ac.uk/docs/#!/repositories/search}
 }
-

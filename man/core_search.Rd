@@ -50,4 +50,3 @@ jsonlite::fromJSON(core_search_(query = 'ecology'))
 \references{
 \url{https://core.ac.uk/docs/#!/all/search}
 }
-

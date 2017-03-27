@@ -87,4 +87,3 @@ core_articles_(id = ids, method = "POST")
 \url{https://core.ac.uk/docs/#!/articles/getArticleByCoreIdBatch}
 \url{https://core.ac.uk/docs/#!/articles/getArticleByCoreId}
 }
-

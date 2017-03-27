@@ -2,8 +2,8 @@
 % Please edit documentation in R/cored-package.R
 \docType{package}
 \name{cored-package}
-\alias{cored}
 \alias{cored-package}
+\alias{cored}
 \title{cored - CORE R client}
 \description{
 cored - CORE R client
@@ -12,4 +12,3 @@ cored - CORE R client
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \keyword{package}
-

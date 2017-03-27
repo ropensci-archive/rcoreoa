@@ -45,4 +45,3 @@ core_repos_(507)
 \url{https://core.ac.uk/docs/#!/repositories/getRepositoryById}
 \url{https://core.ac.uk/docs/#!/repositories/getRepositoryByIdBatch}
 }
-

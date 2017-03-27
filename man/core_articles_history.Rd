@@ -50,4 +50,3 @@ core_articles_history_('21132995')
 \references{
 \url{https://core.ac.uk/docs/#!/articles/getArticleHistoryByCoreId}
 }
-
