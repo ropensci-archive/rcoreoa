@@ -1,10 +1,15 @@
+core_base <- function() "https://core.ac.uk"
+
 cp <- function(x) Filter(Negate(is.null), x)
 
 core_GET <- function(path, key, args, ...){
-  cli <- crul::HttpClient$new(url = core_base())
+  cli <- crul::HttpClient$new(
+    url = core_base(),
+    headers = list(apiKey = check_key(key))
+  )
   temp <- cli$get(
     path = file.path("api-v2", path),
-    query = cp(c(args, list(apiKey = check_key(key)))),
+    query = cp(args),
     ...
   )
   temp$raise_for_status()
@@ -13,10 +18,13 @@ core_GET <- function(path, key, args, ...){
 }
 
 core_POST <- function(path, key, args, body, ...){
-  cli <- crul::HttpClient$new(url = core_base())
+  cli <- crul::HttpClient$new(
+    url = core_base(),
+    headers = list(apiKey = check_key(key))
+  )
   temp <- cli$post(
     path = file.path("api-v2", path),
-    query = cp(c(args, list(apiKey = check_key(key)))),
+    query = cp(args),
     body = jsonlite::toJSON(body), encode = "json", ...
   )
   temp$raise_for_status()
@@ -25,10 +33,12 @@ core_POST <- function(path, key, args, body, ...){
 }
 
 core_GET_disk <- function(path, id, key, overwrite, ...){
-  cli <- crul::HttpClient$new(url = core_base())
+  cli <- crul::HttpClient$new(
+    url = core_base(),
+    headers = list(apiKey = check_key(key))
+  )
   temp <- cli$get(
     path = file.path("api-v2", path),
-    query = list(apiKey = check_key(key)),
     disk = paste0(id, ".pdf"),
     ...
   )
@@ -52,8 +62,6 @@ check_key <- function(x){
 must_be <- function(x, y = 10) {
   if (x < y) stop("limit must be >= 10", call. = FALSE)
 }
-
-core_base <- function() "https://core.ac.uk"
 
 clog <- function(x){
   if (is.null(x)) {

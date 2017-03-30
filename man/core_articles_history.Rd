@@ -44,7 +44,7 @@ core_articles_history(id = '21132995')
 ids <- c(20955435, 21132995, 21813171, 22815670, 14045109, 23828884,
    23465055, 23831838, 23923390, 22559733)
 res <- lapply(ids, core_articles_history)
-vapply(res, "[[", "", c("data", "datetime"))
+vapply(res, function(z) z$data$datetime[1], "")
 
 # just http request, get text back
 core_articles_history_('21132995')

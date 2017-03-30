@@ -24,6 +24,7 @@
 #'
 #' # post request, ideal for lots of ISSNs
 #' if (requireNamespace("rcrossref", quietly = TRUE)) {
+#'  library(rcrossref)
 #'  res <- lapply(c("bmc", "peerj", "elife", "plos", "frontiers"), function(z)
 #'     cr_journals(query = z))
 #'  ids <- unlist(lapply(res, function(b) b$data$issn))
