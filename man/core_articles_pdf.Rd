@@ -41,7 +41,7 @@ core_articles_pdf_(11549557)
 # get paper and parse to text
 core_articles_pdf(11549557)
 
-ids <- c(11549557, 385071, 6264645)
+ids <- c(11549557, 385071)
 res <- lapply(ids, core_articles_pdf)
 vapply(res, "[[", "", 1)
 }
