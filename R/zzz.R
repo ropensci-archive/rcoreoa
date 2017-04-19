@@ -25,7 +25,7 @@ core_POST <- function(path, key, args, body, ...){
   temp <- cli$post(
     path = file.path("api-v2", path),
     query = cp(args),
-    body = jsonlite::toJSON(body), encode = "json", ...
+    body = jsonlite::toJSON(body, auto_unbox = T), encode = "json", ...
   )
   temp$raise_for_status()
   stopifnot(temp$response_headers$`content-type` == 'application/json')
@@ -73,4 +73,31 @@ clog <- function(x){
 
 pdf_parse <- function(x, parse) {
   if (parse) pdftools::pdf_text(x) else x
+}
+
+create_batch_query_list <- function(queries, page = NULL, pageSize = NULL) {
+  # We could have allowed for variable values with the pages or pageSize variables, but for simplicity, 
+  # this function will allow for a single value across only --v
+  if(!is.numeric(page)){
+    return(NULL)
+  } else if (!is.numeric(pageSize)) {
+    return(NULL)
+  }
+  
+  if(is.null(page)){ # || length(page) != length(queries)){
+    page = 1
+  }
+  
+  if(is.null(pageSize)){ # || length(page) != length(pageSize)){
+    pageSize = 10
+  }
+  
+  queryList <- lapply(queries, function(x){
+    as.list(setNames(x, rep("query", length(x))))
+  })
+  
+  queryList <- Map(c, queryList, page = rep(page))
+  queryList <- Map(c, queryList, pageSize = rep(pageSize))
+  
+  return(queryList)
 }

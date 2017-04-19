@@ -26,8 +26,24 @@ core_search <- function(query, page = 1, limit = 10, key = NULL,
 
 #' @export
 #' @rdname core_search
-core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
+core_search_ <- function(query, page = 1, limit = 10, key = NULL, method = "GET", ...) {
   must_be(limit)
-  core_GET(path = file.path("search", query), key,
-           list(page = page, pageSize = limit), ...)
+  
+  if (!method %in% c('GET', 'POST')) {
+    stop("'method' must be one of 'GET' or 'POST'", call. = FALSE)
+  }
+  
+  switch(
+    method,
+    `GET` = {
+      core_GET(path = file.path("search", query), key,
+               list(page = page, pageSize = limit), ...)
+    },
+    `POST` = { 
+      queries <- create_batch_query_list(query, page, pageSize)
+      args <- NULL
+      
+      core_POST(path = file.path("search"), key, args, queries)
+    }
+  )
 }
