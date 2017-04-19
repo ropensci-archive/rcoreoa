@@ -20,8 +20,8 @@
 #' jsonlite::fromJSON(core_search_(query = 'ecology'))
 #' }
 core_search <- function(query, page = 1, limit = 10, key = NULL,
-                        parse = TRUE, ...) {
-  core_parse(core_search_(query, page, limit, key, ...), parse)
+                        parse = TRUE, method = "GET", ...) {
+  core_parse(core_search_(query, page, limit, key, method, ...), parse)
 }
 
 #' @export
