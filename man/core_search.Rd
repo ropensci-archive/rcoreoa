@@ -22,6 +22,8 @@ optional}
 
 \item{key}{A IUCN API token}
 
+\item{method}{(character) one of 'GET' (default) or 'POST'}
+
 \item{...}{Curl options passed to [crul::HttpClient()]}
 
 \item{parse}{(logical) Whether to parse to list (`FALSE`) or
@@ -44,6 +46,13 @@ core_search(query = 'ecology', limit = 12)
 core_search_(query = 'ecology')
 library("jsonlite")
 jsonlite::fromJSON(core_search_(query = 'ecology'))
+
+query <- c("data mining", "machine learning", "semantic web")
+
+# post request
+res <- core_search(query, method = "POST")
+head(res$data)
+res$data$id
 }
 }
 \references{

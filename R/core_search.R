@@ -36,6 +36,8 @@ core_search_ <- function(query, page = 1, limit = 10, key = NULL, method = "GET"
   switch(
     method,
     `GET` = {
+      if (length(query) > 1) stop("'query' must be of length 1 when 'method=GET'",
+                               call. = FALSE)
       core_GET(path = file.path("search", query), key,
                list(page = page, pageSize = limit), ...)
     },
