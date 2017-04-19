@@ -43,7 +43,7 @@ core_search_ <- function(query, page = 1, limit = 10, key = NULL, method = "GET"
       queries <- create_batch_query_list(query, page, pageSize)
       args <- NULL
       
-      core_POST(path = file.path("search"), key, args, queries)
+      core_POST(path = "search", key, args, queries, ...)
     }
   )
 }
