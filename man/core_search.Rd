@@ -8,9 +8,9 @@
 \usage{
 core_repos_search_(query, page = 1, limit = 10, key = NULL, ...)
 
-core_search(query, page = 1, limit = 10, key = NULL, parse = TRUE, ...)
+core_search(query, page = 1, limit = 10, key = NULL, parse = TRUE, method = "GET", ...)
 
-core_search_(query, page = 1, limit = 10, key = NULL, ...)
+core_search_(query, page = 1, limit = 10, key = NULL, method = "GET", ...)
 }
 \arguments{
 \item{query}{(character) query string, required}
