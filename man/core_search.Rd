@@ -8,9 +8,9 @@
 \usage{
 core_repos_search_(query, page = 1, limit = 10, key = NULL, ...)
 
-core_search(query, page = 1, limit = 10, key = NULL, parse = TRUE, method = "GET", ...)
+core_search(query, page = 1, limit = 10, key = NULL, parse = TRUE, ...)
 
-core_search_(query, page = 1, limit = 10, key = NULL, method = "GET", ...)
+core_search_(query, page = 1, limit = 10, key = NULL, ...)
 }
 \arguments{
 \item{query}{(character) query string, required}
@@ -21,8 +21,6 @@ core_search_(query, page = 1, limit = 10, key = NULL, method = "GET", ...)
 optional}
 
 \item{key}{A IUCN API token}
-
-\item{method}{(character) one of 'GET' (default) or 'POST'}
 
 \item{...}{Curl options passed to [crul::HttpClient()]}
 
@@ -50,7 +48,7 @@ jsonlite::fromJSON(core_search_(query = 'ecology'))
 query <- c("data mining", "machine learning", "semantic web")
 
 # post request
-res <- core_search(query, method = "POST")
+res <- core_search(query)
 head(res$data)
 res$data$id
 }

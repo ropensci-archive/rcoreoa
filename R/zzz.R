@@ -76,19 +76,11 @@ pdf_parse <- function(x, parse) {
 }
 
 create_batch_query_list <- function(queries, page = NULL, pageSize = NULL) {
-  # We could have allowed for variable values with the pages or pageSize variables, but for simplicity, 
-  # this function will allow for a single value across only --v
-  if(!is.numeric(page)){
-    return(NULL)
-  } else if (!is.numeric(pageSize)) {
-    return(NULL)
-  }
-  
-  if(is.null(page)){ # || length(page) != length(queries)){
+  if(is.null(page)){
     page = 1
   }
   
-  if(is.null(pageSize)){ # || length(page) != length(pageSize)){
+  if(is.null(pageSize)){
     pageSize = 10
   }
   

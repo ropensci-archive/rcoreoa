@@ -20,29 +20,22 @@
 #' jsonlite::fromJSON(core_search_(query = 'ecology'))
 #' }
 core_search <- function(query, page = 1, limit = 10, key = NULL,
-                        parse = TRUE, method = "GET", ...) {
-  core_parse(core_search_(query, page, limit, key, method, ...), parse)
+                        parse = TRUE, ...) {
+  core_parse(core_search_(query, page, limit, key, ...), parse)
 }
 
 #' @export
 #' @rdname core_search
-core_search_ <- function(query, page = 1, limit = 10, key = NULL, method = "GET", ...) {
+core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
   must_be(limit)
-  
-  if (!method %in% c('GET', 'POST')) {
-    stop("'method' must be one of 'GET' or 'POST'", call. = FALSE)
-  }
-  
   switch(
-    method,
-    `GET` = {
-      if (length(query) > 1) stop("'query' must be of length 1 when 'method=GET'",
-                               call. = FALSE)
+    as.character(length(query) > 1),
+    `FALSE` = {
       core_GET(path = file.path("search", query), key,
                list(page = page, pageSize = limit), ...)
     },
-    `POST` = { 
-      queries <- create_batch_query_list(queries = query, page_ = page, pageSize_ = limit)
+    `TRUE` = {
+      queries <- create_batch_query_list(query, page, limit)
       args <- NULL
       
       core_POST(path = "search", key, args, queries, ...)
