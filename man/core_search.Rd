@@ -54,5 +54,6 @@ res$data$id
 }
 }
 \references{
+\url{https://core.ac.uk/docs/#!/all/searchBatch}
 \url{https://core.ac.uk/docs/#!/all/search}
 }
