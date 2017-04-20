@@ -75,15 +75,7 @@ pdf_parse <- function(x, parse) {
   if (parse) pdftools::pdf_text(x) else x
 }
 
-create_batch_query_list <- function(queries, page = NULL, pageSize = NULL) {
-  if(is.null(page)){
-    page = 1
-  }
-  
-  if(is.null(pageSize)){
-    pageSize = 10
-  }
-  
+create_batch_query_list <- function(queries, page, pageSize) {
   queryList <- lapply(queries, function(x){
     as.list(setNames(x, rep("query", length(x))))
   })
