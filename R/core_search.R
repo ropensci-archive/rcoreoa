@@ -28,17 +28,14 @@ core_search <- function(query, page = 1, limit = 10, key = NULL,
 #' @rdname core_search
 core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
   must_be(limit)
-  switch(
-    as.character(length(query) > 1),
-    `FALSE` = {
-      core_GET(path = file.path("search", query), key,
-               list(page = page, pageSize = limit), ...)
-    },
-    `TRUE` = {
-      queries <- create_batch_query_list(query, page, limit)
-      args <- NULL
-      
-      core_POST(path = "search", key, args, queries, ...)
-    }
-  )
+
+  if(as.character(length(query) > 1)){
+    queries <- create_batch_query_list(query, page, limit)
+    args <- NULL
+    
+    core_POST(path = "search", key, args, queries, ...)
+  } else {
+    core_GET(path = file.path("search", query), key,
+             list(page = page, pageSize = limit), ...)
+  }
 }

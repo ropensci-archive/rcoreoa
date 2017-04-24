@@ -25,7 +25,7 @@ core_POST <- function(path, key, args, body, ...){
   temp <- cli$post(
     path = file.path("api-v2", path),
     query = cp(args),
-    body = jsonlite::toJSON(body, auto_unbox=T), encode = "json", ...
+    body = jsonlite::toJSON(body, auto_unbox = TRUE), encode = "json", ...
   )
   temp$raise_for_status()
   stopifnot(temp$response_headers$`content-type` == 'application/json')
@@ -77,7 +77,7 @@ pdf_parse <- function(x, parse) {
 
 create_batch_query_list <- function(queries, page, pageSize) {
   queryList <- lapply(queries, function(x){
-    as.list(setNames(x, rep("query", length(x))))
+    as.list(stats::setNames(x, rep("query", length(x))))
   })
   
   queryList <- Map(c, queryList, page = rep(page))
