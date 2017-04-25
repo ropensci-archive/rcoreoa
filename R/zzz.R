@@ -25,7 +25,7 @@ core_POST <- function(path, key, args, body, ...){
   temp <- cli$post(
     path = file.path("api-v2", path),
     query = cp(args),
-    body = jsonlite::toJSON(body), encode = "json", ...
+    body = jsonlite::toJSON(body, auto_unbox = TRUE), encode = "json", ...
   )
   temp$raise_for_status()
   stopifnot(temp$response_headers$`content-type` == 'application/json')
@@ -73,4 +73,15 @@ clog <- function(x){
 
 pdf_parse <- function(x, parse) {
   if (parse) pdftools::pdf_text(x) else x
+}
+
+create_batch_query_list <- function(queries, page, pageSize) {
+  queryList <- lapply(queries, function(x){
+    as.list(stats::setNames(x, rep("query", length(x))))
+  })
+  
+  queryList <- Map(c, queryList, page = rep(page))
+  queryList <- Map(c, queryList, pageSize = rep(pageSize))
+  
+  return(queryList)
 }
