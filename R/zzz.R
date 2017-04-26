@@ -8,17 +8,26 @@ get_acceptable_advanced_search_query_filter <- function(){
            "repository", "doi", "yearFrom", "yearTo", "advAuthor"))
 }
 
-# Leading and trailing spaces
-trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-
-paste3 <- function(..., sep=", ") {
-  L <- list(...)
-  L <- lapply(L,function(x) {x[is.null(x) || is.na(x) ] <- ""; x})
-  ret <-gsub(paste0("(^",sep,"|",sep,"$)"),"",
-             gsub(paste0(sep,sep),sep,
-                  do.call(paste,c(L,list(sep=sep)))))
-  is.na(ret) <- ret==""
-  ret
+paste3 <- function(..., sep = " ", collapse = NULL, na.rm = T) {
+  if (na.rm == F)
+    paste(..., sep = sep, collapse = collapse)
+  else
+    if (na.rm == T) {
+      paste.na <- function(x, sep) {
+        x <- gsub("^\\s+|\\s+$", "", x)
+        ret <- paste(na.omit(x), collapse = sep)
+        is.na(ret) <- ret == ""
+        return(ret)
+      }
+      df <- data.frame(..., stringsAsFactors = F)
+      ret <- apply(df, 1, FUN = function(x) paste.na(x, sep))
+      
+      if (is.null(collapse))
+        ret
+      else {
+        paste.na(ret, sep = collapse)
+      }
+    }
 }
 
 prepareESTerm <- function(filter) {
@@ -27,6 +36,8 @@ prepareESTerm <- function(filter) {
       filterArr <- unlist(strsplit(x = filter, split = " "))
       return(paste(":(", paste(filterArr, sep = " AND "), ")", sep=""))
     }
+  } else {
+    return(NA)
   }
 }
 
@@ -139,14 +150,8 @@ parse_advanced_search_query <- function(query){
     authorFilter <- prepareESTerm(query["author"])
     publisherFilter <- prepareESTerm(query["publisher"])
     repositoryFilter <- prepareESTerm(query["repository"])
-    
-    print(basicTermReplacement)
-    print(yearFilter)
-    print(authorFilter)
-    print(publisherFilter)
-    print(repositoryFilter)
-    
-    basicTermReplacement <- paste3(authorFilter, basicTermReplacement, yearFilter, publisherFilter, repositoryFilter, sep = " AND ")
+
+    basicTermReplacement <- paste3(basicTermReplacement, yearFilter, publisherFilter, repositoryFilter, authorFilter, sep = " AND ")
     
     return(basicTermReplacement)
   }
