@@ -5,7 +5,7 @@ core_base <- function() "https://core.ac.uk"
 get_acceptable_advanced_search_query_filter <- function(){
   return(c("all_of_the_words", "exact_phrase", "at_least_one_of_the_words", 
            "without_the_words", "find_those_words", "author", "publisher",
-           "repository", "doi", "yearFrom", "yearTo", "advAuthor"))
+           "repository", "doi", "year_from", "year_to"))
 }
 
 paste3 <- function(..., sep = " ", collapse = NULL, na.rm = T) {

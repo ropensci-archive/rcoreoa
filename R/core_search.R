@@ -38,11 +38,19 @@ core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
     } else {
       # Drop any names not in the acceptable_advanced_filters list and form the query with the rest.
       acceptable_advanced_filters <- get_acceptable_advanced_search_query_filter()
-      advanced_query <- query[which(!names(query) %in% acceptable_advanced_filters)]
-      # Possibly point to helper function to parse each one individually (zzz.R). Translate code already in core-frontend to construct the query.
+      advanced_query <- query[, which(names(query) %in% acceptable_advanced_filters)]
       parsed_advanced_query <- parse_advanced_search_query(advanced_query)
-      # Figure out if these were part of a batch request or not and execute CORE_GET or CORE_POST accordingly...
       
+      # Batch request?
+      if(length(parsed_advanced_query) > 1){
+        queries <- create_batch_query_list(query, page, limit)
+        args <- NULL
+        
+        core_POST(path = "search", key, args, queries, ...)
+      } else {
+        core_GET(path = file.path("search", query), key,
+                 list(page = page, pageSize = limit), ...)
+      }
     }
   } else {
     core_GET(path = file.path("search", query), key,
