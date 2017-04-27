@@ -73,6 +73,9 @@ is.acceptable.string <- function(txt){
 }
 
 parse_advanced_search_query <- function(query){
+  acceptable_advanced_filters <- get_acceptable_advanced_search_query_filter()
+  query <- query[which(names(query) %in% acceptable_advanced_filters)]
+  
   if ("doi" %in% names(query)){
     if(!is.null(query["doi"]) && query["doi"] != ""){
       # Form query only with a DOI as it is a unique identifier and no more filters are required.
