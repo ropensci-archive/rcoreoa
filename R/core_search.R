@@ -30,28 +30,10 @@ core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
   must_be(limit)
 
   if(as.character(length(query) > 1)){
-    if(!is.data.frame(query)){
-      queries <- create_batch_query_list(query, page, limit)
-      args <- NULL
-      
-      core_POST(path = "search", key, args, queries, ...)
-    } else {
-      # Drop any names not in the acceptable_advanced_filters list and form the query with the rest.
-      acceptable_advanced_filters <- get_acceptable_advanced_search_query_filter()
-      advanced_query <- query[, which(names(query) %in% acceptable_advanced_filters)]
-      parsed_advanced_query <- parse_advanced_search_query(advanced_query)
-      
-      # Batch request?
-      if(length(parsed_advanced_query) > 1){
-        queries <- create_batch_query_list(query, page, limit)
-        args <- NULL
-        
-        core_POST(path = "search", key, args, queries, ...)
-      } else {
-        core_GET(path = file.path("search", query), key,
-                 list(page = page, pageSize = limit), ...)
-      }
-    }
+    queries <- create_batch_query_list(query, page, limit)
+    args <- NULL
+    
+    core_POST(path = "search", key, args, queries, ...)
   } else {
     core_GET(path = file.path("search", query), key,
              list(page = page, pageSize = limit), ...)
