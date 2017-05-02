@@ -40,7 +40,10 @@ in target document(s)
 least one should exist in target document(s)
 \item \code{without_the_words}: string, with space separated terms of which none should
 exist in target document(s)
-\item \code{find_those_words}:
+\item \code{find_those_words}: 3 available options, a. "anywhere in the article"
+(default),
+b. "in the title", c. "in the title and abstract" to either do a fulltext
+search, a title only or a title and abstract respectively
 \item \code{author}: string, to be used as an absolute match against the author name
 metadata field
 \item \code{publisher}: string, to be used as an absolute match against the publisher
@@ -56,17 +59,5 @@ indicated
 \code{core_advanced_search} does the HTTP request and parses, while
 \code{core_advanced_search_} just does the HTTP request, gives back JSON as a
 character string
-\examples{
-\dontrun{
-query <- data.frame(
-'all_of_the_words' = c('data mining', 'machine learning'), 
-'without_the_words' = c('social science', 'medicine'),
-'year_from' = c('2013','2000'), 
-'year_to' = c('2014', '2016'))
-
-res <- core_advanced_search(query)
-head(res$data)
-res$data[[1]]$id
-}
 }
 }
