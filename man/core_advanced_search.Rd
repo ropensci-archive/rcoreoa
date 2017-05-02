@@ -11,7 +11,7 @@ core_advanced_search(query, page = 1, limit = 10, key = NULL,
 core_advanced_search_(query, page = 1, limit = 10, key = NULL, ...)
 }
 \arguments{
-\item{query}{data.frame, required}
+\item{query}{data.frame, required (details for structure)}
 
 \item{page}{(character) page number (default: 1), optional}
 
@@ -29,10 +29,44 @@ data.frame (`TRUE`). Default: `TRUE`}
 Advanced Search CORE
 }
 \details{
+\code{query} should include columns with the following information
+(at least one is required):
+\enumerate{
+\item \code{all_of_the_words}: string, with space separated terms that should all exist
+in target document(s)
+\item \code{exact_phrase}: string, used as an absolute match in comparison with
+\code{all_of_the_words}
+\item \code{at_least_one_of_the_words}: string, with space separated terms of which at
+least one should exist in target document(s)
+\item \code{without_the_words}: string, with space separated terms of which none should
+exist in target document(s)
+\item \code{find_those_words}:
+\item \code{author}: string, to be used as an absolute match against the author name
+metadata field
+\item \code{publisher}: string, to be used as an absolute match against the publisher
+name metadata field
+\item \code{repository}: string, to be used as an absolute match against the repository
+name metadata field
+\item \code{doi}: string, to be used as an absolute match against the repository
+name metadata field (all other fields will be ignored if included)
+\item \code{year_from}: string, to filter target document(s) publisher earlier than
+indicated
+\item \code{year_to}: string, to filter target document(s) publisher later than
+indicated
 \code{core_advanced_search} does the HTTP request and parses, while
-\code{core_advanced_search_} just does the HTTP request, gives back JSON as a character
-string
+\code{core_advanced_search_} just does the HTTP request, gives back JSON as a
+character string
+\examples{
+\dontrun{
+query <- data.frame(
+'all_of_the_words' = c('data mining', 'machine learning'), 
+'without_the_words' = c('social science', 'medicine'),
+'year_from' = c('2013','2000'), 
+'year_to' = c('2014', '2016'))
+
+res <- core_advanced_search(query)
+head(res$data)
+res$data[[1]]$id
 }
-\references{
-\url{https://core.ac.uk/docs/#!/all/advanced_search}
+}
 }
