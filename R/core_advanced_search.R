@@ -16,7 +16,9 @@
 #' least one should exist in target document(s)
 #' 4. `without_the_words`: string, with space separated terms of which none should
 #' exist in target document(s)
-#' 5. `find_those_words`: 
+#' 5. `find_those_words`: 3 available options, a. "anywhere in the article", 
+#' b. "in the title", c. "in the title and abstract" to either do a fulltext
+#' search, a title only or a title and abstract respectively
 #' 6. `author`: string, to be used as an absolute match against the author name
 #' metadata field
 #' 7. `publisher`: string, to be used as an absolute match against the publisher 
