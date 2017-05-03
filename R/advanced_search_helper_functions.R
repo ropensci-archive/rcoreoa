@@ -33,7 +33,8 @@ prepare_elasticsearch_term <- function(filter, filterName) {
   if(!is.na(filter)){
     if(is_acceptable_string(filter)){
       filterArr <- unlist(strsplit(x = filter, split = " "))
-      return(paste(filterName, ":(", paste(filterArr, collapse = " AND "), ")", sep = ""))
+      return(paste(filterName, ":(", paste(filterArr, collapse = " AND "), ")", 
+                   sep = ""))
     }
   } else {
     return(NA)
@@ -152,19 +153,11 @@ parse_advanced_search_query <- function(query){
     
     yearFilter <- ""
     
-    query_year_from <- tryCatch(expr = if(is.na(query["year_from"])) 
-      min_year_default else query["year_from"], 
-      error = function(e){
-      return(min_year_default)
-    })
-
-    query_year_to <- tryCatch(expr = if(is.na(query["year_to"])) 
-      yearToday else query["year_to"], 
-      error = function(e){
-      return(yearToday)
-    })
-    
-    print(query_year_from)
+    query_year_from <- if(!"year_from" %in% names(query)) min_year_default else
+      query["year_from"]
+      
+    query_year_to <- if("year_to" %in% names(query)) yearToday else 
+      query["year_to"]
     
     yearFilter <- 
       if(are_acceptable_year_filter(query_year_from, query_year_to)) 
@@ -181,8 +174,6 @@ parse_advanced_search_query <- function(query){
                       && is_acceptable_year_filter(query_year_to, FALSE)) 
       paste("year:[", query_year_from, " TO ", yearToday, "]", sep="") else 
         yearFilter
-    
-    print(yearFilter)
     
     authorFilter <- 
       prepare_elasticsearch_term(query["author"], "author")
