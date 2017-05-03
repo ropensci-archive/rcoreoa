@@ -8,14 +8,14 @@
 #' optional
 #' @details `query` should include columns with the following information 
 #' (at least one is required):
-#' 1. `all_of_the_words`: string, with space separated terms that should all exist
-#' in target document(s)
+#' 1. `all_of_the_words`: string, with space separated terms that should all 
+#' exist in target document(s)
 #' 2. `exact_phrase`: string, used as an absolute match in comparison with 
 #' `all_of_the_words`
-#' 3. `at_least_one_of_the_words`: string, with space separated terms of which at
-#' least one should exist in target document(s)
-#' 4. `without_the_words`: string, with space separated terms of which none should
-#' exist in target document(s)
+#' 3. `at_least_one_of_the_words`: string, with space separated terms of which 
+#' at least one should exist in target document(s)
+#' 4. `without_the_words`: string, with space separated terms of which none 
+#' should exist in target document(s)
 #' 5. `find_those_words`: 3 available options, a. "anywhere in the article" 
 #' (default), 
 #' b. "in the title", c. "in the title and abstract" to either do a fulltext
@@ -24,8 +24,8 @@
 #' metadata field
 #' 7. `publisher`: string, to be used as an absolute match against the publisher 
 #' name metadata field
-#' 8. `repository`: string, to be used as an absolute match against the repository 
-#' name metadata field
+#' 8. `repository`: string, to be used as an absolute match against the 
+#' repository name metadata field
 #' 9. `doi`: string, to be used as an absolute match against the repository 
 #' name metadata field (all other fields will be ignored if included)
 #' 10. `year_from`: string, to filter target document(s) publisher earlier than 
@@ -45,14 +45,22 @@
 #' res <- core_advanced_search(query)
 #' head(res$data)
 #' res$data[[1]]$id
+#' }
+#' @return data.frame with the following columns:
+#' `status`: string, which will be 'OK' or 'Not found' or 
+#' 'Too many queries' or 'Missing parameter' or 'Invalid parameter' or 
+#' 'Parameter out of bounds'
+#' `totalHits`: integer, Total number of items matching the search criteria
+#' `data`: list, a list of relevant resources
 core_advanced_search <- function(query, page = 1, limit = 10, key = NULL,
-                        parse = TRUE, ...) {
+                                 parse = TRUE, ...) {
   core_parse(core_advanced_search_(query, page, limit, key, ...), parse)
 }
 
 #' @export
 #' @rdname core_advanced_search
-core_advanced_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
+core_advanced_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) 
+{
   must_be(limit)
   
   if(is.data.frame(query)){
@@ -69,6 +77,6 @@ core_advanced_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) 
                list(page = page, pageSize = limit), ...)
     }
   } else {
-    print("query must be a data.frame (see details)")
+    stop("query must be a data.frame (see details)")
   }
 }
