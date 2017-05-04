@@ -11,6 +11,9 @@ cored
 CORE API R client
 
 [CORE API docs](https://core.ac.uk/docs/)
+[CORE API - request access](https://core.ac.uk/api-keys/register)
+
+[![CORE](https://core.ac.uk/resources/corelogo_hires.png)](https://core.ac.uk)
 
 ## Install
 
@@ -70,6 +73,35 @@ core_search(query = 'ecology', limit = 12)
 ```r
 core_search_(query = 'ecology', limit = 12)
 #> [1] "{\"status\":\"OK\",\"totalHits\":228626,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"article\",\"id\":\"15172123\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"}]}"
+```
+
+## Advanced Search
+
+```{r}
+query <- data.frame("all_of_the_words" = "data mining", 
+                    "without_the_words" = "social science", 
+                    "year_from" = "2013", 
+                    "year_to" = "2014")
+
+core_advanced_search(query)
+#> $status
+#> [1] "OK"
+#> 
+#> $totalHits
+#> [1] 23271
+#> 
+#> $data
+#>       type       id
+#> 1  article 22642150
+#> 2  article 22650635
+#> 3  article 24006259
+#> 4  article 23964816
+#> 5  article 24074440
+#> 6  article 22654775
+#> 7  article 35379905
+#> 8  article 22625437
+#> 9  article 23849064
+#> 10 article 23723370
 ```
 
 # Articles
