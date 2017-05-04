@@ -11,6 +11,7 @@ cored
 CORE API R client
 
 [CORE API docs](https://core.ac.uk/docs/)
+
 [CORE API - request access](https://core.ac.uk/api-keys/register)
 
 <a href="https://core.ac.uk">
