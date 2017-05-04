@@ -18,6 +18,13 @@
 #' core_search_(query = 'ecology')
 #' library("jsonlite")
 #' jsonlite::fromJSON(core_search_(query = 'ecology'))
+#' 
+#' query <- c('data mining', 'machine learning', 'semantic web')
+#'
+#' # post request
+#' res <- core_search(query)
+#' head(res$data)
+#' res$data$id
 #' }
 core_search <- function(query, page = 1, limit = 10, key = NULL,
                         parse = TRUE, ...) {
