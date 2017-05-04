@@ -46,7 +46,20 @@ CORE API R client
 [CORE API docs](https://core.ac.uk/docs/)
 [CORE API - request access](https://core.ac.uk/api-keys/register)
 
-[![CORE](https://core.ac.uk/resources/corelogo_hires.png)](https://core.ac.uk)
+<a href="https://core.ac.uk">
+<img src="https://core.ac.uk/resources/corelogo_hires.png" width="150" 
+alt="CORE">
+</a>
+
+"Aggregating the world's open access research papers"
+
+CORE offers seamless access to millions of open access research papers, enrich 
+the collected data for text-mining and provide unique services to the research 
+community.
+
+For more infos on CORE, see:
+
+[https://core.ac.uk/about](https://core.ac.uk/about)
 
 ## Install
 
