@@ -8,6 +8,7 @@ cored
 [![codecov.io](https://codecov.io/github/ropenscilabs/cored/coverage.svg?branch=master)](https://codecov.io/github/ropenscilabs/cored?branch=master)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/cored)](https://github.com/metacran/cranlogs.app)
 
+
 CORE API R client
 
 [CORE API docs](https://core.ac.uk/docs/)
@@ -65,7 +66,7 @@ core_search(query = 'ecology', limit = 12)
 #> [1] "OK"
 #> 
 #> $totalHits
-#> [1] 228626
+#> [1] 683556
 #> 
 #> $data
 #>       type             id
@@ -73,25 +74,26 @@ core_search(query = 'ecology', limit = 12)
 #> 2  journal issn:2287-8327
 #> 3  journal issn:2193-3081
 #> 4  journal issn:2351-9894
-#> 5  article       15172123
-#> 6  journal issn:1472-6785
-#> 7  journal issn:1712-6568
-#> 8  journal issn:2008-9287
-#> 9  journal issn:2356-6647
-#> 10 journal issn:1687-9708
-#> 11 journal issn:1708-3087
-#> 12 journal issn:2299-1042
+#> 5  journal issn:1472-6785
+#> 6  journal issn:1712-6568
+#> 7  journal issn:2008-9287
+#> 8  journal issn:2356-6647
+#> 9  journal issn:1687-9708
+#> 10 journal issn:1708-3087
+#> 11 journal issn:2299-1042
+#> 12 journal issn:2162-1985
 ```
 
 
 ```r
 core_search_(query = 'ecology', limit = 12)
-#> [1] "{\"status\":\"OK\",\"totalHits\":228626,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"article\",\"id\":\"15172123\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"}]}"
+#> [1] "{\"status\":\"OK\",\"totalHits\":683556,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
 ```
 
 ## Advanced Search
 
-```{r}
+
+```r
 query <- data.frame("all_of_the_words" = "data mining", 
                     "without_the_words" = "social science", 
                     "year_from" = "2013", 
@@ -128,7 +130,7 @@ core_articles(id = 21132995)
 #> 
 #> $data
 #> $data$id
-#> [1] 21132995
+#> [1] "21132995"
 #> 
 #> $data$authors
 #> list()
@@ -176,6 +178,11 @@ high level version without the `_` parses the pdf to text for you.
 ```r
 core_articles_pdf_(11549557)
 ```
+
+## Contributors
+
+* [Scott Chamberlain](https://github.com/sckott)
+* [Aristotelis Charalampous](https://github.com/aresxs91)
 
 ## Meta
 

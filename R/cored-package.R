@@ -24,11 +24,14 @@
 #'  \item [core_repos_search()] / [core_repos_search_()] - search for
 #'  repositories
 #'  \item [core_search()] / [core_search_()] - search articles
+#'  \item [core_advanced_search()] / [core_advanced_search_()] -
+#'  advanced search of articles
 #' }
 #'
 #' @name cored-package
 #' @aliases cored
 #' @docType package
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
+#' @author Aristotelis Charalampous
 #' @keywords package
 NULL

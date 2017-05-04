@@ -135,6 +135,11 @@ high level version without the `_` parses the pdf to text for you.
 core_articles_pdf_(11549557)
 ```
 
+## Contributors
+
+* [Scott Chamberlain](https://github.com/sckott)
+* [Aristotelis Charalampous](https://github.com/aresxs91)
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropenscilabs/cored/issues).

@@ -6,8 +6,9 @@ Description: Client for the CORE API (<https://core.ac.uk/docs/>).
     outputs from repositories and journals worldwide and make them
     available to the public.
 Version: 0.0.2.9703
-Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com")
+Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com"),
+    person("Aristotelis", "Charalampous", role = "ctb"))
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/cored
 BugReports: https://github.com/ropenscilabs/cored/issues
