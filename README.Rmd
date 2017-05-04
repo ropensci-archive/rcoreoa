@@ -44,6 +44,9 @@ knitr::opts_chunk$set(
 CORE API R client
 
 [CORE API docs](https://core.ac.uk/docs/)
+[CORE API - request access](https://core.ac.uk/api-keys/register)
+
+[![CORE](https://core.ac.uk/resources/corelogo_hires.png)](https://core.ac.uk)
 
 ## Install
 
@@ -78,6 +81,17 @@ core_search(query = 'ecology', limit = 12)
 
 ```{r}
 core_search_(query = 'ecology', limit = 12)
+```
+
+## Advanced Search
+
+```{r}
+query <- data.frame("all_of_the_words" = "data mining", 
+                    "without_the_words" = "social science", 
+                    "year_from" = "2013", 
+                    "year_to" = "2014")
+
+core_advanced_search(query)
 ```
 
 # Articles
