@@ -59,7 +59,7 @@ is_acceptable_year_filter <- function(year, nullable = TRUE) {
   }
 }
 
-are_acceptable_year_filter <- function(year_from, year_to){
+are_acceptable_year_filters <- function(year_from, year_to){
   return( 
     (!is.null(year_from) && nchar(year_from) > 0 && 
        !is.na(as.integer(year_from))) &&
@@ -160,7 +160,7 @@ parse_advanced_search_query <- function(query){
       query["year_to"]
     
     yearFilter <- 
-      if(are_acceptable_year_filter(query_year_from, query_year_to)) 
+      if(are_acceptable_year_filters(query_year_from, query_year_to)) 
         paste("year:[", query_year_from, " TO ", query_year_to, "]", 
               sep="") else ""
     
