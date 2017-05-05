@@ -1,4 +1,4 @@
-Package: cored
+Package: rcore
 Type: Package
 Title: Client for the CORE API
 Description: Client for the CORE API (<https://core.ac.uk/docs/>).
@@ -10,8 +10,8 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
     person("Aristotelis", "Charalampous", role = "ctb"))
 License: MIT + file LICENSE
-URL: https://github.com/ropenscilabs/cored
-BugReports: https://github.com/ropenscilabs/cored/issues
+URL: https://github.com/ropensci/rcore
+BugReports: https://github.com/ropensci/rcore/issues
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Imports:

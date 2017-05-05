@@ -1,4 +1,4 @@
-#' cored - CORE R client
+#' rcore - CORE R client
 #'
 #' CORE is a web service for metadata on scholarly journal articles. Find
 #' CORE at <https://core.ac.uk> and their API docs at
@@ -28,8 +28,8 @@
 #'  advanced search of articles
 #' }
 #'
-#' @name cored-package
-#' @aliases cored
+#' @name rcore-package
+#' @aliases rcore
 #' @docType package
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @author Aristotelis Charalampous
