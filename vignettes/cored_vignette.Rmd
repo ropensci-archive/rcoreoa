@@ -97,3 +97,24 @@ Palynology is the study of organic-walled microfossils.  Of these microfossils, 
 So, lets see how many articles there are in the **CORE** holdings that contain the term `palynology`:
 
 ```{r}
+palyn <- core_search(query = 'palynology', key = api_key)
+```
+
+The result is a list with three components: `['Status', 'totalHits', 'data']`.  In our case, the result for `status` is `"OK"` (as opposed to `not found`), the `totalHits` are `13175` and then there are 10 articles returned.  The total number of articles is much higher than the number of articles returned because by default the `limit` flag for `core_search` is set to 10.
+
+We can constrain our search, to look at the change in results over time by looking only for articles within certain  specified time limits.  For this we can use the `core_advanced_search`:
+
+```{r}
+query <- data.frame(
+  all_of_the_words = "palynology",
+  year_from = as.character(seq(1950, 2016)),
+  year_to   = as.character(seq(1951, 2017)),
+  stringsAsFactors = FALSE)
+
+bins <- core_advanced_search(query = query, key = api_key)
+
+plot(seq(1951, 2016), -diff(bins[[2]]),
+     xlab = "Published Year", ylab = "Articles")
+
+```
+
