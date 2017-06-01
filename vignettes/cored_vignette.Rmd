@@ -25,24 +25,43 @@ available to the public.
 
 ## Installation
 
+The package can be installed directly from the CRAN repository:
+
 ```{r eval=FALSE}
 install.packages("rcore")
 ```
 
-Development version
+Or you can install the development version:
 
 ```{r eval=FALSE}
 devtools::install_github("ropensci/rcore")
 ```
 
+Once the package is installed, simply run: 
+
 ```{r}
 library("rcore")
 ```
 
-## foo bar
+## Obtaining an API key
 
-stuff things ..
+The Core API requires an API key, and, as such, requires you to register for the key on the [Core Website](https://core.ac.uk/api-keys/register).  Once you register with your email address you will be sent an API key that looks a little like this:
 
-```{r}
-"xxx"
+`thisISyourAPIkeyITlooksLIKEaLONGstringOFletters`
+
+## Using the API Key
+
+Best practice is to set the API key as an environment variable for your system, and then call it in R using `Sys.getenv()`.  If you set the parameter in `.Renviron` it is permanently available to your R sessions.  There is a decent writeup of how to use the `.Renviron` file in [Colin Gillespie & Robin Lovelace's Efficient R Programming] (https://csgillespie.github.io/efficientR/3-3-r-startup.html#renviron).  Be aware that if you are using version control you do not want to commit the `.Renviron` file in your local directory.  Either edit your global `.Renviron` file, or make sure that `.Renviron` is added to your `.gitignore` file.
+
+Within the `.Renviron` file you will add:
+
 ```
+CORE_API=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
+```
+
+Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
+
+```{r, echo=FALSE}
+Sys.getenv("CORE_API")
+```
+
