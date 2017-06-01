@@ -61,7 +61,39 @@ CORE_API=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
 
 Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
 
-```{r, echo=FALSE}
+```{r, echo=TRUE, results=FALSE}
 Sys.getenv("CORE_API")
 ```
 
+If you get this to work, you're doing great and we can move on to the next section.  If this is still not working for you, check to make sure you have saved the `.Renviron` file, that it is in the same directory as your current project's working directory, and that the name you have given the variable in the `.Renviron` file is the same as the name you are calling in `Sys.getenv()`.
+
+## An Introduction to the Functions
+
+The `rcore` package accesses CORE's API to facilitate open text searching.  The API allows an individual to search for articles based on text string searches using `core_search()`.  Given a set of article IDs from the `core_search()`, users can then find more bibliographic information on the article (`core_articles()`) and article publishing history (`core_articles_history()`), on the journals in which the article was published (`core_journals()`).
+
+All of the functions return structured R objects, but can return JSON character strings by appending an unerscore (`_`) to the function name.  We will illustrate the difference:
+
+```{r}
+api_key <- Sys.getenv('CORE_API')
+core_journals(id = '2167-8359', key = api_key)
+```
+
+And with the underscore:
+
+```{r}
+core_journals_(id = '2167-8359', key = api_key)
+```
+
+Through this Vignette we will illustrate some of the tools available as part of the package within a workflow that seeks to perform some basic bibliometric analysis.
+
+## A Research Workflow
+
+We are interested in the way research within a particular field is communicated.  Given this, we want to use **CORE** to examine trends in publishing for a set of key terms.  To avoid being completely swamped by results we will pick a topic that is a relatively small subdiscipline, and, to ensure that we understand some of the broader patterns, we will pick a discipline that we have some knowledge about.  We will also try to find a discipline that is linked to an exisitng rOpenSci package, so why not choose paleoecology, and, more specifically, palynology.
+
+Palynology is the study of organic-walled microfossils.  Of these microfossils, the most well known is pollen fossilized in lake or ocean sediments.  Using relative abundances of pollen can give us an indication of the composition of ancient fossils, and, handily enough, there is an R package, `neotoma` that allows us to explore the pollen data.
+
+### Finding articles
+
+So, lets see how many articles there are in the **CORE** holdings that contain the term `palynology`:
+
+```{r}
