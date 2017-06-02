@@ -111,10 +111,66 @@ query <- data.frame(
   year_to   = as.character(seq(1951, 2017)),
   stringsAsFactors = FALSE)
 
-bins <- core_advanced_search(query = query, key = api_key)
+paly_bins <- core_advanced_search(query = query, key = api_key)
 
-plot(seq(1951, 2016), -diff(bins[[2]]),
-     xlab = "Published Year", ylab = "Articles")
+plot(seq(1951, 2017), paly_bins[[2]],
+     xlab = "Published Year", ylab = "Articles", type = 'l')
 
 ```
 
+But this mapping of a single term likely reflects both an increase in the use of the term "palynology" (coined in 1947), but also in the number of records within the CORE repository.  As such we need to use some sort of control, so let's take a very common word, for example "and":
+
+```{r}
+query <- data.frame(
+  all_of_the_words = "and",
+  year_from = as.character(seq(1950, 2016)),
+  year_to   = as.character(seq(1951, 2017)),
+  stringsAsFactors = FALSE)
+
+control_bins <- core_advanced_search(query = query, key = api_key)
+
+plot(seq(1951, 2017), control_bins[[2]] / max(control_bins[[2]]),
+     xlab = "Published Year", ylab = "Articles", lty = 2, col = 'red', type = 'l')
+lines(seq(1951, 2017), paly_bins[[2]] / max(paly_bins[[2]]))
+
+```
+
+Given that the number of papers for both `"palynology"` & `"and"` are well matched, it seems like this curve is largely a function of available publications.  Given that `"and"` should represent the majority of all publications, let's look at a set of search strings.  Palynology is a branch of paleoecology.  Europeans often spell paleoecology as palaeoecology.  Let's look at all three terms as a function of th `"and"` results.  We'll wrap it into a function to streamline things:
+
+```{r}
+
+library(dplyr)
+library(purrr)
+library(ggplot2)
+
+ann_query <- function(string, control = NULL) {
+  
+  query <- data.frame(
+  all_of_the_words = string,
+  year_from = as.character(seq(1950, 2016)),
+  year_to   = as.character(seq(1951, 2017)),
+  stringsAsFactors = FALSE)
+
+  hit_bins <- core_advanced_search(query = query, key = api_key)
+  
+  if (is.null(control)) control = hit_bins
+  
+  return(data.frame(years = seq(1951, 2017), 
+                    hits = hit_bins[[2]], 
+                    transformed = hit_bins[[2]] / control[[2]],
+                    string = string, 
+                    stringsAsFactors = FALSE))
+}
+
+string_sets <- c("and", "palynology", "paleoecology", "palaeoecology") %>% 
+  map(ann_query, control = control_bins) %>% 
+  bind_rows %>% filter(!string == "and")
+
+ggplot(data = string_sets) +
+  geom_path(aes(x = years, y = transformed, group = string, color = string)) +
+  xlab("Calendar Year") +
+  ylab("Proportion of Holdings")
+
+```
+
+It's interesting to note the overall changes in the rates of publication.  In particular, the contined growth of the use of palaeoecology vs paleoecology.  Given the results we've pulled, it's possible to do further analysis of the publications, but this provides a simple overview of some of the capabilities of the package, and ways to generate simple analytics for search strings from the publically available papers within CORE.
