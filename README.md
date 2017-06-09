@@ -1,12 +1,12 @@
-rcore
-=====
+rcoreoa
+=======
 
 
 
 [![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
-[![Build Status](https://travis-ci.org/ropensci/rcore.svg?branch=master)](https://travis-ci.org/ropensci/rcore)
-[![codecov.io](https://codecov.io/github/ropensci/rcore/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcore?branch=master)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcore)](https://github.com/metacran/cranlogs.app)
+[![Build Status](https://travis-ci.org/ropensci/rcoreoa.svg?branch=master)](https://travis-ci.org/ropensci/rcoreoa)
+[![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/metacran/cranlogs.app)
 
 
 CORE API R client
@@ -36,12 +36,12 @@ Development version
 
 
 ```r
-devtools::install_github("ropensci/rcore")
+devtools::install_github("ropensci/rcoreoa")
 ```
 
 
 ```r
-library("rcore")
+library("rcoreoa")
 ```
 
 ## high- vs. low-level interfaces
@@ -64,10 +64,10 @@ does all the logic and HTTP requesting, whereas the high level simply parses the
 core_search(query = 'ecology', limit = 12)
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $totalHits
-#> [1] 683556
-#>
+#> [1] 791389
+#> 
 #> $data
 #>       type             id
 #> 1  journal issn:1005-264X
@@ -87,7 +87,7 @@ core_search(query = 'ecology', limit = 12)
 
 ```r
 core_search_(query = 'ecology', limit = 12)
-#> [1] "{\"status\":\"OK\",\"totalHits\":683556,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
+#> [1] "{\"status\":\"OK\",\"totalHits\":791389,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
 ```
 
 ## Advanced Search
@@ -102,21 +102,21 @@ query <- data.frame("all_of_the_words" = "data mining",
 core_advanced_search(query)
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $totalHits
-#> [1] 23271
-#>
+#> [1] 28556
+#> 
 #> $data
 #>       type       id
 #> 1  article 22642150
-#> 2  article 22650635
-#> 3  article 24006259
-#> 4  article 23964816
-#> 5  article 24074440
+#> 2  article 24006259
+#> 3  article 22650635
+#> 4  article 24074440
+#> 5  article 23964816
 #> 6  article 22654775
 #> 7  article 35379905
-#> 8  article 22625437
-#> 9  article 23849064
+#> 8  article 23849064
+#> 9  article 22625437
 #> 10 article 23723370
 ```
 
@@ -127,14 +127,14 @@ core_advanced_search(query)
 core_articles(id = 21132995)
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $data
 #> $data$id
 #> [1] "21132995"
-#>
+#> 
 #> $data$authors
 #> list()
-#>
+#> 
 ...
 ```
 
@@ -145,7 +145,7 @@ core_articles(id = 21132995)
 core_articles_history(id = '21132995')
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $data
 #>              datetime
 ...
@@ -158,14 +158,14 @@ core_articles_history(id = '21132995')
 core_journals(id = '2167-8359')
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $data
 #> $data$title
 #> [1] "PeerJ"
-#>
+#> 
 #> $data$identifiers
 #> [1] "oai:doaj.org/journal:576e4d34b8bf461bb586f1e90d80d7cc"
-#> [2] "issn:2167-8359"
+#> [2] "issn:2167-8359"                                       
 ...
 ```
 
@@ -186,9 +186,9 @@ core_articles_pdf_(11549557)
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/rcore/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/rcoreoa/issues).
 * License: MIT
-* Get citation information for `rcore` in R doing `citation(package = 'rcore')`
+* Get citation information for `rcoreoa` in R doing `citation(package = 'rcoreoa')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

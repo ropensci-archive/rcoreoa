@@ -1,17 +1,17 @@
-Package: rcore
+Package: rcoreoa
 Type: Package
 Title: Client for the CORE API
 Description: Client for the CORE API (<https://core.ac.uk/docs/>).
     CORE (<https://core.ac.uk>) aggregates open access research
     outputs from repositories and journals worldwide and make them
     available to the public.
-Version: 0.0.2.9703
+Version: 0.0.2.9709
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"),
     person("Aristotelis", "Charalampous", role = "ctb"))
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/rcore
-BugReports: https://github.com/ropensci/rcore/issues
+URL: https://github.com/ropensci/rcoreoa
+BugReports: https://github.com/ropensci/rcoreoa/issues
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Imports:

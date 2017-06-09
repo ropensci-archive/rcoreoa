@@ -1,2 +1,2 @@
 library("testthat")
-test_check("rcore")
+test_check("rcoreoa")
