@@ -1,10 +1,10 @@
 ---
-title: "Introduction to the rcore package"
+title: "Introduction to the rcoreoa package"
 author: "Scott Chamberlain"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to the rcore package}
+  %\VignetteIndexEntry{Introduction to the rcoreoa package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`rcore` - Client for the CORE API (<https://core.ac.uk/docs/>).
+`rcoreoa` - Client for the CORE API (<https://core.ac.uk/docs/>).
 CORE (<https://core.ac.uk>) aggregates open access research
 outputs from repositories and journals worldwide and make them
 available to the public.
@@ -26,17 +26,17 @@ available to the public.
 ## Installation
 
 ```{r eval=FALSE}
-install.packages("rcore")
+install.packages("rcoreoa")
 ```
 
 Development version
 
 ```{r eval=FALSE}
-devtools::install_github("ropensci/rcore")
+devtools::install_github("ropensci/rcoreoa")
 ```
 
 ```{r}
-library("rcore")
+library("rcoreoa")
 ```
 
 ## foo bar
