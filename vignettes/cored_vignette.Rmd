@@ -59,7 +59,7 @@ Within the `.Renviron` file you will add:
 CORE_API=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
 ```
 
-Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
+The key may also be included in a file such as a `.bash_profile` file, or elsewhere.  Users may decide which works best for them.  Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
 
 ```{r, echo=TRUE, results=FALSE}
 Sys.getenv("CORE_KEY")
@@ -175,4 +175,3 @@ plot(data = string_sets,
 ```
 
 It's interesting to note the overall changes in the rates of publication.  In particular, the contined growth of the use of *palaeoecology* vs paleoecology.  Given the results we've pulled, it's possible to do further analysis of the publications, but this provides a simple overview of some of the capabilities of the package, and ways to generate simple analytics for search strings from the publically available papers within CORE.
-
