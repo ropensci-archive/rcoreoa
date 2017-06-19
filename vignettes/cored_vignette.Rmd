@@ -51,7 +51,7 @@ The Core API requires an API key, and, as such, requires you to register for the
 
 ## Using the API Key
 
-Best practice is to set the API key as an environment variable for your system, and then call it in R using `Sys.getenv()`.  If you set the parameter in `.Renviron` it is permanently available to your R sessions.  There is a decent writeup of how to use the `.Renviron` file in [Colin Gillespie & Robin Lovelace's Efficient R Programming] (https://csgillespie.github.io/efficientR/3-3-r-startup.html#renviron).  Be aware that if you are using version control you do not want to commit the `.Renviron` file in your local directory.  Either edit your global `.Renviron` file, or make sure that `.Renviron` is added to your `.gitignore` file.
+Best practice is to set the API key as an environment variable for your system, and then call it in R using `Sys.getenv()`.  If you set the parameter in `.Renviron` it is permanently available to your R sessions.  There is a decent writeup of how to use the `.Renviron` file in [Colin Gillespie & Robin Lovelace's Efficient R Programming](https://csgillespie.github.io/efficientR/3-3-r-startup.html#renviron).  Be aware that if you are using version control you do not want to commit the `.Renviron` file in your local directory.  Either edit your global `.Renviron` file, or make sure that `.Renviron` is added to your `.gitignore` file.
 
 Within the `.Renviron` file you will add:
 
@@ -62,7 +62,7 @@ CORE_API=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
 Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
 
 ```{r, echo=TRUE, results=FALSE}
-Sys.getenv("CORE_API")
+Sys.getenv("CORE_KEY")
 ```
 
 If you get this to work, you're doing great and we can move on to the next section.  If this is still not working for you, check to make sure you have saved the `.Renviron` file, that it is in the same directory as your current project's working directory, and that the name you have given the variable in the `.Renviron` file is the same as the name you are calling in `Sys.getenv()`.
@@ -74,7 +74,7 @@ The `rcore` package accesses CORE's API to facilitate open text searching.  The 
 All of the functions return structured R objects, but can return JSON character strings by appending an unerscore (`_`) to the function name.  We will illustrate the difference:
 
 ```{r}
-api_key <- Sys.getenv('CORE_API')
+api_key <- Sys.getenv('CORE_KEY')
 core_journals(id = '2167-8359', key = api_key)
 ```
 
@@ -105,6 +105,8 @@ The result is a list with three components: `['Status', 'totalHits', 'data']`.  
 We can constrain our search, to look at the change in results over time by looking only for articles within certain  specified time limits.  For this we can use the `core_advanced_search`:
 
 ```{r}
+
+# Define a data.frame with a row per year bin.
 query <- data.frame(
   all_of_the_words = "palynology",
   year_from = as.character(seq(1950, 2016)),
@@ -121,6 +123,7 @@ plot(seq(1951, 2017), paly_bins[[2]],
 But this mapping of a single term likely reflects both an increase in the use of the term "palynology" (coined in 1947), but also in the number of records within the CORE repository.  As such we need to use some sort of control, so let's take a very common word, for example "and":
 
 ```{r}
+
 query <- data.frame(
   all_of_the_words = "and",
   year_from = as.character(seq(1950, 2016)),
@@ -139,17 +142,13 @@ Given that the number of papers for both `"palynology"` & `"and"` are well match
 
 ```{r}
 
-library(dplyr)
-library(purrr)
-library(ggplot2)
-
 ann_query <- function(string, control = NULL) {
   
   query <- data.frame(
-  all_of_the_words = string,
-  year_from = as.character(seq(1950, 2016)),
-  year_to   = as.character(seq(1951, 2017)),
-  stringsAsFactors = FALSE)
+    all_of_the_words = string,
+    year_from = as.character(seq(1950, 2016)),
+    year_to   = as.character(seq(1951, 2017)),
+    stringsAsFactors = FALSE)
 
   hit_bins <- core_advanced_search(query = query, key = api_key)
   
@@ -162,15 +161,18 @@ ann_query <- function(string, control = NULL) {
                     stringsAsFactors = FALSE))
 }
 
-string_sets <- c("and", "palynology", "paleoecology", "palaeoecology") %>% 
-  map(ann_query, control = control_bins) %>% 
-  bind_rows %>% filter(!string == "and")
+string_sets <- do.call(rbind.data.frame, 
+                       lapply(c("and", "palynology", "paleoecology", "palaeoecology"), 
+                              ann_query, control = control_bins))
 
-ggplot(data = string_sets) +
-  geom_path(aes(x = years, y = transformed, group = string, color = string)) +
-  xlab("Calendar Year") +
-  ylab("Proportion of Holdings")
+string_sets <- string_sets[!string_sets$string %in% 'and',]
+
+plot(data = string_sets, 
+     transformed ~ years, 
+     col = factor(string_sets$string),
+     pch = 19, cex = 0.5)
 
 ```
 
-It's interesting to note the overall changes in the rates of publication.  In particular, the contined growth of the use of palaeoecology vs paleoecology.  Given the results we've pulled, it's possible to do further analysis of the publications, but this provides a simple overview of some of the capabilities of the package, and ways to generate simple analytics for search strings from the publically available papers within CORE.
+It's interesting to note the overall changes in the rates of publication.  In particular, the contined growth of the use of *palaeoecology* vs paleoecology.  Given the results we've pulled, it's possible to do further analysis of the publications, but this provides a simple overview of some of the capabilities of the package, and ways to generate simple analytics for search strings from the publically available papers within CORE.
+
