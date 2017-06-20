@@ -10,11 +10,18 @@ vignette: >
 ---
 
 ```{r echo=FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+pat <- Sys.getenv("CORE_KEY")
+IS_THERE_KEY <- (pat != "")
+NOT_CRAN <- ifelse(IS_THERE_KEY, NOT_CRAN, FALSE)
+
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   warning = FALSE,
-  message = FALSE
+  message = FALSE,
+  purl = NOT_CRAN,
+  eval = NOT_CRAN
 )
 ```
 

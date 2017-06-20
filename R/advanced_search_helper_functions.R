@@ -7,18 +7,18 @@ get_acceptable_advanced_search_query_filter <- function(){
            "repository", "doi", "year_from", "year_to"))
 }
 
-paste_three <- function(..., sep = " ", collapse = NULL, na.rm = T) {
-  if (na.rm == F)
+paste_three <- function(..., sep = " ", collapse = NULL, na.rm = TRUE) {
+  if (na.rm == FALSE)
     paste(..., sep = sep, collapse = collapse)
   else
-    if (na.rm == T) {
+    if (na.rm == TRUE) {
       paste_na <- function(x, sep) {
         x <- gsub("^\\s+|\\s+$", "", x)
         ret <- paste(stats::na.omit(x), collapse = sep)
         is.na(ret) <- ret == ""
         return(ret)
       }
-      df <- data.frame(..., stringsAsFactors = F)
+      df <- data.frame(..., stringsAsFactors = FALSE)
       ret <- apply(df, 1, FUN = function(x) paste_na(x, sep))
 
       if (is.null(collapse))
@@ -30,8 +30,8 @@ paste_three <- function(..., sep = " ", collapse = NULL, na.rm = T) {
 }
 
 prepare_elasticsearch_term <- function(filter, filterName) {
-  if(!is.na(filter)){
-    if(is_acceptable_string(filter)){
+  if (!is.na(filter)) {
+    if (is_acceptable_string(filter)) {
       filterArr <- unlist(strsplit(x = filter, split = " "))
       return(paste(filterName, ":(", paste(filterArr, collapse = " AND "), ")",
                    sep = ""))
@@ -44,14 +44,14 @@ prepare_elasticsearch_term <- function(filter, filterName) {
 is_acceptable_year_filter <- function(year, nullable = TRUE) {
   numericPattern <- "^[0-9]{4}$"
 
-  if(nullable){
-    return (
+  if (nullable) {
+    return(
       (!is.na(as.integer(year)) &&
          (as.integer(year) <= yearToday) &&
          regexpr(pattern = numericPattern, text = year)[1] == 1
       ) || nchar(year) > 0)
   } else {
-    return (
+    return(
       !is.na(as.integer(year)) &&
         (as.integer(year) <= yearToday) &&
         regexpr(pattern = numericPattern, text = year)[1] == 1
@@ -77,15 +77,15 @@ parse_advanced_search_query <- function(query){
   acceptable_advanced_filters <- get_acceptable_advanced_search_query_filter()
   query <- query[which(names(query) %in% acceptable_advanced_filters)]
 
-  if ("doi" %in% names(query)){
-    if(!is.null(query["doi"]) && query["doi"] != ""){
-      return(paste('doi:(', query["doi"], ')', sep=""))
+  if ("doi" %in% names(query)) {
+    if (!is.null(query["doi"]) && query["doi"] != "") {
+      return(paste('doi:(', query["doi"], ')', sep = ""))
     } else {
       return("")
     }
   } else {
-    if(is.na(query["find_those_words"]) ||
-       !is_acceptable_string(query["find_those_words"])){
+    if (is.na(query["find_those_words"]) ||
+       !is_acceptable_string(query["find_those_words"])) {
       query["find_those_words"] <- "anywhere in the article"
     }
 
@@ -93,7 +93,7 @@ parse_advanced_search_query <- function(query){
     basicTermReplacement <- ""
     wordFilter <- ""
 
-    if("without_the_words" %in% names(query)){
+    if ("without_the_words" %in% names(query)) {
       withoutTheWordsArr <- unlist(strsplit(x = query["without_the_words"],
                                             split = " "))
       withoutTheWordsArrStr <- paste("-", paste(withoutTheWordsArr, collapse =
@@ -103,7 +103,7 @@ parse_advanced_search_query <- function(query){
       withoutTheWordsArrStr <- ""
     }
 
-    if("all_of_the_words" %in% names(query)){
+    if ("all_of_the_words" %in% names(query)) {
       allOfTheWords <-
         paste("(", paste(x = unlist(strsplit(x = query["all_of_the_words"],
                                              split = " ")),
@@ -112,13 +112,13 @@ parse_advanced_search_query <- function(query){
       allOfTheWords <- ""
     }
 
-    if("exact_phrase" %in% names(query)){
+    if ("exact_phrase" %in% names(query)) {
       exactPhrase <- paste("\"", query["exact_phrase"], "\"", sep = "")
     } else {
       exactPhrase <- ""
     }
 
-    if("at_least_one_of_the_words" %in% names(query)){
+    if ("at_least_one_of_the_words" %in% names(query)) {
       atLeastOneOfTheWords <-
         paste("(",
               paste(x = unlist(strsplit(x = query["at_least_one_of_the_words"],
@@ -128,22 +128,22 @@ parse_advanced_search_query <- function(query){
       atLeastOneOfTheWords <- ""
     }
 
-    wordFilter <- paste(if(is_acceptable_string(withoutTheWordsArrStr))
+    wordFilter <- paste(if (is_acceptable_string(withoutTheWordsArrStr))
       withoutTheWordsArrStr else "",
-      if(is_acceptable_string(allOfTheWords)) allOfTheWords else "",
-      if(is_acceptable_string(exactPhrase)) exactPhrase else "",
-      if(is_acceptable_string(atLeastOneOfTheWords))
+      if (is_acceptable_string(allOfTheWords)) allOfTheWords else "",
+      if (is_acceptable_string(exactPhrase)) exactPhrase else "",
+      if (is_acceptable_string(atLeastOneOfTheWords))
         atLeastOneOfTheWords else "", sep = "")
 
     # Not guarranteed to be here so set its default at this point manually.
-    if(!"find_those_words" %in% query){
+    if (!"find_those_words" %in% query) {
       query["findThoseWords"] <- "anywhere in the article"
     }
 
-    if(regexpr(pattern = "title", text = query["find_those_words"])[1] == 1) {
+    if (regexpr(pattern = "title", text = query["find_those_words"])[1] == 1) {
       basicTermReplacement <-
         paste(basicTermReplacement, "title:(", wordFilter, ")", sep = "")
-    } else if(regexpr(pattern = "abstract",
+    } else if (regexpr(pattern = "abstract",
                       text = query["find_those_words"])[1] == 1) {
       basicTermReplacement <-
         paste(basicTermReplacement, "abstract:(", wordFilter, ")", sep = "")
@@ -153,25 +153,29 @@ parse_advanced_search_query <- function(query){
 
     yearFilter <- ""
 
-    query_year_from <- if(!"year_from" %in% names(query)) min_year_default else
+    query_year_from <- if (!"year_from" %in% names(query)) min_year_default else
       query["year_from"]
 
-    query_year_to <- if("year_to" %in% names(query)) query["year_to"] else yearToday
+    query_year_to <- if ("year_to" %in% names(query)) {
+      query["year_to"]
+    } else {
+      yearToday
+    }
 
     yearFilter <-
-      if(are_acceptable_year_filters(query_year_from, query_year_to))
+      if (are_acceptable_year_filters(query_year_from, query_year_to))
         paste("year:[", query_year_from, " TO ", query_year_to, "]",
-              sep="") else ""
+              sep = "") else ""
 
-    yearFilter <- if(nchar(yearFilter) == 0 && (is.null(query_year_from) ||
+    yearFilter <- if (nchar(yearFilter) == 0 && (is.null(query_year_from) ||
                                                 nchar(query_year_from) == 0)
                      && is_acceptable_year_filter(query_year_to, FALSE))
-      paste("year:[* TO ", query_year_to, "]", sep="") else yearFilter
+      paste("year:[* TO ", query_year_to, "]", sep = "") else yearFilter
 
     yearFilter <- if (nchar(yearFilter) == 0 && (is.null(query_year_to) ||
                                                  nchar(query_year_to) == 0)
                       && is_acceptable_year_filter(query_year_to, FALSE))
-      paste("year:[", query_year_from, " TO ", yearToday, "]", sep="") else
+      paste("year:[", query_year_from, " TO ", yearToday, "]", sep = "") else
         yearFilter
 
     authorFilter <-
