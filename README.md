@@ -3,7 +3,7 @@ rcoreoa
 
 
 
-[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/ropensci/rcoreoa.svg?branch=master)](https://travis-ci.org/ropensci/rcoreoa)
 [![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/metacran/cranlogs.app)
@@ -64,10 +64,10 @@ does all the logic and HTTP requesting, whereas the high level simply parses the
 core_search(query = 'ecology', limit = 12)
 #> $status
 #> [1] "OK"
-#> 
+#>
 #> $totalHits
-#> [1] 791389
-#> 
+#> [1] 791390
+#>
 #> $data
 #>       type             id
 #> 1  journal issn:1005-264X
@@ -87,7 +87,7 @@ core_search(query = 'ecology', limit = 12)
 
 ```r
 core_search_(query = 'ecology', limit = 12)
-#> [1] "{\"status\":\"OK\",\"totalHits\":791389,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
+#> [1] "{\"status\":\"OK\",\"totalHits\":791390,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
 ```
 
 ## Advanced Search
@@ -102,10 +102,10 @@ query <- data.frame("all_of_the_words" = "data mining",
 core_advanced_search(query)
 #> $status
 #> [1] "OK"
-#> 
+#>
 #> $totalHits
-#> [1] 28556
-#> 
+#> [1] 17755
+#>
 #> $data
 #>       type       id
 #> 1  article 22642150
@@ -114,10 +114,10 @@ core_advanced_search(query)
 #> 4  article 24074440
 #> 5  article 23964816
 #> 6  article 22654775
-#> 7  article 35379905
-#> 8  article 23849064
-#> 9  article 22625437
-#> 10 article 23723370
+#> 7  article 23849064
+#> 8  article 22625437
+#> 9  article 23723370
+#> 10 article 23852739
 ```
 
 # Articles
@@ -127,14 +127,14 @@ core_advanced_search(query)
 core_articles(id = 21132995)
 #> $status
 #> [1] "OK"
-#> 
+#>
 #> $data
 #> $data$id
 #> [1] "21132995"
-#> 
+#>
 #> $data$authors
 #> list()
-#> 
+#>
 ...
 ```
 
@@ -145,7 +145,7 @@ core_articles(id = 21132995)
 core_articles_history(id = '21132995')
 #> $status
 #> [1] "OK"
-#> 
+#>
 #> $data
 #>              datetime
 ...
@@ -158,14 +158,14 @@ core_articles_history(id = '21132995')
 core_journals(id = '2167-8359')
 #> $status
 #> [1] "OK"
-#> 
+#>
 #> $data
 #> $data$title
 #> [1] "PeerJ"
-#> 
+#>
 #> $data$identifiers
 #> [1] "oai:doaj.org/journal:576e4d34b8bf461bb586f1e90d80d7cc"
-#> [2] "issn:2167-8359"                                       
+#> [2] "issn:2167-8359"
 ...
 ```
 
@@ -183,6 +183,7 @@ core_articles_pdf_(11549557)
 
 * [Scott Chamberlain](https://github.com/sckott)
 * [Aristotelis Charalampous](https://github.com/aresxs91)
+* [Simon Goring](https://github.com/SimonGoring)
 
 ## Meta
 

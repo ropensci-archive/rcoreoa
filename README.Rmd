@@ -35,7 +35,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/ropensci/rcoreoa.svg?branch=master)](https://travis-ci.org/ropensci/rcoreoa)
 [![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/metacran/cranlogs.app)
@@ -139,6 +139,7 @@ core_articles_pdf_(11549557)
 
 * [Scott Chamberlain](https://github.com/sckott)
 * [Aristotelis Charalampous](https://github.com/aresxs91)
+* [Simon Goring](https://github.com/SimonGoring)
 
 ## Meta
 

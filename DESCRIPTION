@@ -8,7 +8,7 @@ Description: Client for the CORE API (<https://core.ac.uk/docs/>).
 Version: 0.1.0
 Authors@R: c(
      person("Scott", "Chamberlain", role = c("aut", "cre"),
-       email = "myrmecocystus@gmail.com"),
+       email = "myrmecocystus+r@gmail.com"),
      person("Aristotelis", "Charalampous", role = "ctb"),
      person("Simon", "Goring", role = "ctb")
     )
