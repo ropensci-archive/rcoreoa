@@ -1,6 +1,6 @@
 ---
 title: "Introduction to the rcoreoa package"
-author: "Scott Chamberlain"
+author: "Scott Chamberlain, Simon Goring"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -69,7 +69,7 @@ If you get this to work, you're doing great and we can move on to the next secti
 
 ## An Introduction to the Functions
 
-The `rcore` package accesses CORE's API to facilitate open text searching.  The API allows an individual to search for articles based on text string searches using `core_search()`.  Given a set of article IDs from the `core_search()`, users can then find more bibliographic information on the article (`core_articles()`) and article publishing history (`core_articles_history()`), on the journals in which the article was published (`core_journals()`).
+The `rcoreoa` package accesses CORE's API to facilitate open text searching.  The API allows an individual to search for articles based on text string searches using `core_search()`.  Given a set of article IDs from the `core_search()`, users can then find more bibliographic information on the article (`core_articles()`) and article publishing history (`core_articles_history()`), on the journals in which the article was published (`core_journals()`).
 
 All of the functions return structured R objects, but can return JSON character strings by appending an unerscore (`_`) to the function name.  We will illustrate the difference:
 
