@@ -7,7 +7,7 @@ rcoreoa
 [![Build Status](https://travis-ci.org/ropensci/rcoreoa.svg?branch=master)](https://travis-ci.org/ropensci/rcoreoa)
 [![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/metacran/cranlogs.app)
-
+[![cran version](http://www.r-pkg.org/badges/version/rcoreoa)](https://cran.r-project.org/package=rcoreoa)
 
 CORE API R client
 
@@ -191,3 +191,5 @@ core_articles_pdf_(11549557)
 * License: MIT
 * Get citation information for `rcoreoa` in R doing `citation(package = 'rcoreoa')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
