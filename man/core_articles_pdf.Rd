@@ -30,10 +30,13 @@ Download article pdf
 PDF to text, while \code{core_articles_pdf_} just does the HTTP request
 and gives back the path to the file
 
-We now do a request to \code{\link[=core_articles]{core_articles()}} first to find out if there is a
-PDF available via existence of the field \code{fulltextIdentifier}. If not,
-we stop with error message; if the field exists, we proceed to
-attempting to fetch the PDF.
+If you get a message like \code{Error: Not Found (HTTP 404)}, that means
+a PDF was not found. That is, it does not exist. That is, there is no
+PDF associated with the article ID you searched for. This is the
+correct behavior, and nothing is wrong with this function or this
+package. We could do another web request to check if the id you
+pass in has a PDF or not first, but that's another request, slowing
+this function down.
 
 These functions take one article ID at a time. Use lapply/loops/etc for
 many ids
