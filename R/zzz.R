@@ -33,15 +33,23 @@ core_POST <- function(path, key, args, body, ...){
 }
 
 core_GET_disk <- function(path, id, key, overwrite, ...){
+  core_cache$mkdir()
+  fpath <- file.path(core_cache$cache_path_get(), paste0(id, ".pdf"))
+  if (!overwrite) {
+    pdftry <- tryCatch(suppressMessages(pdftools::pdf_info(fpath)),
+      error = function(e) e)
+    if (file.exists(fpath) && !inherits(pdftry, "error")) {
+      return(fpath)
+    }
+  }
+
   cli <- crul::HttpClient$new(
     url = core_base(),
     headers = list(apiKey = check_key(key))
   )
-  temp <- cli$get(
-    path = file.path("api-v2", path),
-    disk = paste0(id, ".pdf"),
-    ...
-  )
+  temp <- cli$get(path = file.path("api-v2", path), disk = fpath, ...)
+  # unlink/delete file if http error code
+  if (temp$status_code > 201) unlink(fpath)
   temp$raise_for_status()
   temp$content
 }
@@ -71,17 +79,15 @@ clog <- function(x){
   }
 }
 
-pdf_parse <- function(x, parse) {
-  if (parse) pdftools::pdf_text(x) else x
-}
+pdf_parse <- function(x) pdftools::pdf_text(x)
 
 create_batch_query_list <- function(queries, page, pageSize) {
   queryList <- lapply(queries, function(x){
     as.list(stats::setNames(x, rep("query", length(x))))
   })
-  
+
   queryList <- Map(c, queryList, page = rep(page))
   queryList <- Map(c, queryList, pageSize = rep(pageSize))
-  
+
   return(queryList)
 }

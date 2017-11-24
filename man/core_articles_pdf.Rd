@@ -5,22 +5,20 @@
 \alias{core_articles_pdf_}
 \title{Download article pdf}
 \usage{
-core_articles_pdf(id, key = NULL, overwrite = TRUE, parse = TRUE, ...)
+core_articles_pdf(id, key = NULL, overwrite = FALSE, ...)
 
-core_articles_pdf_(id, key = NULL, overwrite = TRUE, ...)
+core_articles_pdf_(id, key = NULL, overwrite = FALSE, ...)
 }
 \arguments{
 \item{id}{(integer) CORE ID of the article that needs to be fetched.
 One or more. Required}
 
-\item{key}{A IUCN API token}
+\item{key}{A IUCN API token. Required}
 
-\item{overwrite}{(logical) overwrite file or not. Default: \code{TRUE}}
+\item{overwrite}{(logical) overwrite file or not if already
+on disk. Default: \code{FALSE}}
 
-\item{parse}{(logical) Whether to parse to list (`FALSE`) or
-data.frame (`TRUE`). Default: `TRUE`}
-
-\item{...}{Curl options passed to [crul::HttpClient()]}
+\item{...}{Curl options passed to \code{\link[crul:HttpClient]{crul::HttpClient()}}}
 }
 \value{
 \code{core_articles_pdf_} returns a file path on success.
@@ -54,7 +52,6 @@ core_articles_pdf_(11549557)
 
 # get paper and parse to text
 core_articles_pdf(11549557)
-core_articles_pdf(11549557, parse = FALSE)
 
 ids <- c(11549557, 385071)
 res <- core_articles_pdf(ids)

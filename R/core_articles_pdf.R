@@ -1,10 +1,12 @@
 #' Download article pdf
 #'
 #' @export
-#' @template all
 #' @param id (integer) CORE ID of the article that needs to be fetched.
 #' One or more. Required
-#' @param overwrite (logical) overwrite file or not. Default: `TRUE`
+#' @param key A IUCN API token. Required
+#' @param overwrite (logical) overwrite file or not if already
+#' on disk. Default: `FALSE`
+#' @param ... Curl options passed to [crul::HttpClient()]
 #' @details `core_articles_pdf` does the HTTP request and parses
 #' PDF to text, while `core_articles_pdf_` just does the HTTP request
 #' and gives back the path to the file
@@ -30,17 +32,15 @@
 #'
 #' # get paper and parse to text
 #' core_articles_pdf(11549557)
-#' core_articles_pdf(11549557, parse = FALSE)
 #'
 #' ids <- c(11549557, 385071)
 #' res <- core_articles_pdf(ids)
 #' cat(res[[1]][1])
 #' cat(res[[2]][1])
 #' }
-core_articles_pdf <- function(id, key = NULL, overwrite = TRUE, parse = TRUE,
-                              ...) {
+core_articles_pdf <- function(id, key = NULL, overwrite = FALSE, ...) {
 	if (length(id) == 1) {
-		pdf_parse(core_articles_pdf_(id, key, overwrite, ...), parse)
+		pdf_parse(core_articles_pdf_(id, key, overwrite, ...))
 	} else {
 		lapply(id, function(z) {
 			res <- tryCatch(core_articles_pdf_(z, key, overwrite, ...),
@@ -49,7 +49,7 @@ core_articles_pdf <- function(id, key = NULL, overwrite = TRUE, parse = TRUE,
 				warning(sprintf("id %s - ", z), res)
 				return(NULL)
 			} else {
-				return(pdf_parse(res, parse))
+				return(pdf_parse(res))
 			}
 		})
 	}
@@ -57,7 +57,7 @@ core_articles_pdf <- function(id, key = NULL, overwrite = TRUE, parse = TRUE,
 
 #' @export
 #' @rdname core_articles_pdf
-core_articles_pdf_ <- function(id, key = NULL, overwrite = TRUE, ...) {
+core_articles_pdf_ <- function(id, key = NULL, overwrite = FALSE, ...) {
 	core_GET_disk(path = sprintf("articles/get/%s/download/pdf", id), id,
 		key, overwrite, ...)
 }
