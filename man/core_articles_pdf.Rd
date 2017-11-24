@@ -26,9 +26,14 @@ data.frame (`TRUE`). Default: `TRUE`}
 Download article pdf
 }
 \details{
-\code{core_articles_history} does the HTTP request and parses, while
-\code{core_articles_history_} just does the HTTP request, gives back JSON as
-a character string
+\code{core_articles_pdf} does the HTTP request and parses
+PDF to text, while \code{core_articles_pdf_} just does the HTTP request
+and gives back the path to the file
+
+We now do a request to \code{\link[=core_articles]{core_articles()}} first to find out if there is a
+PDF available via existence of the field \code{fulltextIdentifier}. If not,
+we stop with error message; if the field exists, we proceed to
+attempting to fetch the PDF.
 
 These functions take one article ID at a time. Use lapply/loops/etc for
 many ids
