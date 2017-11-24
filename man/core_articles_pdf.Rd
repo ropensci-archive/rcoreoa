@@ -11,7 +11,7 @@ core_articles_pdf_(id, key = NULL, overwrite = TRUE, ...)
 }
 \arguments{
 \item{id}{(integer) CORE ID of the article that needs to be fetched.
-Required}
+One or more. Required}
 
 \item{key}{A IUCN API token}
 
@@ -21,6 +21,15 @@ Required}
 data.frame (`TRUE`). Default: `TRUE`}
 
 \item{...}{Curl options passed to [crul::HttpClient()]}
+}
+\value{
+\code{core_articles_pdf_} returns a file path on success.
+When many IDs passed to \code{core_articles_pdf} it returns a list (equal to
+length of IDs) where each element is a character vector of length equal
+to number of pages in the PDF; but on failure throws warning and returns
+NULL. When single ID apssed to \code{core_articles_pdf} it returns a character
+vector of length equal to number of pages in the PDF, but on failure
+stops with message
 }
 \description{
 Download article pdf
@@ -37,9 +46,6 @@ correct behavior, and nothing is wrong with this function or this
 package. We could do another web request to check if the id you
 pass in has a PDF or not first, but that's another request, slowing
 this function down.
-
-These functions take one article ID at a time. Use lapply/loops/etc for
-many ids
 }
 \examples{
 \dontrun{
@@ -48,10 +54,12 @@ core_articles_pdf_(11549557)
 
 # get paper and parse to text
 core_articles_pdf(11549557)
+core_articles_pdf(11549557, parse = FALSE)
 
 ids <- c(11549557, 385071)
-res <- lapply(ids, core_articles_pdf)
-vapply(res, "[[", "", 1)
+res <- core_articles_pdf(ids)
+cat(res[[1]][1])
+cat(res[[2]][1])
 }
 }
 \references{

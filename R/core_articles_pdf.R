@@ -3,7 +3,7 @@
 #' @export
 #' @template all
 #' @param id (integer) CORE ID of the article that needs to be fetched.
-#' Required
+#' One or more. Required
 #' @param overwrite (logical) overwrite file or not. Default: `TRUE`
 #' @details `core_articles_pdf` does the HTTP request and parses
 #' PDF to text, while `core_articles_pdf_` just does the HTTP request
@@ -16,9 +16,13 @@
 #' package. We could do another web request to check if the id you
 #' pass in has a PDF or not first, but that's another request, slowing
 #' this function down.
-#'
-#' These functions take one article ID at a time. Use lapply/loops/etc for
-#' many ids
+#' @return `core_articles_pdf_` returns a file path on success.
+#' When many IDs passed to `core_articles_pdf` it returns a list (equal to
+#' length of IDs) where each element is a character vector of length equal
+#' to number of pages in the PDF; but on failure throws warning and returns
+#' NULL. When single ID apssed to `core_articles_pdf` it returns a character
+#' vector of length equal to number of pages in the PDF, but on failure
+#' stops with message
 #' @references <https://core.ac.uk/docs/#!/articles/getArticlePdfByCoreId>
 #' @examples \dontrun{
 #' # just http request, get file path back
@@ -26,14 +30,29 @@
 #'
 #' # get paper and parse to text
 #' core_articles_pdf(11549557)
+#' core_articles_pdf(11549557, parse = FALSE)
 #'
 #' ids <- c(11549557, 385071)
-#' res <- lapply(ids, core_articles_pdf)
-#' vapply(res, "[[", "", 1)
+#' res <- core_articles_pdf(ids)
+#' cat(res[[1]][1])
+#' cat(res[[2]][1])
 #' }
 core_articles_pdf <- function(id, key = NULL, overwrite = TRUE, parse = TRUE,
                               ...) {
-  pdf_parse(core_articles_pdf_(id, key, overwrite, ...), parse)
+	if (length(id) == 1) {
+		pdf_parse(core_articles_pdf_(id, key, overwrite, ...), parse)
+	} else {
+		lapply(id, function(z) {
+			res <- tryCatch(core_articles_pdf_(z, key, overwrite, ...),
+				error = function(e) e)
+			if (inherits(res, "error")) {
+				warning(sprintf("id %s - ", z), res)
+				return(NULL)
+			} else {
+				return(pdf_parse(res, parse))
+			}
+		})
+	}
 }
 
 #' @export

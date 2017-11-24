@@ -74,12 +74,14 @@ core_articles(id = 21132995, similar = TRUE)
 core_articles(id = 21132995, fulltext = TRUE)
 core_articles(id = 21132995, citations = TRUE)
 
-ids <- c(20955435, 21132995, 21813171, 22815670, 14045109, 23828884,
+# when passing >1 article ID
+ids <- c(20955435, 21132995, 21813171, 22815670, 23828884,
    23465055, 23831838, 23923390, 22559733)
+## you can use method="GET" with lapply or similar
 res <- lapply(ids, core_articles)
 vapply(res, "[[", "", c("data", "datePublished"))
 
-# post request
+## or use method="POST" passing all at once
 res <- core_articles(ids, method = "POST")
 head(res$data)
 res$data$authors

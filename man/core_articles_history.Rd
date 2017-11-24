@@ -12,7 +12,7 @@ core_articles_history_(id, page = 1, limit = 10, key = NULL, ...)
 }
 \arguments{
 \item{id}{(integer) CORE ID of the article that needs to be fetched.
-Required}
+One or more. Required}
 
 \item{page}{(character) page number (default: 1), optional}
 
@@ -26,6 +26,12 @@ data.frame (`TRUE`). Default: `TRUE`}
 
 \item{...}{Curl options passed to [crul::HttpClient()]}
 }
+\value{
+\code{core_articles_history_} returns a JSON string on success.
+\code{core_articles_history} returns a list (equal to \code{id} length) where each
+element is a list of length two with elements for data and status of
+the request; on failure the data slot is NULL.
+}
 \description{
 Get article history
 }
@@ -33,21 +39,18 @@ Get article history
 \code{core_articles_history} does the HTTP request and parses,
 while \code{core_articles_history_} just does the HTTP request, gives back JSON
 as a character string
-
-These functions take one article ID at a time. Use lapply/loops/etc for
-many ids
 }
 \examples{
 \dontrun{
-core_articles_history(id = '21132995')
+core_articles_history(id = 21132995)
 
 ids <- c(20955435, 21132995, 21813171, 22815670, 14045109, 23828884,
    23465055, 23831838, 23923390, 22559733)
-res <- lapply(ids, core_articles_history)
+res <- core_articles_history(ids)
 vapply(res, function(z) z$data$datetime[1], "")
 
 # just http request, get text back
-core_articles_history_('21132995')
+core_articles_history_(21132995)
 }
 }
 \references{
