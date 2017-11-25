@@ -64,10 +64,10 @@ does all the logic and HTTP requesting, whereas the high level simply parses the
 core_search(query = 'ecology', limit = 12)
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $totalHits
-#> [1] 791390
-#>
+#> [1] 894153
+#> 
 #> $data
 #>       type             id
 #> 1  journal issn:1005-264X
@@ -87,7 +87,7 @@ core_search(query = 'ecology', limit = 12)
 
 ```r
 core_search_(query = 'ecology', limit = 12)
-#> [1] "{\"status\":\"OK\",\"totalHits\":791390,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
+#> [1] "{\"status\":\"OK\",\"totalHits\":894153,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
 ```
 
 ## Advanced Search
@@ -102,22 +102,22 @@ query <- data.frame("all_of_the_words" = "data mining",
 core_advanced_search(query)
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $totalHits
-#> [1] 17755
-#>
+#> [1] 18542
+#> 
 #> $data
 #>       type       id
 #> 1  article 22642150
-#> 2  article 24006259
-#> 3  article 22650635
-#> 4  article 24074440
-#> 5  article 23964816
+#> 2  article 22650635
+#> 3  article 24006259
+#> 4  article 23964816
+#> 5  article 24074440
 #> 6  article 22654775
-#> 7  article 23849064
-#> 8  article 22625437
+#> 7  article 22625437
+#> 8  article 23849064
 #> 9  article 23723370
-#> 10 article 23852739
+#> 10 article 27624048
 ```
 
 # Articles
@@ -127,14 +127,14 @@ core_advanced_search(query)
 core_articles(id = 21132995)
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $data
 #> $data$id
 #> [1] "21132995"
-#>
+#> 
 #> $data$authors
 #> list()
-#>
+#> 
 ...
 ```
 
@@ -145,7 +145,7 @@ core_articles(id = 21132995)
 core_articles_history(id = '21132995')
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $data
 #>              datetime
 ...
@@ -158,14 +158,14 @@ core_articles_history(id = '21132995')
 core_journals(id = '2167-8359')
 #> $status
 #> [1] "OK"
-#>
+#> 
 #> $data
 #> $data$title
 #> [1] "PeerJ"
-#>
+#> 
 #> $data$identifiers
 #> [1] "oai:doaj.org/journal:576e4d34b8bf461bb586f1e90d80d7cc"
-#> [2] "issn:2167-8359"
+#> [2] "issn:2167-8359"                                       
 ...
 ```
 
