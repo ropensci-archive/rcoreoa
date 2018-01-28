@@ -7,3 +7,4 @@ appveyor.yml
 cran-comments.md
 man-roxygen
 .github
+^codemeta\.json$
