@@ -63,7 +63,7 @@ Best practice is to set the API key as an environment variable for your system, 
 Within the `.Renviron` file you will add:
 
 ```
-CORE_API=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
+CORE_KEY=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
 ```
 
 The key may also be included in a file such as a `.bash_profile` file, or elsewhere.  Users may decide which works best for them.  Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
