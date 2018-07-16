@@ -9,14 +9,19 @@ core_repos(id, key = NULL, method = "GET", parse = TRUE, ...)
 \arguments{
 \item{id}{(integer) One or more repository IDs. Required}
 
-\item{key}{A IUCN API token}
+\item{key}{A CORE API key. Get one at 
+\url{https://core.ac.uk/api-keys/register}. Once you have the key, 
+you can pass it into this parameter, or as a much better option, 
+store your key as an environment variable with the name 
+\code{CORE_KEY} or an R option as \code{core_key}. See `?Startup` 
+for how to work with env vars and R options}
 
 \item{method}{(character) one of 'GET' (default) or 'POST'}
 
-\item{parse}{(logical) Whether to parse to list (`FALSE`) or
-data.frame (`TRUE`). Default: `TRUE`}
+\item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
+data.frame (\code{TRUE}). Default: \code{TRUE}}
 
-\item{...}{Curl options passed to [crul::HttpClient()]}
+\item{...}{Curl options passed to \code{\link[crul]{HttpClient}}}
 }
 \description{
 Get repositories via their repository IDs

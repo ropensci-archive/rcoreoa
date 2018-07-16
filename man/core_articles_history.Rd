@@ -19,12 +19,17 @@ One or more. Required}
 \item{limit}{(character) records to return (default: 10, minimum: 10),
 optional}
 
-\item{key}{A IUCN API token}
+\item{key}{A CORE API key. Get one at 
+\url{https://core.ac.uk/api-keys/register}. Once you have the key, 
+you can pass it into this parameter, or as a much better option, 
+store your key as an environment variable with the name 
+\code{CORE_KEY} or an R option as \code{core_key}. See `?Startup` 
+for how to work with env vars and R options}
 
-\item{parse}{(logical) Whether to parse to list (`FALSE`) or
-data.frame (`TRUE`). Default: `TRUE`}
+\item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
+data.frame (\code{TRUE}). Default: \code{TRUE}}
 
-\item{...}{Curl options passed to [crul::HttpClient()]}
+\item{...}{Curl options passed to \code{\link[crul]{HttpClient}}}
 }
 \value{
 \code{core_articles_history_} returns a JSON string on success.

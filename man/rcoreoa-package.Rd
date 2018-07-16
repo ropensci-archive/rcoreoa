@@ -19,7 +19,6 @@ corresponding higher level companions do not. The higher level functions
 parse to list/data.frame's (as tidy as possible). Lower level
 functions give back JSON (character class) thus are slightly faster not
 spending time on parsing to R structures.
-
 \itemize{
 \item \code{\link[=core_articles]{core_articles()}} / \code{\link[=core_articles_]{core_articles_()}} - get article metadata
 \item \code{\link[=core_articles_history]{core_articles_history()}} / \code{\link[=core_articles_history_]{core_articles_history_()}} - get
@@ -34,6 +33,12 @@ repositories
 \item \code{\link[=core_advanced_search]{core_advanced_search()}} / \code{\link[=core_advanced_search_]{core_advanced_search_()}} -
 advanced search of articles
 }
+}
+
+\section{Authentication}{
+
+You'll need a CORE API token/key to use this package. Get one at
+\url{https://core.ac.uk/api-keys/register}
 }
 
 \author{

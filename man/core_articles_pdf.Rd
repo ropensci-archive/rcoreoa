@@ -13,7 +13,12 @@ core_articles_pdf_(id, key = NULL, overwrite = FALSE, ...)
 \item{id}{(integer) CORE ID of the article that needs to be fetched.
 One or more. Required}
 
-\item{key}{A IUCN API token. Required}
+\item{key}{A CORE API key. Get one at
+\url{https://core.ac.uk/api-keys/register}. Once you have the key,
+you can pass it into this parameter, or as a much better option,
+store your key as an environment variable with the name
+\code{CORE_KEY} or an R option as \code{core_key}. See \code{?Startup}
+for how to work with env vars and R options}
 
 \item{overwrite}{(logical) overwrite file or not if already
 on disk. Default: \code{FALSE}}

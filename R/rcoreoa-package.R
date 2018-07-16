@@ -13,20 +13,22 @@
 #' functions give back JSON (character class) thus are slightly faster not
 #' spending time on parsing to R structures.
 #'
-#' \itemize{
-#'  \item [core_articles()] / [core_articles_()] - get article metadata
-#'  \item [core_articles_history()] / [core_articles_history_()] - get
+#' - [core_articles()] / [core_articles_()] - get article metadata
+#' - [core_articles_history()] / [core_articles_history_()] - get
 #'  article history metadata
-#'  \item [core_articles_pdf()] / [core_articles_pdf_()] - download
+#' - [core_articles_pdf()] / [core_articles_pdf_()] - download
 #'  article PDF, and optionally extract text
-#'  \item [core_journals()] / [core_journals_()] - get journal metadata
-#'  \item [core_repos()] / [core_repos_()] - get repository metadata
-#'  \item [core_repos_search()] / [core_repos_search_()] - search for
+#' - [core_journals()] / [core_journals_()] - get journal metadata
+#' - [core_repos()] / [core_repos_()] - get repository metadata
+#' - [core_repos_search()] / [core_repos_search_()] - search for
 #'  repositories
-#'  \item [core_search()] / [core_search_()] - search articles
-#'  \item [core_advanced_search()] / [core_advanced_search_()] -
+#' - [core_search()] / [core_search_()] - search articles
+#' - [core_advanced_search()] / [core_advanced_search_()] -
 #'  advanced search of articles
-#' }
+#' 
+#' @section Authentication:
+#' You'll need a CORE API token/key to use this package. Get one at 
+#' <https://core.ac.uk/api-keys/register>
 #'
 #' @name rcoreoa-package
 #' @aliases rcoreoa

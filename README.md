@@ -6,6 +6,7 @@ rcoreoa
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/ropensci/rcoreoa.svg?branch=master)](https://travis-ci.org/ropensci/rcoreoa)
 [![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
+[![cran checks](https://cranchecks.info/badges/worst/rcoreoa)](https://cranchecks.info/pkgs/rcoreoa)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/rcoreoa)](https://cran.r-project.org/package=rcoreoa)
 
@@ -13,7 +14,11 @@ CORE API R client
 
 [CORE API docs](https://core.ac.uk/docs/)
 
-[CORE API - request access](https://core.ac.uk/api-keys/register)
+Get an API key at <https://core.ac.uk/api-keys/register>. You'll need one, 
+so do this now if you haven't yet. Once you have the key, you can pass it 
+into the `key` parameter, or as a much better option store your key as an 
+environment variable with the name `CORE_KEY` or an R option as `core_key`. 
+See `?Startup` for how to work with env vars and R options
 
 <a href="https://core.ac.uk">
 <img src="https://core.ac.uk/resources/corelogo_hires.png" width="150"
@@ -66,7 +71,7 @@ core_search(query = 'ecology', limit = 12)
 #> [1] "OK"
 #> 
 #> $totalHits
-#> [1] 894153
+#> [1] 1454036
 #> 
 #> $data
 #>       type             id
@@ -87,7 +92,7 @@ core_search(query = 'ecology', limit = 12)
 
 ```r
 core_search_(query = 'ecology', limit = 12)
-#> [1] "{\"status\":\"OK\",\"totalHits\":894153,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
+#> [1] "{\"status\":\"OK\",\"totalHits\":1454036,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
 ```
 
 ## Advanced Search
@@ -104,20 +109,20 @@ core_advanced_search(query)
 #> [1] "OK"
 #> 
 #> $totalHits
-#> [1] 18542
+#> [1] 25244
 #> 
 #> $data
-#>       type       id
-#> 1  article 22642150
-#> 2  article 22650635
-#> 3  article 24006259
-#> 4  article 23964816
-#> 5  article 24074440
-#> 6  article 22654775
-#> 7  article 22625437
-#> 8  article 23849064
-#> 9  article 23723370
-#> 10 article 27624048
+#>       type        id
+#> 1  article  22642150
+#> 2  article  22620954
+#> 3  article  22650635
+#> 4  article  24006259
+#> 5  article  23964816
+#> 6  article 157985087
+#> 7  article  44501305
+#> 8  article  24074440
+#> 9  article  22581369
+#> 10 article  22654775
 ```
 
 # Articles
@@ -148,6 +153,8 @@ core_articles_history(id = '21132995')
 #> 
 #> $data
 #>              datetime
+#> 1 2016-08-03 00:13:41
+#> 2 2014-10-22 16:42:14
 ...
 ```
 
@@ -155,18 +162,7 @@ core_articles_history(id = '21132995')
 
 
 ```r
-core_journals(id = '2167-8359')
-#> $status
-#> [1] "OK"
-#> 
-#> $data
-#> $data$title
-#> [1] "PeerJ"
-#> 
-#> $data$identifiers
-#> [1] "oai:doaj.org/journal:576e4d34b8bf461bb586f1e90d80d7cc"
-#> [2] "issn:2167-8359"                                       
-...
+core_journals(id = '2220-721X')
 ```
 
 # Get PDFs

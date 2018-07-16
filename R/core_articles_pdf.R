@@ -3,7 +3,12 @@
 #' @export
 #' @param id (integer) CORE ID of the article that needs to be fetched.
 #' One or more. Required
-#' @param key A IUCN API token. Required
+#' @param key A CORE API key. Get one at 
+#' \url{https://core.ac.uk/api-keys/register}. Once you have the key, 
+#' you can pass it into this parameter, or as a much better option, 
+#' store your key as an environment variable with the name 
+#' `CORE_KEY` or an R option as `core_key`. See `?Startup` 
+#' for how to work with env vars and R options
 #' @param overwrite (logical) overwrite file or not if already
 #' on disk. Default: `FALSE`
 #' @param ... Curl options passed to [crul::HttpClient()]
