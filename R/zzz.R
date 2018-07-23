@@ -91,3 +91,16 @@ create_batch_query_list <- function(queries, page, pageSize) {
 
   return(queryList)
 }
+
+asl <- function(z) {
+  if (is.null(z)) return(NULL)
+  if (is.logical(z) || tolower(z) == "true" || tolower(z) == "false") {
+    if (z) {
+      return('true')
+    } else {
+      return('false')
+    }
+  } else {
+    return(z)
+  }
+}
