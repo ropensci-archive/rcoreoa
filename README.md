@@ -186,6 +186,6 @@ core_articles_pdf_(11549557)
 * Please [report any issues or bugs](https://github.com/ropensci/rcoreoa/issues).
 * License: MIT
 * Get citation information for `rcoreoa` in R doing `citation(package = 'rcoreoa')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
