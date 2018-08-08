@@ -5,15 +5,15 @@
 \alias{core_articles_}
 \title{Get articles}
 \usage{
-core_articles(id, metadata = TRUE, fulltext = FALSE, citations = FALSE,
-  similar = FALSE, duplicate = FALSE, urls = FALSE,
-  extractedUrls = FALSE, faithfulMetadata = FALSE, key = NULL,
-  method = "GET", parse = TRUE, ...)
+core_articles(id, metadata = TRUE, fulltext = FALSE,
+  citations = FALSE, similar = FALSE, duplicate = FALSE,
+  urls = FALSE, extractedUrls = FALSE, faithfulMetadata = FALSE,
+  key = NULL, method = "GET", parse = TRUE, ...)
 
-core_articles_(id, metadata = TRUE, fulltext = FALSE, citations = FALSE,
-  similar = FALSE, duplicate = FALSE, urls = FALSE,
-  extractedUrls = FALSE, faithfulMetadata = FALSE, key = NULL,
-  method = "GET", ...)
+core_articles_(id, metadata = TRUE, fulltext = FALSE,
+  citations = FALSE, similar = FALSE, duplicate = FALSE,
+  urls = FALSE, extractedUrls = FALSE, faithfulMetadata = FALSE,
+  key = NULL, method = "GET", ...)
 }
 \arguments{
 \item{id}{(integer) CORE ID of the article that needs to be fetched.
@@ -47,11 +47,11 @@ available in CORE API v2.0 beta}
 \item{faithfulMetadata}{Whether to retrieve the raw XML metadata of the
 article. Default: \code{FALSE}}
 
-\item{key}{A CORE API key. Get one at 
-\url{https://core.ac.uk/api-keys/register}. Once you have the key, 
-you can pass it into this parameter, or as a much better option, 
-store your key as an environment variable with the name 
-\code{CORE_KEY} or an R option as \code{core_key}. See `?Startup` 
+\item{key}{A CORE API key. Get one at
+\url{https://core.ac.uk/api-keys/register}. Once you have the key,
+you can pass it into this parameter, or as a much better option,
+store your key as an environment variable with the name
+\code{CORE_KEY} or an R option as \code{core_key}. See \code{?Startup}
 for how to work with env vars and R options}
 
 \item{method}{(character) one of 'GET' (default) or 'POST'}

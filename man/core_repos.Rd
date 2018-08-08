@@ -9,11 +9,11 @@ core_repos(id, key = NULL, method = "GET", parse = TRUE, ...)
 \arguments{
 \item{id}{(integer) One or more repository IDs. Required}
 
-\item{key}{A CORE API key. Get one at 
-\url{https://core.ac.uk/api-keys/register}. Once you have the key, 
-you can pass it into this parameter, or as a much better option, 
-store your key as an environment variable with the name 
-\code{CORE_KEY} or an R option as \code{core_key}. See `?Startup` 
+\item{key}{A CORE API key. Get one at
+\url{https://core.ac.uk/api-keys/register}. Once you have the key,
+you can pass it into this parameter, or as a much better option,
+store your key as an environment variable with the name
+\code{CORE_KEY} or an R option as \code{core_key}. See \code{?Startup}
 for how to work with env vars and R options}
 
 \item{method}{(character) one of 'GET' (default) or 'POST'}

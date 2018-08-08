@@ -4,8 +4,8 @@
 \alias{core_repos_search}
 \title{Search CORE repositories}
 \usage{
-core_repos_search(query, page = 1, limit = 10, key = NULL, parse = TRUE,
-  ...)
+core_repos_search(query, page = 1, limit = 10, key = NULL,
+  parse = TRUE, ...)
 }
 \arguments{
 \item{query}{(character) query string, required}
@@ -15,11 +15,11 @@ core_repos_search(query, page = 1, limit = 10, key = NULL, parse = TRUE,
 \item{limit}{(character) records to return (default: 10, minimum: 10),
 optional}
 
-\item{key}{A CORE API key. Get one at 
-\url{https://core.ac.uk/api-keys/register}. Once you have the key, 
-you can pass it into this parameter, or as a much better option, 
-store your key as an environment variable with the name 
-\code{CORE_KEY} or an R option as \code{core_key}. See `?Startup` 
+\item{key}{A CORE API key. Get one at
+\url{https://core.ac.uk/api-keys/register}. Once you have the key,
+you can pass it into this parameter, or as a much better option,
+store your key as an environment variable with the name
+\code{CORE_KEY} or an R option as \code{core_key}. See \code{?Startup}
 for how to work with env vars and R options}
 
 \item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
