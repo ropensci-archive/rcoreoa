@@ -4,7 +4,7 @@ max_year_default <- yearToday <- format(Sys.Date(), "%Y")
 get_acceptable_advanced_search_query_filter <- function(){
   return(c("all_of_the_words", "exact_phrase", "at_least_one_of_the_words",
            "without_the_words", "find_those_words", "author", "publisher",
-           "repository", "doi", "year_from", "year_to"))
+           "repository", "doi", "year_from", "year_to", "language"))
 }
 
 paste_three <- function(..., sep = " ", collapse = NULL, na.rm = TRUE) {
@@ -38,6 +38,16 @@ prepare_elasticsearch_term <- function(filter, filterName) {
     }
   } else {
     return(NA)
+  }
+}
+
+is_acceptable_language_filter <- function(language) {
+  if (language %in% c('Chinese', 'English', 'German', 'Italian', 'Japanese',
+                      'Russian', 'Spanish',
+                      'zh', 'en', 'de', 'it', 'ja', 'ru', 'es')) {
+    return(TRUE)
+  } else {
+  return(FALSE)
   }
 }
 
@@ -178,6 +188,11 @@ parse_advanced_search_query <- function(query){
       paste("year:[", query_year_from, " TO ", yearToday, "]", sep = "") else
         yearFilter
 
+    lang <- query["language"]
+    languageFilter <-
+      if (is_acceptable_language_filter(lang))
+        paste("language.name:", lang, sep = "") else ""
+
     authorFilter <-
       prepare_elasticsearch_term(query["author"], "author")
     publisherFilter <-
@@ -187,8 +202,9 @@ parse_advanced_search_query <- function(query){
 
     basicTermReplacement <- paste_three(basicTermReplacement, yearFilter,
                                         publisherFilter, repositoryFilter,
-                                        authorFilter, sep = " AND ")
-
+                                        authorFilter, languageFilter,
+                                        sep = " AND ")
+    
     return(basicTermReplacement)
   }
 }
