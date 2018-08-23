@@ -42,13 +42,9 @@ prepare_elasticsearch_term <- function(filter, filterName) {
 }
 
 is_acceptable_language_filter <- function(language) {
-  if (language %in% c('Chinese', 'English', 'German', 'Italian', 'Japanese',
+  return(language %in% c('Chinese', 'English', 'German', 'Italian', 'Japanese',
                       'Russian', 'Spanish',
-                      'zh', 'en', 'de', 'it', 'ja', 'ru', 'es')) {
-    return(TRUE)
-  } else {
-  return(FALSE)
-  }
+                      'zh', 'en', 'de', 'it', 'ja', 'ru', 'es'))
 }
 
 is_acceptable_year_filter <- function(year, nullable = TRUE) {
