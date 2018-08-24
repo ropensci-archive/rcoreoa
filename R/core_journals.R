@@ -15,7 +15,7 @@
 #' @examples \dontrun{
 #' core_journals(id = '2167-8359')
 #'
-#' ids <- c("2167-8359", "1471-2105", "2050-084X")
+#' ids <- c("2167-8359", "2050-084X")
 #' res <- lapply(ids, core_journals)
 #' vapply(res, "[[", "", c("data", "title"))
 #'
@@ -27,7 +27,7 @@
 #'  library(rcrossref)
 #'  res <- lapply(c("bmc", "peerj", "elife", "plos", "frontiers"), function(z)
 #'     cr_journals(query = z))
-#'  ids <- unlist(lapply(res, function(b) b$data$issn))
+#'  ids <- na.omit(unlist(lapply(res, function(b) b$data$issn)))
 #'  out <- core_journals(ids, method = "POST")
 #'  head(out)
 #' }
