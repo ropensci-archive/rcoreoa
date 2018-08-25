@@ -41,10 +41,21 @@ prepare_elasticsearch_term <- function(filter, filterName) {
   }
 }
 
+prepare_elasticsearch_term_noparentheses <- function(filter, filterName) {
+  if (!is.na(filter)) {
+    if (is_acceptable_string(filter)) {
+      filterArr <- unlist(strsplit(x = filter, split = " "))
+      return(paste(filterName, ":", paste(filterArr, collapse = " AND "),
+                   sep = ""))
+    }
+  } else {
+    return(NA)
+  }
+}
+
 is_acceptable_language_filter <- function(language) {
   return(language %in% c('Chinese', 'English', 'German', 'Italian', 'Japanese',
-                      'Russian', 'Spanish',
-                      'zh', 'en', 'de', 'it', 'ja', 'ru', 'es'))
+                      'Russian', 'Spanish'))
 }
 
 is_acceptable_year_filter <- function(year, nullable = TRUE) {
@@ -183,7 +194,7 @@ parse_advanced_search_query <- function(query){
                       && is_acceptable_year_filter(query_year_to, FALSE))
       paste("year:[", query_year_from, " TO ", yearToday, "]", sep = "") else
         yearFilter
-
+    print(query)
     query["language"] <-
       if (is_acceptable_language_filter(query["language"]))
         query["language"] else ""
@@ -195,7 +206,7 @@ parse_advanced_search_query <- function(query){
     repositoryFilter <-
       prepare_elasticsearch_term(query["repository"], "repository")
     languageFilter <-
-      prepare_elasticsearch_term(query["language"], "language.name")
+      prepare_elasticsearch_term_noparentheses(query["language"], "language.name")
 
     basicTermReplacement <- paste_three(basicTermReplacement, yearFilter,
                                         publisherFilter, repositoryFilter,
