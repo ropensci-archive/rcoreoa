@@ -184,10 +184,9 @@ parse_advanced_search_query <- function(query){
       paste("year:[", query_year_from, " TO ", yearToday, "]", sep = "") else
         yearFilter
 
-    lang <- query["language"]
-    languageFilter <-
-      if (is_acceptable_language_filter(lang))
-        paste("language.name:", lang, sep = "") else ""
+    query["language"] <-
+      if (is_acceptable_language_filter(query["language"]))
+        query["language"] else ""
 
     authorFilter <-
       prepare_elasticsearch_term(query["author"], "author")
@@ -195,12 +194,14 @@ parse_advanced_search_query <- function(query){
       prepare_elasticsearch_term(query["publisher"], "publisher")
     repositoryFilter <-
       prepare_elasticsearch_term(query["repository"], "repository")
+    languageFilter <-
+      prepare_elasticsearch_term(query["language"], "language.name")
 
     basicTermReplacement <- paste_three(basicTermReplacement, yearFilter,
                                         publisherFilter, repositoryFilter,
                                         authorFilter, languageFilter,
                                         sep = " AND ")
-    
+
     return(basicTermReplacement)
   }
 }
