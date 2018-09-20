@@ -13,7 +13,7 @@
 #' @param similar	Whether to retrieve a list of similar articles.
 #' Default: `FALSE`
 #' Because the similar articles are calculated on demand, setting this
-#' parameter to true might slightly slow down the response time	query	boolean
+#' parameter to true might slightly slow down the response time	query
 #' @param duplicate	Whether to retrieve a list of CORE IDs of different
 #' versions of the article. Default: `FALSE`
 #' @param urls Whether to retrieve a list of URLs from which the article can
@@ -36,7 +36,6 @@
 #' <https://core.ac.uk/docs/#!/articles/getArticleByCoreId>
 #' @examples \dontrun{
 #' core_articles(id = 21132995)
-#' core_articles(id = 21132995, similar = TRUE)
 #' core_articles(id = 21132995, fulltext = TRUE)
 #' core_articles(id = 21132995, citations = TRUE)
 #'
