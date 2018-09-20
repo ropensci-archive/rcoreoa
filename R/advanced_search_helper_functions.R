@@ -4,7 +4,7 @@ max_year_default <- yearToday <- format(Sys.Date(), "%Y")
 get_acceptable_advanced_search_query_filter <- function(){
   return(c("all_of_the_words", "exact_phrase", "at_least_one_of_the_words",
            "without_the_words", "find_those_words", "author", "publisher",
-           "repository", "doi", "year_from", "year_to"))
+           "repository", "doi", "year_from", "year_to", "language"))
 }
 
 paste_three <- function(..., sep = " ", collapse = NULL, na.rm = TRUE) {
@@ -39,6 +39,22 @@ prepare_elasticsearch_term <- function(filter, filterName) {
   } else {
     return(NA)
   }
+}
+
+prepare_elasticsearch_languageFilter <- function(filter, filterName) {
+  if (!is.na(filter)) {
+    if (is_acceptable_string(filter)) {
+      filterArr <- unlist(strsplit(x = filter, split = " "))
+      return(paste(filterName, ":", filter, sep = ""))
+    }
+  } else {
+    return(NA)
+  }
+}
+
+is_acceptable_language_filter <- function(language) {
+  return(language %in% c('Chinese', 'English', 'German', 'Italian', 'Japanese',
+                      'Russian', 'Spanish'))
 }
 
 is_acceptable_year_filter <- function(year, nullable = TRUE) {
@@ -178,16 +194,23 @@ parse_advanced_search_query <- function(query){
       paste("year:[", query_year_from, " TO ", yearToday, "]", sep = "") else
         yearFilter
 
+    query["language"] <-
+      if (is_acceptable_language_filter(query["language"]))
+        query["language"] else NA
+
     authorFilter <-
       prepare_elasticsearch_term(query["author"], "author")
     publisherFilter <-
       prepare_elasticsearch_term(query["publisher"], "publisher")
     repositoryFilter <-
       prepare_elasticsearch_term(query["repository"], "repository")
+    languageFilter <-
+      prepare_elasticsearch_languageFilter(query["language"], "language.name")
 
     basicTermReplacement <- paste_three(basicTermReplacement, yearFilter,
                                         publisherFilter, repositoryFilter,
-                                        authorFilter, sep = " AND ")
+                                        authorFilter, languageFilter,
+                                        sep = " AND ")
 
     return(basicTermReplacement)
   }
