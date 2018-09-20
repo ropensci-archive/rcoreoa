@@ -37,6 +37,11 @@ For more infos on CORE, see:
 
 ## Install
 
+
+```r
+install.packages("rcoreoa")
+```
+
 Development version
 
 
@@ -71,7 +76,7 @@ core_search(query = 'ecology', limit = 12)
 #> [1] "OK"
 #> 
 #> $totalHits
-#> [1] 1460280
+#> [1] 1466685
 #> 
 #> $data
 #>       type             id
@@ -92,7 +97,7 @@ core_search(query = 'ecology', limit = 12)
 
 ```r
 core_search_(query = 'ecology', limit = 12)
-#> [1] "{\"status\":\"OK\",\"totalHits\":1460280,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
+#> [1] "{\"status\":\"OK\",\"totalHits\":1466686,\"data\":[{\"type\":\"journal\",\"id\":\"issn:1005-264X\"},{\"type\":\"journal\",\"id\":\"issn:2287-8327\"},{\"type\":\"journal\",\"id\":\"issn:2193-3081\"},{\"type\":\"journal\",\"id\":\"issn:2351-9894\"},{\"type\":\"journal\",\"id\":\"issn:1472-6785\"},{\"type\":\"journal\",\"id\":\"issn:1712-6568\"},{\"type\":\"journal\",\"id\":\"issn:2008-9287\"},{\"type\":\"journal\",\"id\":\"issn:2356-6647\"},{\"type\":\"journal\",\"id\":\"issn:1687-9708\"},{\"type\":\"journal\",\"id\":\"issn:1708-3087\"},{\"type\":\"journal\",\"id\":\"issn:2299-1042\"},{\"type\":\"journal\",\"id\":\"issn:2162-1985\"}]}"
 ```
 
 ## Advanced Search
@@ -109,7 +114,7 @@ core_advanced_search(query)
 #> [1] "OK"
 #> 
 #> $totalHits
-#> [1] 25335
+#> [1] 25406
 #> 
 #> $data
 #>       type        id

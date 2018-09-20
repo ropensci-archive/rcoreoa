@@ -69,6 +69,10 @@ For more infos on CORE, see:
 
 ## Install
 
+```{r eval=FALSE}
+install.packages("rcoreoa")
+```
+
 Development version
 
 ```{r eval=FALSE}
