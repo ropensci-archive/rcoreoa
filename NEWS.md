@@ -6,6 +6,7 @@ rcoreoa 0.3.0
 * gains new methods `core_articles_search()` and `core_articles_search_()` for searching for articles (#15)
 * gains new manual file `?core_cache` for an overview of caching
 * package `hoardr` now used for managing file caching (#13)
+* function `core_advanced_search()` gains support for the `language` filter (#16) thanks @chreman
 
 ### MINOR IMPROVEMENTS
 

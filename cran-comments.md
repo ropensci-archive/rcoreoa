@@ -20,7 +20,7 @@ There are no reverse dependencies.
 
 ---
 
-This version adds a few new functions, uses a new package dependency.
+This version adds a new functions, and many minor improvements.
 
 Thanks!
 Scott Chamberlain
