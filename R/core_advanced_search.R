@@ -4,8 +4,8 @@
 #' @template all
 #' @param query data.frame, required (details for structure)
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10),
-#' optional
+#' @param limit (character) records to return (default: 10, minimum: 10,
+#' maximum: 100), optional
 #' @details `query` should include columns with the following information
 #' (at least one is required):
 #' 1. `all_of_the_words`: string, with space separated terms that should all

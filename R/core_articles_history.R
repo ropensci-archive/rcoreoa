@@ -5,8 +5,8 @@
 #' @param id (integer) CORE ID of the article that needs to be fetched.
 #' One or more. Required
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10),
-#' optional
+#' @param limit (character) records to return (default: 10, minimum: 10,
+#' maximum: 100), optional
 #' @details `core_articles_history` does the HTTP request and parses,
 #' while `core_articles_history_` just does the HTTP request, gives back JSON
 #' as a character string

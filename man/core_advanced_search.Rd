@@ -15,8 +15,8 @@ core_advanced_search_(query, page = 1, limit = 10, key = NULL, ...)
 
 \item{page}{(character) page number (default: 1), optional}
 
-\item{limit}{(character) records to return (default: 10, minimum: 10),
-optional}
+\item{limit}{(character) records to return (default: 10, minimum: 10,
+maximum: 100), optional}
 
 \item{key}{A CORE API key. Get one at
 \url{https://core.ac.uk/api-keys/register}. Once you have the key,

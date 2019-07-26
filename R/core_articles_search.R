@@ -4,8 +4,8 @@
 #' @template all
 #' @param query (character) query string, required
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10),
-#' optional
+#' @param limit (character) records to return (default: 10, minimum: 10,
+#' maximum: 100), optional
 #' @param metadata (logical) Whether to retrieve the full article metadata or 
 #' only the ID. Default: `TRUE`
 #' @param fulltext (logical) Whether to retrieve full text of the article. 

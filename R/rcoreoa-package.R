@@ -29,6 +29,16 @@
 #' @section Authentication:
 #' You'll need a CORE API token/key to use this package. Get one at 
 #' <https://core.ac.uk/api-keys/register>
+#' 
+#' @section Pagination:
+#' Note that you are limited to a maximum of 100 results for the search
+#' functions; use combination of `page` and `limit` parameters to
+#' paginate through results. For example:
+#' 
+#' ```
+#' x1 <- core_search(query = 'ecology', limit = 100, page = 1)
+#' x2 <- core_search(query = 'ecology', limit = 100, page = 2)
+#' ```
 #'
 #' @name rcoreoa-package
 #' @aliases rcoreoa

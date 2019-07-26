@@ -4,7 +4,8 @@
 #' @template all
 #' @param query (character) query string, required
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10),
+#' @param limit (character) records to return (default: 10, minimum: 10,
+#' maximum: 100),
 #' optional
 #' @details `core_search` does the HTTP request and parses, while
 #' `core_search_` just does the HTTP request, gives back JSON as a character
@@ -18,7 +19,7 @@
 #' core_search_(query = 'ecology')
 #' library("jsonlite")
 #' jsonlite::fromJSON(core_search_(query = 'ecology'))
-#' 
+#'
 #' query <- c('data mining', 'machine learning', 'semantic web')
 #'
 #' # post request
@@ -36,10 +37,10 @@ core_search <- function(query, page = 1, limit = 10, key = NULL,
 core_search_ <- function(query, page = 1, limit = 10, key = NULL, ...) {
   must_be(limit)
 
-  if(as.character(length(query) > 1)){
+  if (as.character(length(query) > 1)) {
     queries <- create_batch_query_list(query, page, limit)
     args <- NULL
-    
+
     core_POST(path = "search", key, args, queries, ...)
   } else {
     core_GET(path = file.path("search", query), key,

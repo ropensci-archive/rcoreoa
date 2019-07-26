@@ -4,8 +4,8 @@
 #' @template all
 #' @param query (character) query string, required
 #' @param page (character) page number (default: 1), optional
-#' @param limit (character) records to return (default: 10, minimum: 10),
-#' optional
+#' @param limit (character) records to return (default: 10, minimum: 10,
+#' maximum: 100), optional
 #' @details `core_repos_search` does the HTTP request and parses, while
 #' `core_repos_search_` just does the HTTP request, gives back JSON as
 #' a character string
