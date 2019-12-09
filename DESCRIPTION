@@ -13,7 +13,7 @@ Authors@R: c(
      person("Simon", "Goring", role = "ctb")
     )
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/rcoreoa
+URL: https://docs.ropensci.org/rcoreoa, https://github.com/ropensci/rcoreoa
 BugReports: https://github.com/ropensci/rcoreoa/issues
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
