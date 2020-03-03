@@ -4,8 +4,7 @@
 \alias{core_repos_search}
 \title{Search CORE repositories}
 \usage{
-core_repos_search(query, page = 1, limit = 10, key = NULL,
-  parse = TRUE, ...)
+core_repos_search(query, page = 1, limit = 10, key = NULL, parse = TRUE, ...)
 }
 \arguments{
 \item{query}{(character) query string, required}

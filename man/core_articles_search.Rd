@@ -5,15 +5,36 @@
 \alias{core_articles_search_}
 \title{Search CORE articles}
 \usage{
-core_articles_search(query, metadata = TRUE, fulltext = FALSE,
-  citations = FALSE, similar = FALSE, duplicate = FALSE,
-  urls = FALSE, faithfulMetadata = FALSE, page = 1, limit = 10,
-  key = NULL, parse = TRUE, ...)
+core_articles_search(
+  query,
+  metadata = TRUE,
+  fulltext = FALSE,
+  citations = FALSE,
+  similar = FALSE,
+  duplicate = FALSE,
+  urls = FALSE,
+  faithfulMetadata = FALSE,
+  page = 1,
+  limit = 10,
+  key = NULL,
+  parse = TRUE,
+  ...
+)
 
-core_articles_search_(query, metadata = TRUE, fulltext = FALSE,
-  citations = FALSE, similar = FALSE, duplicate = FALSE,
-  urls = FALSE, faithfulMetadata = FALSE, page = 1, limit = 10,
-  key = NULL, ...)
+core_articles_search_(
+  query,
+  metadata = TRUE,
+  fulltext = FALSE,
+  citations = FALSE,
+  similar = FALSE,
+  duplicate = FALSE,
+  urls = FALSE,
+  faithfulMetadata = FALSE,
+  page = 1,
+  limit = 10,
+  key = NULL,
+  ...
+)
 }
 \arguments{
 \item{query}{(character) query string, required}

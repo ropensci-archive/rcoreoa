@@ -5,15 +5,36 @@
 \alias{core_articles_}
 \title{Get articles}
 \usage{
-core_articles(id, metadata = TRUE, fulltext = FALSE,
-  citations = FALSE, similar = FALSE, duplicate = FALSE,
-  urls = FALSE, extractedUrls = FALSE, faithfulMetadata = FALSE,
-  key = NULL, method = "GET", parse = TRUE, ...)
+core_articles(
+  id,
+  metadata = TRUE,
+  fulltext = FALSE,
+  citations = FALSE,
+  similar = FALSE,
+  duplicate = FALSE,
+  urls = FALSE,
+  extractedUrls = FALSE,
+  faithfulMetadata = FALSE,
+  key = NULL,
+  method = "GET",
+  parse = TRUE,
+  ...
+)
 
-core_articles_(id, metadata = TRUE, fulltext = FALSE,
-  citations = FALSE, similar = FALSE, duplicate = FALSE,
-  urls = FALSE, extractedUrls = FALSE, faithfulMetadata = FALSE,
-  key = NULL, method = "GET", ...)
+core_articles_(
+  id,
+  metadata = TRUE,
+  fulltext = FALSE,
+  citations = FALSE,
+  similar = FALSE,
+  duplicate = FALSE,
+  urls = FALSE,
+  extractedUrls = FALSE,
+  faithfulMetadata = FALSE,
+  key = NULL,
+  method = "GET",
+  ...
+)
 }
 \arguments{
 \item{id}{(integer) CORE ID of the article that needs to be fetched.

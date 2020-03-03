@@ -42,7 +42,7 @@ Download article pdf
 PDF to text, while \code{core_articles_pdf_} just does the HTTP request
 and gives back the path to the file
 
-If you get a message like \code{Error: Not Found (HTTP 404)}, that means
+If you get a message like \verb{Error: Not Found (HTTP 404)}, that means
 a PDF was not found. That is, it does not exist. That is, there is no
 PDF associated with the article ID you searched for. This is the
 correct behavior, and nothing is wrong with this function or this

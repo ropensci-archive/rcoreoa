@@ -5,8 +5,14 @@
 \alias{core_advanced_search_}
 \title{Advanced Search CORE}
 \usage{
-core_advanced_search(query, page = 1, limit = 10, key = NULL,
-  parse = TRUE, ...)
+core_advanced_search(
+  query,
+  page = 1,
+  limit = 10,
+  key = NULL,
+  parse = TRUE,
+  ...
+)
 
 core_advanced_search_(query, page = 1, limit = 10, key = NULL, ...)
 }

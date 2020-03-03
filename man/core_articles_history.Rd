@@ -5,8 +5,7 @@
 \alias{core_articles_history_}
 \title{Get article history}
 \usage{
-core_articles_history(id, page = 1, limit = 10, key = NULL,
-  parse = TRUE, ...)
+core_articles_history(id, page = 1, limit = 10, key = NULL, parse = TRUE, ...)
 
 core_articles_history_(id, page = 1, limit = 10, key = NULL, ...)
 }

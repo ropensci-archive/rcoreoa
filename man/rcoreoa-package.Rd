@@ -14,7 +14,7 @@ CORE at \url{https://core.ac.uk} and their API docs at
 
 Each API endpoint has two functions that interface with it - a higher
 level interface and a lower level interface. The lower level functions
-have an underscore (\code{_}) at the end of the function name, while their
+have an underscore (\verb{_}) at the end of the function name, while their
 corresponding higher level companions do not. The higher level functions
 parse to list/data.frame's (as tidy as possible). Lower level
 functions give back JSON (character class) thus are slightly faster not
