@@ -1,11 +1,11 @@
 min_year_default <- "1900"
 max_year_default <- yearToday <- format(Sys.Date(), "%Y")
 
-get_acceptable_advanced_search_query_filter <- function(){
-  return(c("all_of_the_words", "exact_phrase", "at_least_one_of_the_words",
-           "without_the_words", "find_those_words", "author", "publisher",
-           "repository", "doi", "year_from", "year_to", "language"))
-}
+acceptable_advanced_filters <- c(
+  "title", "description", "fullText", "authors"
+  "publisher", "repositories.id", "repositories.name", "doi",
+  "oai", "identifiers", "language.name", "year"
+)
 
 paste_three <- function(..., sep = " ", collapse = NULL, na.rm = TRUE) {
   if (na.rm == FALSE)
@@ -90,7 +90,6 @@ is_acceptable_string <- function(txt){
 }
 
 parse_advanced_search_query <- function(query){
-  acceptable_advanced_filters <- get_acceptable_advanced_search_query_filter()
   query <- query[which(names(query) %in% acceptable_advanced_filters)]
 
   if ("doi" %in% names(query)) {

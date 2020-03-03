@@ -56,9 +56,13 @@ test_that("high level works - parsing", {
 test_that("high level - language filter", {
   skip_on_cran()
 
+  # advanced_query <- data.frame(
+  #   exact_phrase = c("machine learning", "maschinelles Lernen"),
+  #   language = c("English", "German")
+  # )
   advanced_query <- data.frame(
-    "exact_phrase" = c("machine learning", "maschinelles Lernen"),
-    "language" = c("English", "German")
+    title = c("machine learning", "maschinelles Lernen"),
+    language = c("English", "German")
   )
   
   aa <- core_advanced_search(query = advanced_query)
