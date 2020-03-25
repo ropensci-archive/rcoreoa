@@ -3,8 +3,10 @@ context("core_search functions")
 test_that("high level works - parsing", {
   skip_on_cran()
 
-  aa <- core_search(query = 'ecology')
-  bb <- core_search(query = 'ecology', parse = FALSE)
+  vcr::use_cassette("core_search", {
+    aa <- core_search(query = 'ecology')
+    bb <- core_search(query = 'ecology', parse = FALSE)
+  })
 
   expect_is(aa, "list")
   expect_is(aa$status, "character")
