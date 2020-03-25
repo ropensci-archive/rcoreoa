@@ -25,7 +25,7 @@ core_POST <- function(path, key, args, body, ...){
   temp <- cli$post(
     path = file.path("api-v2", path),
     query = cp(args),
-    body = jsonlite::toJSON(body, auto_unbox = TRUE), encode = "json", ...
+    body = jsonlite::toJSON(body, auto_unbox = TRUE), encode = "json", verbose=TRUE
   )
   temp$raise_for_status()
   stopifnot(temp$response_headers$`content-type` == 'application/json')
