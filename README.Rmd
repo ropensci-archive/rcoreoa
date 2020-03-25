@@ -44,28 +44,23 @@ knitr::opts_chunk$set(
 
 CORE API R client
 
-[CORE API docs](https://core.ac.uk/docs/)
+CORE API docs: https://core.ac.uk/docs/
 
-Get an API key at <https://core.ac.uk/api-keys/register>. You'll need one, 
+Get an API key at https://core.ac.uk/api-keys/register. You'll need one, 
 so do this now if you haven't yet. Once you have the key, you can pass it 
 into the `key` parameter, or as a much better option store your key as an 
 environment variable with the name `CORE_KEY` or an R option as `core_key`. 
 See `?Startup` for how to work with env vars and R options
 
-<a href="https://core.ac.uk">
-<img src="https://core.ac.uk/resources/corelogo_hires.png" width="150"
-alt="CORE">
-</a>
+## About CORE
 
-"Aggregating the world's open access research papers"
+CORE's tagline is: "Aggregating the world's open access research papers"
 
 CORE offers seamless access to millions of open access research papers, enrich
 the collected data for text-mining and provide unique services to the research
 community.
 
-For more infos on CORE, see:
-
-[https://core.ac.uk/about](https://core.ac.uk/about)
+For more infos on CORE, see https://core.ac.uk/about
 
 ## Install
 
@@ -76,7 +71,7 @@ install.packages("rcoreoa")
 Development version
 
 ```{r eval=FALSE}
-devtools::install_github("ropensci/rcoreoa")
+remotes::install_github("ropensci/rcoreoa")
 ```
 
 ```{r}
@@ -112,11 +107,8 @@ does all the logic and HTTP requesting, whereas the high level simply parses the
 ## Search
 
 ```{r}
-core_search(query = 'ecology', limit = 12)
-```
-
-```{r}
-core_search_(query = 'ecology', limit = 12)
+res <- core_search(query = 'ecology', limit = 12)
+tibble::as_tibble(res$data)
 ```
 
 ## Advanced Search
@@ -127,7 +119,8 @@ query <- data.frame("all_of_the_words" = "data mining",
                     "year_from" = "2013",
                     "year_to" = "2014")
 
-core_advanced_search(query)
+res <- core_advanced_search(query)
+tibble::as_tibble(res$data)
 ```
 
 # Articles
@@ -168,6 +161,8 @@ core_articles_pdf_(11549557)
 * Please [report any issues or bugs](https://github.com/ropensci/rcoreoa/issues).
 * License: MIT
 * Get citation information for `rcoreoa` in R doing `citation(package = 'rcoreoa')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct][coc]. By participating in this project you agree to abide by its terms.
 
 [![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+[coc]: https://github.com/ropensci/rcoreoa/blob/master/CODE_OF_CONDUCT.md
