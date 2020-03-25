@@ -25,9 +25,9 @@ Imports:
     pdftools,
     hoardr
 Suggests:
-    roxygen2 (>= 7.0.2),
+    roxygen2 (>= 7.1.0),
     testthat,
     knitr,
     rmarkdown,
     rcrossref
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
