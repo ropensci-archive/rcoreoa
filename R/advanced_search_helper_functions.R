@@ -2,7 +2,7 @@ min_year_default <- "1900"
 max_year_default <- yearToday <- format(Sys.Date(), "%Y")
 
 acceptable_advanced_filters <- c(
-  "title", "description", "fullText", "authors"
+  "title", "description", "fullText", "authors",
   "publisher", "repositories.id", "repositories.name", "doi",
   "oai", "identifiers", "language.name", "year"
 )
