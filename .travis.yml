@@ -19,7 +19,7 @@ addons:
 r_binary_packages:
   - covr
 
-r_check_args: "--as-cran --run-dontrun"
+r_check_args: "--as-cran --run-dontrun --no-build-vignettes"
 
 after_success:
   - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
