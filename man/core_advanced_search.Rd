@@ -92,6 +92,6 @@ query <- data.frame(
 
 res <- core_advanced_search(query)
 head(res$data)
-res$data[[1]]$id
+res$data[[1]]$`_source`$id
 }
 }

@@ -74,6 +74,24 @@ Article deduplication
 \dontrun{
 core_articles_dedup(title = "Managing exploratory innovation", year = 2010)
 core_articles_dedup_(title = "Managing exploratory innovation", year = 2010)
+
+ab = 'Neonicotinoid seed dressings have caused concern world-wide. We use
+large field experiments to assess the effects of neonicotinoid-treated crops
+on three bee species across three countries (Hungary, Germany, and the
+United Kingdom). Winter-sown oilseed rape was grown commercially with
+either seed coatings containing neonicotinoids (clothianidin or
+thiamethoxam) or no seed treatment (control). For honey bees, we found
+both negative (Hungary and United Kingdom) and positive (Germany)
+effects during crop flowering. In Hungary, negative effects on honey
+bees (associated with clothianidin) persisted over winter and resulted
+in smaller colonies in the following spring (24\% declines). In wild
+bees (Bombus terrestris and Osmia bicornis), reproduction was
+negatively correlated with neonicotinoid residues. These findings
+point to neonicotinoids causing a reduced capacity of bee species
+to establish new populations in the year following exposure.'
+core_articles_dedup(
+  title = "Country-specific effects of neonicotinoid pesticides on honey bees and wild bees",
+  description = ab, verbose = TRUE)
 }
 }
 \references{

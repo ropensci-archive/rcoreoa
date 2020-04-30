@@ -90,6 +90,9 @@ core_articles_ <- function(id, metadata = TRUE, fulltext = FALSE,
                                call. = FALSE)
       core_GET(path = file.path("articles/get", id), key, args, ...)
     },
-    `POST` = core_POST(path = "articles/get", key, args, id, ...)
+    `POST` = {
+      id = jsonlite::toJSON(id, auto_unbox = TRUE)
+      core_POST(path = "articles/get", key, args, id, ...)
+    }
   )
 }

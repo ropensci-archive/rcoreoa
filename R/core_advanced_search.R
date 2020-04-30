@@ -46,7 +46,7 @@
 #'
 #' res <- core_advanced_search(query)
 #' head(res$data)
-#' res$data[[1]]$id
+#' res$data[[1]]$`_source`$id
 #' }
 #' @return data.frame with the following columns:
 #' `status`: string, which will be 'OK' or 'Not found' or

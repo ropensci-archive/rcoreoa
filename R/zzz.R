@@ -17,15 +17,14 @@ core_GET <- function(path, key, args, ...){
   temp$parse("UTF-8")
 }
 
-core_POST <- function(path, key, args, body, ...){
+core_POST <- function(path, key, query, body, ...){
   cli <- crul::HttpClient$new(
     url = core_base(),
     headers = list(apiKey = check_key(key))
   )
   temp <- cli$post(
     path = file.path("api-v2", path),
-    query = cp(args),
-    body = jsonlite::toJSON(body, auto_unbox = TRUE), encode = "json", ...
+    query = cp(query), body = body, encode = "json", ...
   )
   temp$raise_for_status()
   stopifnot(temp$response_headers$`content-type` == 'application/json')
