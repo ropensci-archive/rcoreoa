@@ -32,3 +32,6 @@ Suggests:
     rcrossref,
     vcr
 RoxygenNote: 7.1.0
+X-schema.org-applicationCategory: Literature
+X-schema.org-keywords: text-ming, literature, pdf, publications, citations, full-text, metadata
+X-schema.org-isPartOf: https://ropensci.org
