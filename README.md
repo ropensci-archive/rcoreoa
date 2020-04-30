@@ -3,12 +3,12 @@ rcoreoa
 
 
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/ropensci/rcoreoa.svg?branch=master)](https://travis-ci.org/ropensci/rcoreoa)
 [![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
 [![cran checks](https://cranchecks.info/badges/worst/rcoreoa)](https://cranchecks.info/pkgs/rcoreoa)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/rcoreoa)](https://cran.r-project.org/package=rcoreoa)
+[![cran version](https://www.r-pkg.org/badges/version/rcoreoa)](https://cran.r-project.org/package=rcoreoa)
 
 CORE API R client
 
@@ -65,16 +65,16 @@ head(x1$data[,1:3])
 #> 2 articles_2019_06_05 article 102353278
 #> 3 articles_2019_06_05 article 101526846
 #> 4 articles_2019_06_05 article 103034034
-#> 5 articles_2019_06_05 article 100453958
-#> 6 articles_2019_06_05 article 101147175
+#> 5 articles_2019_06_05 article  23391668
+#> 6 articles_2019_06_05 article  33293279
 head(x2$data[,1:3])
 #>                _index   _type       _id
-#> 1 articles_2019_06_05 article  76856113
-#> 2 articles_2019_06_05 article  76855980
-#> 3 articles_2019_06_05 article  99990752
-#> 4 articles_2019_06_05 article 100658401
-#> 5 articles_2019_06_05 article 100763270
-#> 6 articles_2019_06_05 article 103321161
+#> 1 articles_2019_06_05 article  79035703
+#> 2 articles_2019_06_05 article 100060865
+#> 3 articles_2019_06_05 article  74277757
+#> 4 articles_2019_06_05 article 105212587
+#> 5 articles_2019_06_05 article  79039982
+#> 6 articles_2019_06_05 article  79024459
 ```
 
 ## high- vs. low-level interfaces
@@ -103,16 +103,16 @@ tibble::as_tibble(res$data)
 #>  2 article… article 1023…     18.4 102353278    <chr [2… <list [0]>
 #>  3 article… article 1015…     17.5 101526846    <chr [1… <list [0]>
 #>  4 article… article 1030…     17.5 103034034    <chr [1… <list [0]>
-#>  5 article… article 1545…     17.4 154520563    <chr [1… <list [0]>
-#>  6 article… article 1004…     17.4 100453958    <chr [1… <list [0]>
-#>  7 article… article 1011…     17.4 101147175    <chr [1… <list [0]>
-#>  8 article… article 1017…     17.4 101760738    <chr [1… <list [0]>
-#>  9 article… article 1038…     17.4 103836217    <chr [1… <list [0]>
-#> 10 article… article 1019…     17.3 101912806    <chr [1… <list [0]>
-#> 11 article… article 1037…     17.3 103746797    <chr [1… <list [0]>
-#> 12 article… article 1038…     17.3 103888859    <chr [1… <list [0]>
-#> # … with 47 more variables: $contributors <list>, $datePublished <chr>,
-#> #   $deleted <chr>, $description <chr>, $fullText <lgl>,
+#>  5 article… article 1001…     17.4 100149076    <chr [1… <list [0]>
+#>  6 article… article 1038…     17.4 103825965    <chr [1… <list [0]>
+#>  7 article… article 1021…     17.4 102133122    <chr [1… <list [0]>
+#>  8 article… article 1036…     17.4 103698692    <chr [1… <list [0]>
+#>  9 article… article 1028…     17.4 102883655    <chr [1… <list [0]>
+#> 10 article… article 1054…     17.4 105494635    <chr [1… <list [0]>
+#> 11 article… article 2339…     17.4 23391668     <chr [1… <list [0]>
+#> 12 article… article 3329…     17.4 33293279     <chr [1… <list [0]>
+#> # … with 49 more variables: $contributors <list>, $datePublished <chr>,
+#> #   $deleted <chr>, $description <chr>, $fullText <chr>,
 #> #   $fullTextIdentifier <chr>, $identifiers <list>, $journals <lgl>,
 #> #   $language <lgl>, $duplicateId <lgl>, $publisher <chr>, $rawRecordXml <chr>,
 #> #   $relations <list>, $repositories <list>,
@@ -122,10 +122,11 @@ tibble::as_tibble(res$data)
 #> #   $$pdfSize <int>, $$tdmOnly <lgl>, $$pdfOrigin <chr>, $similarities <lgl>,
 #> #   $subjects <list>, $title <chr>, $topics <list>, $types <list>,
 #> #   $urls <list>, $year <int>, $doi <lgl>, $oai <chr>, $downloadUrl <chr>,
-#> #   $pdfHashValue <lgl>, $documentType <lgl>, $documentTypeConfidence <lgl>,
+#> #   $pdfHashValue <chr>, $documentType <lgl>, $documentTypeConfidence <lgl>,
 #> #   $citationCount <lgl>, $estimatedCitationCount <lgl>, $acceptedDate <lgl>,
 #> #   $depositedDate <dbl>, $publishedDate <lgl>, $issn <lgl>,
-#> #   $crossrefDocument <lgl>, $magDocument <lgl>, $orcidAuthors <lgl>
+#> #   $crossrefDocument <lgl>, $magDocument <lgl>, $attachmentCount <int>,
+#> #   $extendedMetadataAttributes <lgl>, $orcidAuthors <lgl>
 ```
 
 ## Advanced Search
@@ -142,16 +143,16 @@ tibble::as_tibble(res$data)
 #> # A tibble: 10 x 5
 #>    `_index` `_type` `_id` `_score` `_source`$id $authors $citations
 #>    <chr>    <chr>   <chr>    <dbl> <chr>        <list>   <list>    
-#>  1 article… article 1001…     31.3 100191766    <chr [1… <list [0]>
-#>  2 article… article 2326…     31.3 23260687     <chr [1… <list [0]>
-#>  3 article… article 1091…     31.3 109199257    <chr [1… <list [0]>
-#>  4 article… article 2344…     26.1 23445515     <chr [3… <list [0]>
-#>  5 article… article 2319…     25.3 23195960     <chr [3… <list [0]>
-#>  6 article… article 2251…     25.1 22515702     <chr [3… <list [0]>
-#>  7 article… article 1002…     24.0 100288450    <chr [4… <list [0]>
-#>  8 article… article 2342…     23.4 23425167     <chr [3… <list [0]>
-#>  9 article… article 2236…     23.2 22369029     <chr [3… <list [0]>
-#> 10 article… article 1001…     22.0 100117738    <chr [3… <list [0]>
+#>  1 article… article 2326…     31.0 23260687     <chr [1… <list [0]>
+#>  2 article… article 1091…     30.6 109199257    <chr [1… <list [0]>
+#>  3 article… article 1001…     30.6 100191766    <chr [1… <list [0]>
+#>  4 article… article 2344…     25.4 23445515     <chr [3… <list [0]>
+#>  5 article… article 2319…     24.7 23195960     <chr [3… <list [0]>
+#>  6 article… article 2251…     24.4 22515702     <chr [3… <list [0]>
+#>  7 article… article 1002…     23.6 100288450    <chr [4… <list [0]>
+#>  8 article… article 2342…     22.9 23425167     <chr [3… <list [0]>
+#>  9 article… article 2236…     22.8 22369029     <chr [3… <list [0]>
+#> 10 article… article 2263…     21.9 22636883     <chr [1… <list [0]>
 #> # … with 46 more variables: $contributors <list>, $datePublished <chr>,
 #> #   $deleted <chr>, $description <chr>, $fullText <lgl>,
 #> #   $fullTextIdentifier <chr>, $identifiers <list>, $journals <lgl>,
