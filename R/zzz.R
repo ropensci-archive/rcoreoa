@@ -2,6 +2,19 @@ core_base <- function() "https://core.ac.uk"
 
 cp <- function(x) Filter(Negate(is.null), x)
 
+errs <- function(x) {
+  x$raise_for_ct_json()
+  if (x$status_code >= 400) {
+    tt <- tryCatch(x$parse("UTF-8"), error = function(e) e)
+    if (inherits(tt, "character")) {
+      tt <- tryCatch(jsonlite::fromJSON(tt), error = function(e) e)
+      stop(sprintf("(status %s)", x$status_code), " ", tt$status %||% tt$error$message,
+        call. = FALSE)
+    }
+    x$raise_for_status()
+  }
+}
+
 core_GET <- function(path, key, args, ...){
   cli <- crul::HttpClient$new(
     url = core_base(),
@@ -9,11 +22,9 @@ core_GET <- function(path, key, args, ...){
   )
   temp <- cli$get(
     path = file.path("api-v2", path),
-    query = cp(args),
-    ...
+    query = cp(args), ...
   )
-  temp$raise_for_status()
-  stopifnot(temp$response_headers$`content-type` == 'application/json')
+  errs(temp)
   temp$parse("UTF-8")
 }
 
@@ -26,8 +37,7 @@ core_POST <- function(path, key, query, body, ...){
     path = file.path("api-v2", path),
     query = cp(query), body = body, encode = "json", ...
   )
-  temp$raise_for_status()
-  stopifnot(temp$response_headers$`content-type` == 'application/json')
+  errs(temp)
   temp$parse("UTF-8")
 }
 
@@ -49,7 +59,7 @@ core_GET_disk <- function(path, id, key, overwrite, ...){
   temp <- cli$get(path = file.path("api-v2", path), disk = fpath, ...)
   # unlink/delete file if http error code
   if (temp$status_code > 201) unlink(fpath)
-  temp$raise_for_status()
+    errs(temp)
   temp$content
 }
 
@@ -101,5 +111,16 @@ asl <- function(z) {
     }
   } else {
     return(z)
+  }
+}
+
+`%||%` <- function (x, y) if (is.null(x)) y else x
+
+assert <- function (x, y) {
+  if (!is.null(x)) {
+    if (!inherits(x, y)) {
+      stop(deparse(substitute(x)), " must be of class ",
+        paste0(y, collapse = ", "), call. = FALSE)
+    }
   }
 }

@@ -1,10 +1,7 @@
-context("core_advanced_search functions")
-
-test_that("high level works - parsing", {
+test_that("core_advanced_search", {
   skip_on_cran()
 
   # Testing for random combinations of advnaced query filters
-
   advanced_query_list <- list()
 
   advanced_query_list <- c(advanced_query_list, list(data.frame(
@@ -20,8 +17,10 @@ test_that("high level works - parsing", {
     "year_to" = c("2000", "2016"))))
 
   for (advanced_query in advanced_query_list) {
-    aa <- core_advanced_search(query = advanced_query)
-    bb <- core_advanced_search(query = advanced_query, parse = FALSE)
+    vcr::use_cassette("core_advanced_search", {
+      aa <- core_advanced_search(query = advanced_query)
+      bb <- core_advanced_search(query = advanced_query, parse = FALSE)
+    })
 
     expect_is(aa, "data.frame")
     expect_is(aa$status, "character")
@@ -45,7 +44,9 @@ test_that("high level works - parsing", {
     "author" = c("Geoffrey Hinton","Geoffrey Hinton"),
     "year_to" = c("2014", "2016")
   )
-  aa <- core_advanced_search(query = advanced_query)
+  vcr::use_cassette("core_advanced_search_no_results", {
+    aa <- core_advanced_search(query = advanced_query)
+  })
   expect_is(aa, "data.frame")
   expect_equal(unique(aa$status), "Not found")
   expect_equal(sum(aa$totalHits), 0)

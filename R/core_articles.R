@@ -61,6 +61,7 @@ core_articles <- function(id, metadata = TRUE, fulltext = FALSE,
   extractedUrls = FALSE, faithfulMetadata = FALSE, key = NULL,
   method = "GET", parse = TRUE, ...) {
 
+  assert(parse, "logical")
   core_parse(core_articles_(
     id, metadata, fulltext, citations, similar, duplicate,
     urls, extractedUrls, faithfulMetadata, key, method, ...), parse)
