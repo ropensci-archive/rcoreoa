@@ -37,6 +37,12 @@
 #' `core_advanced_search` does the HTTP request and parses, while
 #' `core_advanced_search_` just does the HTTP request, gives back JSON as a
 #' character string
+#' @return data.frame with the following columns:
+#' - `status`: string, which will be 'OK' or 'Not found' or
+#' 'Too many queries' or 'Missing parameter' or 'Invalid parameter' or
+#' 'Parameter out of bounds'
+#' - `totalHits`: integer, Total number of items matching the search criteria
+#' - `data`: list, a list of relevant resources
 #' @examples \dontrun{
 #' query <- data.frame(
 #' "all_of_the_words" = c("data mining", "machine learning"),
@@ -48,12 +54,6 @@
 #' head(res$data)
 #' res$data[[1]]$`_source`$id
 #' }
-#' @return data.frame with the following columns:
-#' `status`: string, which will be 'OK' or 'Not found' or
-#' 'Too many queries' or 'Missing parameter' or 'Invalid parameter' or
-#' 'Parameter out of bounds'
-#' `totalHits`: integer, Total number of items matching the search criteria
-#' `data`: list, a list of relevant resources
 core_advanced_search <- function(query, page = 1, limit = 10, key = NULL,
                                  parse = TRUE, ...) {
   core_parse(core_advanced_search_(query, page, limit, key, ...), parse)
@@ -64,7 +64,6 @@ core_advanced_search <- function(query, page = 1, limit = 10, key = NULL,
 core_advanced_search_ <- function(query, page = 1, limit = 10, key = NULL, ...)
 {
   must_be(limit)
-
   if(is.data.frame(query)){
     parsed_advanced_query <- apply(X = query, MARGIN = 1, FUN =
                                      parse_advanced_search_query)
