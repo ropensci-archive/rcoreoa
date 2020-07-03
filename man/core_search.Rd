@@ -18,8 +18,7 @@ core_search_(query, page = 1, limit = 10, key = NULL, ...)
 \item{page}{(character) page number (default: 1), optional}
 
 \item{limit}{(character) records to return (default: 10, minimum: 10,
-maximum: 100),
-optional}
+maximum: 100), optional}
 
 \item{key}{A CORE API key. Get one at
 \url{https://core.ac.uk/api-keys/register}. Once you have the key,
@@ -51,9 +50,8 @@ core_search_(query = 'ecology')
 library("jsonlite")
 jsonlite::fromJSON(core_search_(query = 'ecology'))
 
-query <- c('data mining', 'machine learning', 'semantic web')
-
 # post request
+query <- c('data mining', 'machine learning', 'semantic web')
 res <- core_search(query)
 head(res$data)
 res$data$id

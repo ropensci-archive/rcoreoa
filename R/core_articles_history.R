@@ -29,6 +29,7 @@
 core_articles_history <- function(id, page = 1, limit = 10, key = NULL,
                                   parse = TRUE, ...) {
 
+  assert(parse, "logical")
 	if (length(id) == 1) {
 		core_parse(core_articles_history_(id, page, limit, key, ...), parse)
 	} else {

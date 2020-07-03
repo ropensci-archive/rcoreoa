@@ -50,6 +50,9 @@ core_journals_ <- function(id, key = NULL, method = "GET", ...) {
                                call. = FALSE)
       core_GET(path = paste0("journals/get/", id), key, list(), ...)
     },
-    `POST` = core_POST(path = "journals/get", key, list(), id, ...)
+    `POST` = {
+      id = jsonlite::toJSON(id, auto_unbox = TRUE)
+      core_POST(path = "journals/get", key, list(), id, ...)
+    }
   )
 }

@@ -38,11 +38,13 @@ data.frame (\code{TRUE}). Default: \code{TRUE}}
 }
 \value{
 data.frame with the following columns:
-\code{status}: string, which will be 'OK' or 'Not found' or
+\itemize{
+\item \code{status}: string, which will be 'OK' or 'Not found' or
 'Too many queries' or 'Missing parameter' or 'Invalid parameter' or
 'Parameter out of bounds'
-\code{totalHits}: integer, Total number of items matching the search criteria
-\code{data}: list, a list of relevant resources
+\item \code{totalHits}: integer, Total number of items matching the search criteria
+\item \code{data}: list, a list of relevant resources
+}
 }
 \description{
 Advanced Search CORE
@@ -92,6 +94,6 @@ query <- data.frame(
 
 res <- core_advanced_search(query)
 head(res$data)
-res$data[[1]]$id
+res$data[[1]]$`_source`$id
 }
 }

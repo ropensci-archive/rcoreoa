@@ -5,7 +5,7 @@ Description: Client for the CORE API (<https://core.ac.uk/docs/>).
     CORE (<https://core.ac.uk>) aggregates open access research
     outputs from repositories and journals worldwide and make them
     available to the public.
-Version: 0.3.0.92
+Version: 0.3.2.91
 Authors@R: c(
      person("Scott", "Chamberlain", role = c("aut", "cre"),
        email = "myrmecocystus+r@gmail.com"),
@@ -25,9 +25,13 @@ Imports:
     pdftools,
     hoardr
 Suggests:
-    roxygen2 (>= 7.0.2),
+    roxygen2 (>= 7.1.0),
     testthat,
     knitr,
     rmarkdown,
-    rcrossref
-RoxygenNote: 7.0.2
+    rcrossref,
+    vcr
+RoxygenNote: 7.1.0
+X-schema.org-applicationCategory: Literature
+X-schema.org-keywords: text-ming, literature, pdf, publications, citations, full-text, metadata
+X-schema.org-isPartOf: https://ropensci.org

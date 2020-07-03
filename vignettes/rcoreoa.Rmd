@@ -41,7 +41,7 @@ install.packages("rcoreoa")
 Or you can install the development version:
 
 ```{r eval=FALSE}
-devtools::install_github("ropensci/rcoreoa")
+remotes::install_github("ropensci/rcoreoa")
 ```
 
 Once the package is installed, simply run: 
@@ -68,7 +68,7 @@ CORE_KEY=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
 
 The key may also be included in a file such as a `.bash_profile` file, or elsewhere.  Users may decide which works best for them.  Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
 
-```{r, echo=TRUE, results=FALSE}
+```{r, eval=FALSE}
 Sys.getenv("CORE_KEY")
 ```
 
@@ -81,14 +81,13 @@ The `rcoreoa` package accesses CORE's API to facilitate open text searching.  Th
 All of the functions return structured R objects, but can return JSON character strings by appending an unerscore (`_`) to the function name.  We will illustrate the difference:
 
 ```{r}
-api_key <- Sys.getenv('CORE_KEY')
-core_journals(id = '2167-8359', key = api_key)
+core_journals(id = '2167-8359')
 ```
 
 And with the underscore:
 
 ```{r}
-core_journals_(id = '2167-8359', key = api_key)
+core_journals_(id = '2167-8359')
 ```
 
 Through this Vignette we will illustrate some of the tools available as part of the package within a workflow that seeks to perform some basic bibliometric analysis.
@@ -104,7 +103,7 @@ Palynology is the study of organic-walled microfossils.  Of these microfossils, 
 So, lets see how many articles there are in the **CORE** holdings that contain the term `palynology`:
 
 ```{r}
-palyn <- core_search(query = 'palynology', key = api_key)
+palyn <- core_search(query = 'palynology')
 ```
 
 The result is a list with three components: `['Status', 'totalHits', 'data']`.  In our case, the result for `status` is `"OK"` (as opposed to `not found`), the `totalHits` are `13175` and then there are 10 articles returned.  The total number of articles is much higher than the number of articles returned because by default the `limit` flag for `core_search` is set to 10.
@@ -120,11 +119,10 @@ query <- data.frame(
   year_to   = as.character(seq(1951, 2017)),
   stringsAsFactors = FALSE)
 
-paly_bins <- core_advanced_search(query = query, key = api_key)
+paly_bins <- core_advanced_search(query = query)
 
 plot(seq(1951, 2017), paly_bins[[2]],
      xlab = "Published Year", ylab = "Articles", type = 'l')
-
 ```
 
 But this mapping of a single term likely reflects both an increase in the use of the term "palynology" (coined in 1947), but also in the number of records within the CORE repository.  As such we need to use some sort of control, so let's take a very common word, for example "and":
@@ -137,7 +135,7 @@ query <- data.frame(
   year_to   = as.character(seq(1951, 2017)),
   stringsAsFactors = FALSE)
 
-control_bins <- core_advanced_search(query = query, key = api_key)
+control_bins <- core_advanced_search(query = query)
 
 plot(seq(1951, 2017), control_bins[[2]] / max(control_bins[[2]]),
      xlab = "Published Year", ylab = "Articles", lty = 2, col = 'red', type = 'l')
@@ -157,7 +155,7 @@ ann_query <- function(string, control = NULL) {
     year_to   = as.character(seq(1951, 2017)),
     stringsAsFactors = FALSE)
 
-  hit_bins <- core_advanced_search(query = query, key = api_key)
+  hit_bins <- core_advanced_search(query = query)
   
   if (is.null(control)) control = hit_bins
   
@@ -169,8 +167,8 @@ ann_query <- function(string, control = NULL) {
 }
 
 string_sets <- do.call(rbind.data.frame, 
-                       lapply(c("and", "palynology", "paleoecology", "palaeoecology"), 
-                              ann_query, control = control_bins))
+  lapply(c("and", "palynology", "paleoecology", "palaeoecology"), 
+    ann_query, control = control_bins))
 
 string_sets <- string_sets[!string_sets$string %in% 'and',]
 

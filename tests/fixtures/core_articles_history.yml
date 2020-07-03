@@ -1,0 +1,189 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://core.ac.uk/api-v2/articles/get/21132995/history?page=1&pageSize=10
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      apiKey: <<core_key>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      access-control-allow-methods: POST, GET, OPTIONS
+      access-control-allow-origin: '*'
+      cache-control: no-cache
+      content-length: '7474'
+      content-type: application/json
+      date: Thu, 30 Apr 2020 18:40:45 GMT
+      server: Apache
+      status: HTTP/1.1 200 OK
+      x-clacks-overhead: GNU Terry Pratchett
+      x-frame-options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"status":"OK","data":[{"datetime":"2016-08-03 00:13:41","metadata":"\u003Crecord\u003E\u003Cheader\u003E\u003Cidentifier\u003E\n    \n      \n        oai:CiteSeerX.psu:10.1.1.152.9831\u003C\/identifier\u003E\u003Cdatestamp\u003E\n        2010-02-17\u003C\/datestamp\u003E\n      \u003C\/header\u003E\u003Cmetadata\u003E\u003Coai_dc:dc
+        xmlns:oai_dc=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/\u0022
+        xmlns:dc=\u0022http:\/\/purl.org\/dc\/elements\/1.1\/\u0022 xsi:schemaLocation=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/
+        http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc.xsd\u0022 \u003E\u003Cdc:title\u003E\n      \n        \n          \u003C\/dc:title\u003E\u003Cdc:subject\u003E\n          Ecology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Eco-theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Fisheries
+        Management\u003C\/dc:subject\u003E\u003Cdc:description\u003E\n          Abstract.
+        This paper discusses the potential contribution of an eco-theology to the
+        management of marine resources. The claim of the Christian gospel is that
+        God has a plan for everything in the universe and we are to live to bring
+        it about. The Hebrew\/Christian world view is significantly different from
+        naturalism and humanism, the prevailing Greek world views in natural resource
+        management. Three biblical paradigms are examined with insights into key elements
+        in the management of fisheries: dominion; regulation and valuation and caring.
+        In dominion we see the strength of mankind\u0026apos;s rule over other species,
+        including fish, misused. Fisheries management generally fails to reign in
+        this driving force, rewarding greed while calling for restraint. Regulation
+        and its impact on mindsets and behaviour, is a theme evident in the Old and
+        New Testaments- entering the promised land, keeping the law and caring for
+        others, both humans and fish. The biblical view also emphasises life, death
+        and resurrection as the process seen in nature. New fishery management paradigms
+        may only develop after old ways and attitudes have died. Significant attitudinal
+        change is essential to improve fisheries management and to achieve new management
+        arrangements. Improved fishery stewardship may require \u0026quot;a new fisher\u0026quot;,
+        relationally mature and societally accountable, to achieve the goals of sustainable
+        fishery management through a variety of policy paradigms. The Christian world
+        view promotes such attitudinal change to improve stewardship through reconciling
+        issues in our relationship with God, neighbours and nature. It is worthy of
+        further investigation.\u003C\/dc:description\u003E\u003Cdc:contributor\u003E\n          The
+        Pennsylvania State University CiteSeerX Archives\u003C\/dc:contributor\u003E\u003Cdc:publisher\u003E\n          \u003C\/dc:publisher\u003E\u003Cdc:date\u003E\n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:date\u003E\n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:format\u003E\n          application\/pdf\u003C\/dc:format\u003E\u003Cdc:type\u003E\n          text\u003C\/dc:type\u003E\u003Cdc:identifier\u003E\n          http:\/\/citeseerx.ist.psu.edu\/viewdoc\/summary?doi=10.1.1.152.9831\u003C\/dc:identifier\u003E\u003Cdc:source\u003E\n          http:\/\/www.orst.edu\/Dept\/IIFET\/2000\/papers\/mcilgorm.pdf\u003C\/dc:source\u003E\u003Cdc:language\u003E\n          en\u003C\/dc:language\u003E\u003Cdc:rights\u003E\n          Metadata
+        may be used without restrictions as long as the oai identifier remains attached
+        to it.\u003C\/dc:rights\u003E\n        \u003C\/oai_dc:dc\u003E\n      \u003C\/metadata\u003E\n    \u003C\/record\u003E"},{"datetime":"2014-10-22
+        16:42:14","metadata":"\u003Crecord\u003E\u003Cheader\u003E\u003Cidentifier\u003E\n        \n      \n    \n    \n      \n        oai:CiteSeerX.psu:10.1.1.152.9831\u003C\/identifier\u003E\u003Cdatestamp\u003E\n        2010-02-17\u003C\/datestamp\u003E\n      \u003C\/header\u003E\u003Cmetadata\u003E\u003Coai_dc:dc
+        xmlns:dc=\u0022http:\/\/purl.org\/dc\/elements\/1.1\/\u0022 xmlns:oai_dc=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/\u0022
+        xsi:schemaLocation=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/
+        http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc.xsd\u0022 \u003E\u003Cdc:title\u003E\n      \n      \n        \n          \u003C\/dc:title\u003E\u003Cdc:subject\u003E\n      \n      \n        \n          \n          Ecology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Eco-theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Fisheries
+        Management\u003C\/dc:subject\u003E\u003Cdc:description\u003E\n          Abstract.
+        This paper discusses the potential contribution of an eco-theology to the
+        management of marine resources. The claim of the Christian gospel is that
+        God has a plan for everything in the universe and we are to live to bring
+        it about. The Hebrew\/Christian world view is significantly different from
+        naturalism and humanism, the prevailing Greek world views in natural resource
+        management. Three biblical paradigms are examined with insights into key elements
+        in the management of fisheries: dominion; regulation and valuation and caring.
+        In dominion we see the strength of mankind\u0026apos;s rule over other species,
+        including fish, misused. Fisheries management generally fails to reign in
+        this driving force, rewarding greed while calling for restraint. Regulation
+        and its impact on mindsets and behaviour, is a theme evident in the Old and
+        New Testaments- entering the promised land, keeping the law and caring for
+        others, both humans and fish. The biblical view also emphasises life, death
+        and resurrection as the process seen in nature. New fishery management paradigms
+        may only develop after old ways and attitudes have died. Significant attitudinal
+        change is essential to improve fisheries management and to achieve new management
+        arrangements. Improved fishery stewardship may require \u0026quot;a new fisher\u0026quot;,
+        relationally mature and societally accountable, to achieve the goals of sustainable
+        fishery management through a variety of policy paradigms. The Christian world
+        view promotes such attitudinal change to improve stewardship through reconciling
+        issues in our relationship with God, neighbours and nature. It is worthy of
+        further investigation.\u003C\/dc:description\u003E\u003Cdc:contributor\u003E\n          The
+        Pennsylvania State University CiteSeerX Archives\u003C\/dc:contributor\u003E\u003Cdc:publisher\u003E\n          \u003C\/dc:publisher\u003E\u003Cdc:date\u003E\n          \n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:date\u003E\n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:format\u003E\n          application\/pdf\u003C\/dc:format\u003E\u003Cdc:type\u003E\n          text\u003C\/dc:type\u003E\u003Cdc:identifier\u003E\n          http:\/\/citeseerx.ist.psu.edu\/viewdoc\/summary?doi=10.1.1.152.9831\u003C\/dc:identifier\u003E\u003Cdc:source\u003E\n          http:\/\/www.orst.edu\/Dept\/IIFET\/2000\/papers\/mcilgorm.pdf\u003C\/dc:source\u003E\u003Cdc:language\u003E\n          en\u003C\/dc:language\u003E\u003Cdc:rights\u003E\n          Metadata
+        may be used without restrictions as long as the oai identifier remains attached
+        to it.\u003C\/dc:rights\u003E\n        \u003C\/oai_dc:dc\u003E\n        \n      \u003C\/metadata\u003E\n        \n      \n    \u003C\/record\u003E"}]}'
+  recorded_at: 2020-04-30 18:40:45 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: https://core.ac.uk/api-v2/articles/get/21132995/history?page=1&pageSize=10
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      apiKey: <<core_key>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      access-control-allow-methods: POST, GET, OPTIONS
+      access-control-allow-origin: '*'
+      cache-control: no-cache
+      content-length: '7474'
+      content-type: application/json
+      date: Thu, 30 Apr 2020 18:40:45 GMT
+      server: Apache
+      status: HTTP/1.1 200 OK
+      x-clacks-overhead: GNU Terry Pratchett
+      x-frame-options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"status":"OK","data":[{"datetime":"2016-08-03 00:13:41","metadata":"\u003Crecord\u003E\u003Cheader\u003E\u003Cidentifier\u003E\n    \n      \n        oai:CiteSeerX.psu:10.1.1.152.9831\u003C\/identifier\u003E\u003Cdatestamp\u003E\n        2010-02-17\u003C\/datestamp\u003E\n      \u003C\/header\u003E\u003Cmetadata\u003E\u003Coai_dc:dc
+        xmlns:oai_dc=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/\u0022
+        xmlns:dc=\u0022http:\/\/purl.org\/dc\/elements\/1.1\/\u0022 xsi:schemaLocation=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/
+        http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc.xsd\u0022 \u003E\u003Cdc:title\u003E\n      \n        \n          \u003C\/dc:title\u003E\u003Cdc:subject\u003E\n          Ecology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Eco-theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Fisheries
+        Management\u003C\/dc:subject\u003E\u003Cdc:description\u003E\n          Abstract.
+        This paper discusses the potential contribution of an eco-theology to the
+        management of marine resources. The claim of the Christian gospel is that
+        God has a plan for everything in the universe and we are to live to bring
+        it about. The Hebrew\/Christian world view is significantly different from
+        naturalism and humanism, the prevailing Greek world views in natural resource
+        management. Three biblical paradigms are examined with insights into key elements
+        in the management of fisheries: dominion; regulation and valuation and caring.
+        In dominion we see the strength of mankind\u0026apos;s rule over other species,
+        including fish, misused. Fisheries management generally fails to reign in
+        this driving force, rewarding greed while calling for restraint. Regulation
+        and its impact on mindsets and behaviour, is a theme evident in the Old and
+        New Testaments- entering the promised land, keeping the law and caring for
+        others, both humans and fish. The biblical view also emphasises life, death
+        and resurrection as the process seen in nature. New fishery management paradigms
+        may only develop after old ways and attitudes have died. Significant attitudinal
+        change is essential to improve fisheries management and to achieve new management
+        arrangements. Improved fishery stewardship may require \u0026quot;a new fisher\u0026quot;,
+        relationally mature and societally accountable, to achieve the goals of sustainable
+        fishery management through a variety of policy paradigms. The Christian world
+        view promotes such attitudinal change to improve stewardship through reconciling
+        issues in our relationship with God, neighbours and nature. It is worthy of
+        further investigation.\u003C\/dc:description\u003E\u003Cdc:contributor\u003E\n          The
+        Pennsylvania State University CiteSeerX Archives\u003C\/dc:contributor\u003E\u003Cdc:publisher\u003E\n          \u003C\/dc:publisher\u003E\u003Cdc:date\u003E\n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:date\u003E\n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:format\u003E\n          application\/pdf\u003C\/dc:format\u003E\u003Cdc:type\u003E\n          text\u003C\/dc:type\u003E\u003Cdc:identifier\u003E\n          http:\/\/citeseerx.ist.psu.edu\/viewdoc\/summary?doi=10.1.1.152.9831\u003C\/dc:identifier\u003E\u003Cdc:source\u003E\n          http:\/\/www.orst.edu\/Dept\/IIFET\/2000\/papers\/mcilgorm.pdf\u003C\/dc:source\u003E\u003Cdc:language\u003E\n          en\u003C\/dc:language\u003E\u003Cdc:rights\u003E\n          Metadata
+        may be used without restrictions as long as the oai identifier remains attached
+        to it.\u003C\/dc:rights\u003E\n        \u003C\/oai_dc:dc\u003E\n      \u003C\/metadata\u003E\n    \u003C\/record\u003E"},{"datetime":"2014-10-22
+        16:42:14","metadata":"\u003Crecord\u003E\u003Cheader\u003E\u003Cidentifier\u003E\n        \n      \n    \n    \n      \n        oai:CiteSeerX.psu:10.1.1.152.9831\u003C\/identifier\u003E\u003Cdatestamp\u003E\n        2010-02-17\u003C\/datestamp\u003E\n      \u003C\/header\u003E\u003Cmetadata\u003E\u003Coai_dc:dc
+        xmlns:dc=\u0022http:\/\/purl.org\/dc\/elements\/1.1\/\u0022 xmlns:oai_dc=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/\u0022
+        xsi:schemaLocation=\u0022http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc\/
+        http:\/\/www.openarchives.org\/OAI\/2.0\/oai_dc.xsd\u0022 \u003E\u003Cdc:title\u003E\n      \n      \n        \n          \u003C\/dc:title\u003E\u003Cdc:subject\u003E\n      \n      \n        \n          \n          Ecology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Eco-theology\u003C\/dc:subject\u003E\u003Cdc:subject\u003E\n          Fisheries
+        Management\u003C\/dc:subject\u003E\u003Cdc:description\u003E\n          Abstract.
+        This paper discusses the potential contribution of an eco-theology to the
+        management of marine resources. The claim of the Christian gospel is that
+        God has a plan for everything in the universe and we are to live to bring
+        it about. The Hebrew\/Christian world view is significantly different from
+        naturalism and humanism, the prevailing Greek world views in natural resource
+        management. Three biblical paradigms are examined with insights into key elements
+        in the management of fisheries: dominion; regulation and valuation and caring.
+        In dominion we see the strength of mankind\u0026apos;s rule over other species,
+        including fish, misused. Fisheries management generally fails to reign in
+        this driving force, rewarding greed while calling for restraint. Regulation
+        and its impact on mindsets and behaviour, is a theme evident in the Old and
+        New Testaments- entering the promised land, keeping the law and caring for
+        others, both humans and fish. The biblical view also emphasises life, death
+        and resurrection as the process seen in nature. New fishery management paradigms
+        may only develop after old ways and attitudes have died. Significant attitudinal
+        change is essential to improve fisheries management and to achieve new management
+        arrangements. Improved fishery stewardship may require \u0026quot;a new fisher\u0026quot;,
+        relationally mature and societally accountable, to achieve the goals of sustainable
+        fishery management through a variety of policy paradigms. The Christian world
+        view promotes such attitudinal change to improve stewardship through reconciling
+        issues in our relationship with God, neighbours and nature. It is worthy of
+        further investigation.\u003C\/dc:description\u003E\u003Cdc:contributor\u003E\n          The
+        Pennsylvania State University CiteSeerX Archives\u003C\/dc:contributor\u003E\u003Cdc:publisher\u003E\n          \u003C\/dc:publisher\u003E\u003Cdc:date\u003E\n          \n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:date\u003E\n          2010-02-17\u003C\/dc:date\u003E\u003Cdc:format\u003E\n          application\/pdf\u003C\/dc:format\u003E\u003Cdc:type\u003E\n          text\u003C\/dc:type\u003E\u003Cdc:identifier\u003E\n          http:\/\/citeseerx.ist.psu.edu\/viewdoc\/summary?doi=10.1.1.152.9831\u003C\/dc:identifier\u003E\u003Cdc:source\u003E\n          http:\/\/www.orst.edu\/Dept\/IIFET\/2000\/papers\/mcilgorm.pdf\u003C\/dc:source\u003E\u003Cdc:language\u003E\n          en\u003C\/dc:language\u003E\u003Cdc:rights\u003E\n          Metadata
+        may be used without restrictions as long as the oai identifier remains attached
+        to it.\u003C\/dc:rights\u003E\n        \u003C\/oai_dc:dc\u003E\n        \n      \u003C\/metadata\u003E\n        \n      \n    \u003C\/record\u003E"}]}'
+  recorded_at: 2020-04-30 18:40:45 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

@@ -1,0 +1,119 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://core.ac.uk/api-v2/articles/get/21132995?metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&extractedUrls=false&faithfulMetadata=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      apiKey: <<core_key>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      access-control-allow-methods: POST, GET, OPTIONS
+      access-control-allow-origin: '*'
+      cache-control: no-cache
+      content-length: '2569'
+      content-type: application/json
+      date: Thu, 30 Apr 2020 18:33:34 GMT
+      server: Apache
+      status: HTTP/1.1 200 OK
+      x-clacks-overhead: GNU Terry Pratchett
+      x-frame-options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"status":"OK","data":{"id":"21132995","authors":[],"contributors":["The
+        Pennsylvania State University CiteSeerX Archives"],"datePublished":"2010-02-17","description":"Abstract.
+        This paper discusses the potential contribution of an eco-theology to the
+        management of marine resources. The claim of the Christian gospel is that
+        God has a plan for everything in the universe and we are to live to bring
+        it about. The Hebrew\/Christian world view is significantly different from
+        naturalism and humanism, the prevailing Greek world views in natural resource
+        management. Three biblical paradigms are examined with insights into key elements
+        in the management of fisheries: dominion; regulation and valuation and caring.
+        In dominion we see the strength of mankind\u0026apos;s rule over other species,
+        including fish, misused. Fisheries management generally fails to reign in
+        this driving force, rewarding greed while calling for restraint. Regulation
+        and its impact on mindsets and behaviour, is a theme evident in the Old and
+        New Testaments- entering the promised land, keeping the law and caring for
+        others, both humans and fish. The biblical view also emphasises life, death
+        and resurrection as the process seen in nature. New fishery management paradigms
+        may only develop after old ways and attitudes have died. Significant attitudinal
+        change is essential to improve fisheries management and to achieve new management
+        arrangements. Improved fishery stewardship may require \u0026quot;a new fisher\u0026quot;,
+        relationally mature and societally accountable, to achieve the goals of sustainable
+        fishery management through a variety of policy paradigms. The Christian world
+        view promotes such attitudinal change to improve stewardship through reconciling
+        issues in our relationship with God, neighbours and nature. It is worthy of
+        further investigation","identifiers":["oai:CiteSeerX.psu:10.1.1.152.9831",null],"relations":[],"repositories":[{"id":"145","openDoarId":0,"name":"CiteSeerX","uri":null,"urlHomepage":null,"urlOaipmh":null,"uriJournals":null,"physicalName":"noname","source":null,"software":null,"metadataFormat":null,"description":null,"journal":null,"roarId":0,"pdfStatus":null,"nrUpdates":0,"disabled":false,"lastUpdateTime":null,"repositoryLocation":null}],"repositoryDocument":{"pdfStatus":0,"metadataAdded":1413992534000,"metadataUpdated":1529412166000,"depositedDate":1266364800000},"subjects":["text"],"topics":["Ecology","Theology","Eco-theology","Fisheries
+        Management"],"types":[],"year":2010,"oai":"oai:CiteSeerX.psu:10.1.1.152.9831","downloadUrl":""}}'
+  recorded_at: 2020-04-30 18:33:35 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: https://core.ac.uk/api-v2/articles/get/21132995?metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&extractedUrls=false&faithfulMetadata=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      apiKey: <<core_key>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      access-control-allow-methods: POST, GET, OPTIONS
+      access-control-allow-origin: '*'
+      cache-control: no-cache
+      content-length: '2569'
+      content-type: application/json
+      date: Thu, 30 Apr 2020 18:33:35 GMT
+      server: Apache
+      status: HTTP/1.1 200 OK
+      x-clacks-overhead: GNU Terry Pratchett
+      x-frame-options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"status":"OK","data":{"id":"21132995","authors":[],"contributors":["The
+        Pennsylvania State University CiteSeerX Archives"],"datePublished":"2010-02-17","description":"Abstract.
+        This paper discusses the potential contribution of an eco-theology to the
+        management of marine resources. The claim of the Christian gospel is that
+        God has a plan for everything in the universe and we are to live to bring
+        it about. The Hebrew\/Christian world view is significantly different from
+        naturalism and humanism, the prevailing Greek world views in natural resource
+        management. Three biblical paradigms are examined with insights into key elements
+        in the management of fisheries: dominion; regulation and valuation and caring.
+        In dominion we see the strength of mankind\u0026apos;s rule over other species,
+        including fish, misused. Fisheries management generally fails to reign in
+        this driving force, rewarding greed while calling for restraint. Regulation
+        and its impact on mindsets and behaviour, is a theme evident in the Old and
+        New Testaments- entering the promised land, keeping the law and caring for
+        others, both humans and fish. The biblical view also emphasises life, death
+        and resurrection as the process seen in nature. New fishery management paradigms
+        may only develop after old ways and attitudes have died. Significant attitudinal
+        change is essential to improve fisheries management and to achieve new management
+        arrangements. Improved fishery stewardship may require \u0026quot;a new fisher\u0026quot;,
+        relationally mature and societally accountable, to achieve the goals of sustainable
+        fishery management through a variety of policy paradigms. The Christian world
+        view promotes such attitudinal change to improve stewardship through reconciling
+        issues in our relationship with God, neighbours and nature. It is worthy of
+        further investigation","identifiers":["oai:CiteSeerX.psu:10.1.1.152.9831",null],"relations":[],"repositories":[{"id":"145","openDoarId":0,"name":"CiteSeerX","uri":null,"urlHomepage":null,"urlOaipmh":null,"uriJournals":null,"physicalName":"noname","source":null,"software":null,"metadataFormat":null,"description":null,"journal":null,"roarId":0,"pdfStatus":null,"nrUpdates":0,"disabled":false,"lastUpdateTime":null,"repositoryLocation":null}],"repositoryDocument":{"pdfStatus":0,"metadataAdded":1413992534000,"metadataUpdated":1529412166000,"depositedDate":1266364800000},"subjects":["text"],"topics":["Ecology","Theology","Eco-theology","Fisheries
+        Management"],"types":[],"year":2010,"oai":"oai:CiteSeerX.psu:10.1.1.152.9831","downloadUrl":""}}'
+  recorded_at: 2020-04-30 18:33:35 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

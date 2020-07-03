@@ -5,8 +5,7 @@
 #' @param query (character) query string, required
 #' @param page (character) page number (default: 1), optional
 #' @param limit (character) records to return (default: 10, minimum: 10,
-#' maximum: 100),
-#' optional
+#' maximum: 100), optional
 #' @details `core_search` does the HTTP request and parses, while
 #' `core_search_` just does the HTTP request, gives back JSON as a character
 #' string
@@ -20,9 +19,8 @@
 #' library("jsonlite")
 #' jsonlite::fromJSON(core_search_(query = 'ecology'))
 #'
-#' query <- c('data mining', 'machine learning', 'semantic web')
-#'
 #' # post request
+#' query <- c('data mining', 'machine learning', 'semantic web')
 #' res <- core_search(query)
 #' head(res$data)
 #' res$data$id

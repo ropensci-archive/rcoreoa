@@ -1,0 +1,39 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://core.ac.uk/api-v2/search
+    body:
+      encoding: ''
+      string: '[{"query":"\"deep learning\"(medicine OR cancer) AND year:[1900 TO
+        2014] AND author:(Geoffrey AND Hinton)","page":1,"pageSize":10},{"query":"\"neuroscience\"(image)
+        AND year:[1900 TO 2016] AND author:(Geoffrey AND Hinton)","page":1,"pageSize":10}]'
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Content-Type: application/json
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      apiKey: <<core_key>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      access-control-allow-methods: POST, GET, OPTIONS
+      access-control-allow-origin: '*'
+      cache-control: no-cache
+      content-length: '99'
+      content-type: application/json
+      date: Thu, 30 Apr 2020 18:11:06 GMT
+      server: Apache
+      status: HTTP/1.1 200 OK
+      x-clacks-overhead: GNU Terry Pratchett
+      x-frame-options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      file: no
+      string: '[{"status":"Not found","totalHits":0,"data":null},{"status":"Not found","totalHits":0,"data":null}]'
+  recorded_at: 2020-04-30 18:11:07 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
