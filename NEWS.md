@@ -1,3 +1,16 @@
+rcoreoa 0.4.0
+=============
+
+### NEW FEATURES
+
+* `core_articles_dedup()` function added for article deduplication (#23)
+* `core_advanced_search()` overhauled because the CORE advanced search fields and syntax have completely changed. The interface changed from passing in a data.frame because we needed more flexibility to let users define how to combine multiple queries  (#20)
+
+### MINOR IMPROVEMENTS
+
+* using vcr for test suite http request caching (#21)
+* add max value of `limit` (number of records per request) parameter to documentation (#18)
+
 rcoreoa 0.3.0
 =============
 
