@@ -23,9 +23,10 @@
 #' query <- c('data mining', 'machine learning', 'semantic web')
 #' res <- core_search(query)
 #' res
-#' res[[1]]
-#' res[[1]]$data
-#' vapply(res, "[[", 1, "totalHits")
+#' res$status
+#' res$totalHits
+#' res$data
+#' head(res$data[[1]])
 #' }
 core_search <- function(query, page = 1, limit = 10, key = NULL,
                         parse = TRUE, ...) {

@@ -101,9 +101,6 @@ res <- core_advanced_search(
   core_query(language.name="german")
 )
 res
-res[[1]]
-res[[2]]
-rbl(lapply(res, function(w) w$data$`_source`))
 }
 }
 \references{

@@ -68,9 +68,6 @@
 #'   core_query(language.name="german")
 #' )
 #' res
-#' res[[1]]
-#' res[[2]]
-#' rbl(lapply(res, function(w) w$data$`_source`))
 #' }
 core_advanced_search <- function(..., page = 1, limit = 10,
   key = NULL, parse = TRUE, .list = list()) {
