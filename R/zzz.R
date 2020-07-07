@@ -2,8 +2,8 @@ core_base <- function() "https://core.ac.uk"
 
 cp <- function(x) Filter(Negate(is.null), x)
 
-errs <- function(x) {
-  x$raise_for_ct_json()
+errs <- function(x, content_type="application/json") {
+  x$raise_for_ct(content_type)
   if (x$status_code >= 400) {
     tt <- tryCatch(x$parse("UTF-8"), error = function(e) e)
     if (inherits(tt, "character")) {
@@ -60,7 +60,7 @@ core_GET_disk <- function(path, id, key, overwrite, ...){
   temp <- cli$get(path = file.path("api-v2", path), disk = fpath, ...)
   # unlink/delete file if http error code
   if (temp$status_code > 201) unlink(fpath)
-    errs(temp)
+    errs(temp, "application/pdf")
   temp$content
 }
 
