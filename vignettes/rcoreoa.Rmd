@@ -41,13 +41,13 @@ library("rcoreoa")
 
 ## Obtaining an API key
 
-The Core API requires an API key, and, as such, requires you to register for the key on the [Core Website](https://core.ac.uk/api-keys/register).  Once you register with your email address you will be sent an API key that looks a little like this:
+The Core API requires an API key, and, as such, requires you to register for the key on the Core Website (https://core.ac.uk/api-keys/register).  Once you register with your email address you will be sent an API key that looks a little like this:
 
 `thisISyourAPIkeyITlooksLIKEaLONGstringOFletters`
 
 ## Using the API Key
 
-Best practice is to set the API key as an environment variable for your system, and then call it in R using `Sys.getenv()`.  If you set the parameter in `.Renviron` it is permanently available to your R sessions.  There is a decent writeup of how to use the `.Renviron` file in [Colin Gillespie & Robin Lovelace's Efficient R Programming](https://csgillespie.github.io/efficientR/3-3-r-startup.html#renviron).  Be aware that if you are using version control you do not want to commit the `.Renviron` file in your local directory.  Either edit your global `.Renviron` file, or make sure that `.Renviron` is added to your `.gitignore` file.
+Best practice is to set the API key as an environment variable for your system, and then call it in R using `Sys.getenv()`.  If you set the parameter in `.Renviron` it is permanently available to your R sessions.  See `?Startup`.  Be aware that if you are using version control you do not want to commit the `.Renviron` file in your local directory.  Either edit your global `.Renviron` file, or make sure that `.Renviron` is added to your `.gitignore` file.
 
 Within the `.Renviron` file you will add:
 

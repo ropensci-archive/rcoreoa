@@ -87,7 +87,7 @@ Get started with an introduction to the package: https://docs.ropensci.org/rcore
 ## Contributors
 
 * [Scott Chamberlain](https://github.com/sckott)
-* [Aristotelis Charalampous](https://github.com/aresxs91)
+* [Aristotelis Charalampous](https://github.com/aristotelisxs)
 * [Simon Goring](https://github.com/SimonGoring)
 
 ## Meta
