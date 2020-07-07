@@ -4,11 +4,9 @@ http_interactions:
     uri: https://core.ac.uk/api-v2/search
     body:
       encoding: ''
-      string: '[{"query":"\"deep learning\"(medicine OR cancer) AND year:[1900 TO
-        2014] AND author:(Geoffrey AND Hinton)","page":1,"pageSize":10},{"query":"\"neuroscience\"(image)
-        AND year:[1900 TO 2016] AND author:(Geoffrey AND Hinton)","page":1,"pageSize":10}]'
+      string: '[{"query":"language.name:german","page":1,"pageSize":10}]'
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.2.93
       Content-Type: application/json
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
@@ -19,14 +17,16 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
+      access-control-allow-headers: Content-Type, Access-Control-Allow-Headers, Authorization,
+        X-Fram-Options
       access-control-allow-methods: POST, GET, OPTIONS
       access-control-allow-origin: '*'
       cache-control: no-cache
-      content-length: '99'
       content-type: application/json
-      date: Thu, 30 Apr 2020 18:11:06 GMT
+      date: Tue, 07 Jul 2020 00:14:52 GMT
       server: Apache
       status: HTTP/1.1 200 OK
+      transfer-encoding: chunked
       x-clacks-overhead: GNU Terry Pratchett
       x-frame-options:
       - SAMEORIGIN
@@ -34,6 +34,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: no
-      string: '[{"status":"Not found","totalHits":0,"data":null},{"status":"Not found","totalHits":0,"data":null}]'
-  recorded_at: 2020-04-30 18:11:07 GMT
+      string: '[{"status":"Not found","totalHits":0,"data":null}]'
+  recorded_at: 2020-07-07 00:14:53 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2

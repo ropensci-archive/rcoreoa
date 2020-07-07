@@ -23,8 +23,7 @@
 #' - [core_repos_search()] / [core_repos_search_()] - search for
 #'  repositories
 #' - [core_search()] / [core_search_()] - search articles
-#' - [core_advanced_search()] / [core_advanced_search_()] -
-#'  advanced search of articles
+#' - [core_advanced_search()] -  advanced search of articles
 #' 
 #' @section Authentication:
 #' You'll need a CORE API token/key to use this package. Get one at 

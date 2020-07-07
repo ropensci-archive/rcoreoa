@@ -30,8 +30,7 @@ article PDF, and optionally extract text
 \item \code{\link[=core_repos_search]{core_repos_search()}} / \code{\link[=core_repos_search_]{core_repos_search_()}} - search for
 repositories
 \item \code{\link[=core_search]{core_search()}} / \code{\link[=core_search_]{core_search_()}} - search articles
-\item \code{\link[=core_advanced_search]{core_advanced_search()}} / \code{\link[=core_advanced_search_]{core_advanced_search_()}} -
-advanced search of articles
+\item \code{\link[=core_advanced_search]{core_advanced_search()}} -  advanced search of articles
 }
 }
 

@@ -2,22 +2,24 @@
 % Please edit documentation in R/core_advanced_search.R
 \name{core_advanced_search}
 \alias{core_advanced_search}
-\alias{core_advanced_search_}
+\alias{core_query}
 \title{Advanced Search CORE}
 \usage{
 core_advanced_search(
-  query,
+  ...,
   page = 1,
   limit = 10,
   key = NULL,
   parse = TRUE,
-  ...
+  .list = list()
 )
 
-core_advanced_search_(query, page = 1, limit = 10, key = NULL, ...)
+core_query(..., op = "AND")
 }
 \arguments{
-\item{query}{data.frame, required (details for structure)}
+\item{...}{for \code{core_query()}, query fields, see Details. for
+\code{core_advanced_search()} any number of queries, results of calling
+\code{core_query()}. Required. See Details.}
 
 \item{page}{(character) page number (default: 1), optional}
 
@@ -34,7 +36,12 @@ for how to work with env vars and R options}
 \item{parse}{(logical) Whether to parse to list (\code{FALSE}) or
 data.frame (\code{TRUE}). Default: \code{TRUE}}
 
-\item{...}{Curl options passed to \code{\link[crul]{HttpClient}}}
+\item{.list}{alternative to passing \code{core_query()} calls to \code{...};
+just create a list of them and pass to this parameter; easier for
+programming with}
+
+\item{op}{(character) operator to combine multiple fields. options:
+\code{AND}, \code{OR}}
 }
 \value{
 data.frame with the following columns:
@@ -43,57 +50,62 @@ data.frame with the following columns:
 'Too many queries' or 'Missing parameter' or 'Invalid parameter' or
 'Parameter out of bounds'
 \item \code{totalHits}: integer, Total number of items matching the search criteria
-\item \code{data}: list, a list of relevant resources
+\item \code{data}: list, a list of relevant resource
 }
 }
 \description{
 Advanced Search CORE
 }
 \details{
-\code{query} should include columns with the following information
+\code{query} should be one or more calls to \code{core_query()},
 (at least one is required):
-\enumerate{
-\item \code{all_of_the_words}: string, with space separated terms that should all
-exist in target document(s)
-\item \code{exact_phrase}: string, used as an absolute match in comparison with
-\code{all_of_the_words}
-\item \code{at_least_one_of_the_words}: string, with space separated terms of which
-at least one should exist in target document(s)
-\item \code{without_the_words}: string, with space separated terms of which none
-should exist in target document(s)
-\item \code{find_those_words}: 3 available options, a. "anywhere in the article"
-(default),
-b. "in the title", c. "in the title and abstract" to either do a fulltext
-search, a title only or a title and abstract respectively
-\item \code{author}: string, to be used as an absolute match against the author name
-metadata field
-\item \code{publisher}: string, to be used as an absolute match against the publisher
-name metadata field
-\item \code{repository}: string, to be used as an absolute match against the
-repository name metadata field
+\itemize{
+\item \code{title}
+\item \code{description}
+\item \code{fullText}
+\item \code{authors}
+\item \code{publisher}: string, to be used as an absolute match against the
+publisher name metadata field
+\item \code{repositories.id}: repository id
+\item \code{repositories.name}: repository name
 \item \code{doi}: string, to be used as an absolute match against the repository
 name metadata field (all other fields will be ignored if included)
-\item \code{year_from}: string, to filter target document(s) publisher earlier than
-indicated
-\item \code{year_to}: string, to filter target document(s) publisher later than
-indicated
-\item \code{language}: string, to filter against languages specified in
+\item \code{oai}
+\item \code{identifiers}
+\item \code{language.name}: string, to filter against languages specified in
 https://en.wikipedia.org/wiki/ISO_639-1
+\item \code{year}: year to filter to
+}
+
 \code{core_advanced_search} does the HTTP request and parses, while
 \code{core_advanced_search_} just does the HTTP request, gives back JSON as a
 character string
 }
-}
 \examples{
 \dontrun{
-query <- data.frame(
-"all_of_the_words" = c("data mining", "machine learning"),
-"without_the_words" = c("social science", "medicine"),
-"year_from" = c("2013","2000"),
-"year_to" = c("2014", "2016"))
+## compose queries
+core_query(title="psychology", year=2014)
+core_query(title="psychology", year=2014, op="OR")
+core_query(identifiers='"oai:aura.abdn.ac.uk:2164/3837"',
+  identifiers='"oai:aura.abdn.ac.uk:2164/3843"', op="OR")
 
-res <- core_advanced_search(query)
-head(res$data)
-res$data[[1]]$`_source`$id
+## do actual searches
+core_advanced_search(
+  core_query(identifiers='"oai:aura.abdn.ac.uk:2164/3837"',
+    identifiers='"oai:aura.abdn.ac.uk:2164/3843"', op="OR")
+)
+
+res <- core_advanced_search(
+  core_query(title="psychology"),
+  core_query(doi='"10.1186/1471-2458-6-309"'),
+  core_query(language.name="german")
+)
+res
+res[[1]]
+res[[2]]
+rbl(lapply(res, function(w) w$data$`_source`))
 }
+}
+\references{
+https://core.ac.uk/docs/#!/all/searchBatch
 }

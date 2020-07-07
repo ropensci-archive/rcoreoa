@@ -53,10 +53,12 @@ jsonlite::fromJSON(core_search_(query = 'ecology'))
 # post request
 query <- c('data mining', 'machine learning', 'semantic web')
 res <- core_search(query)
-head(res$data)
-res$data$id
+res
+res[[1]]
+res[[1]]$data
+vapply(res, "[[", 1, "totalHits")
 }
 }
 \references{
-\url{https://core.ac.uk/docs/#!/all/search}
+https://core.ac.uk/docs/#!/all/search
 }

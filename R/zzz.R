@@ -32,6 +32,7 @@ core_POST <- function(path, key, query, body, ...){
   cli <- crul::HttpClient$new(
     url = core_base(),
     headers = list(apiKey = check_key(key))
+    # verbose = crul::curl_verbose()
   )
   temp <- cli$post(
     path = file.path("api-v2", path),
