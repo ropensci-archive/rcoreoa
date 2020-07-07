@@ -46,6 +46,8 @@ CORE API R client
 
 CORE API docs: https://core.ac.uk/docs/
 
+rcoreoa docs: https://docs.ropensci.org/rcoreoa/
+
 Get an API key at https://core.ac.uk/api-keys/register. You'll need one, 
 so do this now if you haven't yet. Once you have the key, you can pass it 
 into the `key` parameter, or as a much better option store your key as an 
@@ -78,77 +80,9 @@ remotes::install_github("ropensci/rcoreoa")
 library("rcoreoa")
 ```
 
-## Pagination
+## Get started
 
-Note that you are limited to a maximum of 100 results for the search functions;
-use combination of `page` and `limit` parameters to paginate through results. 
-For example:
-
-```{r}
-x1 <- core_search(query = 'ecology', limit = 100, page = 1)
-x2 <- core_search(query = 'ecology', limit = 100, page = 2)
-head(x1$data[,1:3])
-head(x2$data[,1:3])
-```
-
-## high- vs. low-level interfaces
-
-Each function has a higher level interface that does HTTP request for data and parses
-the JSON using `jsonlite`. This is meant for those who want everything done for them,
-but there's a time penalty for as the parsing adds extra time. If you just want raw JSON
-unparsed text, you can use the low level interface.
-
-The low level version of each function has `_` at the end (e.g., `core_search_`), while the
-high level version doesn't have the `_` (e.g., `core_search`).
-
-The high level version of each function uses the low level method, and the low level method
-does all the logic and HTTP requesting, whereas the high level simply parses the output.
-
-## Search
-
-```{r}
-res <- core_search(query = 'ecology', limit = 12)
-tibble::as_tibble(res$data)
-```
-
-## Advanced Search
-
-```{r}
-query <- data.frame("all_of_the_words" = "data mining",
-                    "without_the_words" = "social science",
-                    "year_from" = "2013",
-                    "year_to" = "2014")
-
-res <- core_advanced_search(query)
-tibble::as_tibble(res$data)
-```
-
-# Articles
-
-```{r output.lines = 1:10}
-core_articles(id = 21132995)
-```
-
-# Article history
-
-```{r output.lines = 1:7}
-core_articles_history(id = '21132995')
-```
-
-# Journals
-
-```{r eval = FALSE}
-core_journals(id = '2220-721X')
-```
-
-# Get PDFs
-
-The `_` for these methods means that you get a file path back to the PDF, while the
-high level version without the `_` parses the pdf to text for you.
-
-```{r eval=FALSE}
-core_articles_pdf_(11549557)
-```
+Get started with an introduction to the package: https://docs.ropensci.org/rcoreoa/articles/rcoreoa
 
 ## Contributors
 
