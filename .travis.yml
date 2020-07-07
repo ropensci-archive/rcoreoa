@@ -16,7 +16,7 @@ addons:
     packages:
       - libpoppler-cpp-dev
 
-r_binary_packages:
+r_packages:
   - covr
 
 r_check_args: "--as-cran --run-dontrun --no-build-vignettes"
