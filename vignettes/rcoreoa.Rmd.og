@@ -1,0 +1,154 @@
+---
+title: "Introduction to the rcoreoa package"
+author: "Scott Chamberlain, Simon Goring"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the rcoreoa package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+`rcoreoa` - Client for the CORE API (https://core.ac.uk/docs/).
+CORE (https://core.ac.uk) aggregates open access research
+outputs from repositories and journals worldwide and make them
+available to the public.
+
+## Installation
+
+The package can be installed directly from the CRAN repository:
+
+```{r eval=FALSE}
+install.packages("rcoreoa")
+```
+
+Or you can install the development version:
+
+```{r eval=FALSE}
+remotes::install_github("ropensci/rcoreoa")
+```
+
+Once the package is installed, simply run: 
+
+```{r}
+library("rcoreoa")
+```
+
+## Obtaining an API key
+
+The Core API requires an API key, and, as such, requires you to register for the key on the [Core Website](https://core.ac.uk/api-keys/register).  Once you register with your email address you will be sent an API key that looks a little like this:
+
+`thisISyourAPIkeyITlooksLIKEaLONGstringOFletters`
+
+## Using the API Key
+
+Best practice is to set the API key as an environment variable for your system, and then call it in R using `Sys.getenv()`.  If you set the parameter in `.Renviron` it is permanently available to your R sessions.  There is a decent writeup of how to use the `.Renviron` file in [Colin Gillespie & Robin Lovelace's Efficient R Programming](https://csgillespie.github.io/efficientR/3-3-r-startup.html#renviron).  Be aware that if you are using version control you do not want to commit the `.Renviron` file in your local directory.  Either edit your global `.Renviron` file, or make sure that `.Renviron` is added to your `.gitignore` file.
+
+Within the `.Renviron` file you will add:
+
+```
+CORE_KEY=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
+```
+
+The key may also be included in a file such as a `.bash_profile` file, or elsewhere.  Users may decide which works best for them.  Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
+
+```{r, eval=FALSE}
+Sys.getenv("CORE_KEY")
+```
+
+If you get this to work, you're doing great and we can move on to the next section.  If this is still not working for you, check to make sure you have saved the `.Renviron` file, that it is in the same directory as your current project's working directory, and that the name you have given the variable in the `.Renviron` file is the same as the name you are calling in `Sys.getenv()`.
+
+## An Introduction to the Functions
+
+The `rcoreoa` package accesses CORE's API to facilitate open text searching.  The API allows an individual to search for articles based on text string searches using `core_search()`.  Given a set of article IDs from the `core_search()`, users can then find more bibliographic information on the article (`core_articles()`) and article publishing history (`core_articles_history()`), on the journals in which the article was published (`core_journals()`).
+
+All of the functions return structured R objects, but can return JSON character strings by appending an unerscore (`_`) to the function name.  We will illustrate the difference:
+
+```{r}
+core_journals(id = '2167-8359')
+```
+
+And with the underscore:
+
+```{r}
+core_journals_(id = '2167-8359')
+```
+
+Through this Vignette we will illustrate some of the tools available as part of the package within a workflow that seeks to perform some basic bibliometric analysis.
+
+## Pagination
+
+Note that you are limited to a maximum of 100 results for the search functions;
+use combination of `page` and `limit` parameters to paginate through results. 
+For example:
+
+```{r}
+x1 <- core_search(query = 'ecology', limit = 100, page = 1)
+x2 <- core_search(query = 'ecology', limit = 100, page = 2)
+head(x1$data[,1:3])
+head(x2$data[,1:3])
+```
+
+## high- vs. low-level interfaces
+
+Each function has a higher level interface that does HTTP request for data and parses
+the JSON using `jsonlite`. This is meant for those who want everything done for them,
+but there's a time penalty for as the parsing adds extra time. If you just want raw JSON
+unparsed text, you can use the low level interface.
+
+The low level version of each function has `_` at the end (e.g., `core_search_`), while the
+high level version doesn't have the `_` (e.g., `core_search`).
+
+The high level version of each function uses the low level method, and the low level method
+does all the logic and HTTP requesting, whereas the high level simply parses the output.
+
+## Search
+
+```{r}
+res <- core_search(query = 'ecology', limit = 12)
+tibble::as_tibble(res$data)
+```
+
+## Advanced Search
+
+```{r}
+res <- core_advanced_search(core_query(identifiers='"oai:aura.abdn.ac.uk:2164/3837"',
+  identifiers='"oai:aura.abdn.ac.uk:2164/3843"', op="OR"))
+tibble::as_tibble(res$data[[1]])
+```
+
+# Articles
+
+```{r output.lines = 1:10}
+core_articles(id = 21132995)
+```
+
+# Article history
+
+```{r output.lines = 1:7}
+core_articles_history(id = '21132995')
+```
+
+# Journals
+
+```{r eval = FALSE}
+core_journals(id = '2220-721X')
+```
+
+# Get PDFs
+
+The `_` for these methods means that you get a file path back to the PDF, while the
+high level version without the `_` parses the pdf to text for you.
+
+```{r eval=FALSE}
+core_articles_pdf_(11549557)
+```

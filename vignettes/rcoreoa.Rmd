@@ -1,7 +1,7 @@
 ---
 title: "Introduction to the rcoreoa package"
 author: "Scott Chamberlain, Simon Goring"
-date: "`r Sys.Date()`"
+date: "2020-07-06"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to the rcoreoa package}
@@ -9,24 +9,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r echo=FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-pat <- Sys.getenv("CORE_KEY")
-IS_THERE_KEY <- (pat != "")
-NOT_CRAN <- ifelse(IS_THERE_KEY, NOT_CRAN, FALSE)
 
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  purl = NOT_CRAN,
-  eval = NOT_CRAN
-)
-```
 
-`rcoreoa` - Client for the CORE API (<https://core.ac.uk/docs/>).
-CORE (<https://core.ac.uk>) aggregates open access research
+`rcoreoa` - Client for the CORE API (https://core.ac.uk/docs/).
+CORE (https://core.ac.uk) aggregates open access research
 outputs from repositories and journals worldwide and make them
 available to the public.
 
@@ -34,19 +20,22 @@ available to the public.
 
 The package can be installed directly from the CRAN repository:
 
-```{r eval=FALSE}
+
+```r
 install.packages("rcoreoa")
 ```
 
 Or you can install the development version:
 
-```{r eval=FALSE}
+
+```r
 remotes::install_github("ropensci/rcoreoa")
 ```
 
 Once the package is installed, simply run: 
 
-```{r}
+
+```r
 library("rcoreoa")
 ```
 
@@ -68,7 +57,8 @@ CORE_KEY=thisISyourAPIkeyITlooksLIKEaLONGstringOFletters
 
 The key may also be included in a file such as a `.bash_profile` file, or elsewhere.  Users may decide which works best for them.  Once you've added the API key, restart your R session and test to make sure the key has been added using the command:
 
-```{r, eval=FALSE}
+
+```r
 Sys.getenv("CORE_KEY")
 ```
 
@@ -80,103 +70,260 @@ The `rcoreoa` package accesses CORE's API to facilitate open text searching.  Th
 
 All of the functions return structured R objects, but can return JSON character strings by appending an unerscore (`_`) to the function name.  We will illustrate the difference:
 
-```{r}
+
+```r
 core_journals(id = '2167-8359')
+#> $status
+#> [1] "OK"
+#> 
+#> $data
+#> $data$title
+#> [1] "PeerJ"
+#> 
+#> $data$identifiers
+#> [1] "oai:doaj.org/journal:576e4d34b8bf461bb586f1e90d80d7cc"
+#> [2] "issn:2167-8359"                                       
+#> [3] "url:https://doaj.org/toc/2167-8359"                   
+#> 
+#> $data$subjects
+#> [1] "biomedical" "health"     "genetics"   "ecology"    "biology"   
+#> [6] "Medicine"   "R"         
+#> 
+#> $data$language
+#> [1] "EN"
+#> 
+#> $data$rights
+#> [1] "CC BY"
+#> 
+#> $data$publisher
+#> [1] "PeerJ Inc."
 ```
 
 And with the underscore:
 
-```{r}
+
+```r
 core_journals_(id = '2167-8359')
+#> [1] "{\"status\":\"OK\",\"data\":{\"title\":\"PeerJ\",\"identifiers\":[\"oai:doaj.org\\/journal:576e4d34b8bf461bb586f1e90d80d7cc\",\"issn:2167-8359\",\"url:https:\\/\\/doaj.org\\/toc\\/2167-8359\"],\"subjects\":[\"biomedical\",\"health\",\"genetics\",\"ecology\",\"biology\",\"Medicine\",\"R\"],\"language\":\"EN\",\"rights\":\"CC BY\",\"publisher\":\"PeerJ Inc.\"}}"
 ```
 
 Through this Vignette we will illustrate some of the tools available as part of the package within a workflow that seeks to perform some basic bibliometric analysis.
 
-## A Research Workflow
+## Pagination
 
-We are interested in the way research within a particular field is communicated.  Given this, we want to use **CORE** to examine trends in publishing for a set of key terms.  To avoid being completely swamped by results we will pick a topic that is a relatively small subdiscipline, and, to ensure that we understand some of the broader patterns, we will pick a discipline that we have some knowledge about.  We will also try to find a discipline that is linked to an exisitng rOpenSci package, so why not choose paleoecology, and, more specifically, palynology.
+Note that you are limited to a maximum of 100 results for the search functions;
+use combination of `page` and `limit` parameters to paginate through results. 
+For example:
 
-Palynology is the study of organic-walled microfossils.  Of these microfossils, the most well known is pollen fossilized in lake or ocean sediments.  Using relative abundances of pollen can give us an indication of the composition of ancient fossils, and, handily enough, there is an R package, `neotoma` that allows us to explore the pollen data.
 
-### Finding articles
-
-So, lets see how many articles there are in the **CORE** holdings that contain the term `palynology`:
-
-```{r}
-palyn <- core_search(query = 'palynology')
+```r
+x1 <- core_search(query = 'ecology', limit = 100, page = 1)
+x2 <- core_search(query = 'ecology', limit = 100, page = 2)
+head(x1$data[,1:3])
+#>                _index   _type       _id
+#> 1 articles_2019_06_05 article 102353278
+#> 2 articles_2019_06_05 article  20955435
+#> 3 articles_2019_06_05 article 101526846
+#> 4 articles_2019_06_05 article 103034034
+#> 5 articles_2019_06_05 article 101912806
+#> 6 articles_2019_06_05 article 103746797
+head(x2$data[,1:3])
+#>                _index   _type      _id
+#> 1 articles_2019_06_05 article 79029462
+#> 2 articles_2019_06_05 article 79046038
+#> 3 articles_2019_06_05 article 79019557
+#> 4 articles_2019_06_05 article 24465080
+#> 5 articles_2019_06_05 article 79035703
+#> 6 articles_2019_06_05 article 79024454
 ```
 
-The result is a list with three components: `['Status', 'totalHits', 'data']`.  In our case, the result for `status` is `"OK"` (as opposed to `not found`), the `totalHits` are `13175` and then there are 10 articles returned.  The total number of articles is much higher than the number of articles returned because by default the `limit` flag for `core_search` is set to 10.
+## high- vs. low-level interfaces
 
-We can constrain our search, to look at the change in results over time by looking only for articles within certain  specified time limits.  For this we can use the `core_advanced_search`:
+Each function has a higher level interface that does HTTP request for data and parses
+the JSON using `jsonlite`. This is meant for those who want everything done for them,
+but there's a time penalty for as the parsing adds extra time. If you just want raw JSON
+unparsed text, you can use the low level interface.
 
-```{r}
+The low level version of each function has `_` at the end (e.g., `core_search_`), while the
+high level version doesn't have the `_` (e.g., `core_search`).
 
-# Define a data.frame with a row per year bin.
-query <- data.frame(
-  all_of_the_words = "palynology",
-  year_from = as.character(seq(1950, 2016)),
-  year_to   = as.character(seq(1951, 2017)),
-  stringsAsFactors = FALSE)
+The high level version of each function uses the low level method, and the low level method
+does all the logic and HTTP requesting, whereas the high level simply parses the output.
 
-paly_bins <- core_advanced_search(query = query)
+## Search
 
-plot(seq(1951, 2017), paly_bins[[2]],
-     xlab = "Published Year", ylab = "Articles", type = 'l')
+
+```r
+res <- core_search(query = 'ecology', limit = 12)
+tibble::as_tibble(res$data)
+#> # A tibble: 12 x 5
+#>    `_index` `_type` `_id` `_score` `_source`$id $authors $citations
+#>    <chr>    <chr>   <chr>    <dbl> <chr>        <list>   <list>    
+#>  1 article… article 1023…     18.5 102353278    <chr [2… <list [0]>
+#>  2 article… article 2095…     18.5 20955435     <chr [1… <list [0]>
+#>  3 article… article 1015…     17.5 101526846    <chr [1… <list [0]>
+#>  4 article… article 1030…     17.5 103034034    <chr [1… <list [0]>
+#>  5 article… article 1019…     17.5 101912806    <chr [1… <list [0]>
+#>  6 article… article 1037…     17.5 103746797    <chr [1… <list [0]>
+#>  7 article… article 1038…     17.5 103888859    <chr [1… <list [0]>
+#>  8 article… article 1545…     17.5 154520564    <chr [1… <list [0]>
+#>  9 article… article 1545…     17.5 154520563    <chr [1… <list [0]>
+#> 10 article… article 1004…     17.5 100453958    <chr [1… <list [0]>
+#> 11 article… article 1011…     17.5 101147175    <chr [1… <list [0]>
+#> 12 article… article 1017…     17.5 101760738    <chr [1… <list [0]>
+#> # … with 50 more variables: $contributors <list>, $datePublished <chr>,
+#> #   $deleted <chr>, $description <chr>, $fullText <lgl>,
+#> #   $fullTextIdentifier <chr>, $identifiers <list>, $journals <lgl>,
+#> #   $language <lgl>, $duplicateId <lgl>, $publisher <chr>, $rawRecordXml <chr>,
+#> #   $relations <list>, $repositories <list>,
+#> #   $repositoryDocument$pdfStatus <int>, $$textStatus <int>,
+#> #   $$metadataAdded <dbl>, $$metadataUpdated <dbl>, $$timestamp <dbl>,
+#> #   $$depositedDate <dbl>, $$indexed <int>, $$deletedStatus <chr>,
+#> #   $$pdfSize <int>, $$tdmOnly <lgl>, $$pdfOrigin <chr>, $similarities <lgl>,
+#> #   $subjects <list>, $title <chr>, $topics <list>, $types <list>,
+#> #   $urls <list>, $year <int>, $doi <lgl>, $oai <chr>, $downloadUrl <chr>,
+#> #   $pdfHashValue <lgl>, $documentType <lgl>, $documentTypeConfidence <lgl>,
+#> #   $citationCount <lgl>, $estimatedCitationCount <lgl>, $acceptedDate <lgl>,
+#> #   $depositedDate <dbl>, $publishedDate <lgl>, $issn <lgl>,
+#> #   $crossrefDocument <lgl>, $magDocument <lgl>, $attachmentCount <int>,
+#> #   $repositoryPublicReleaseDate <lgl>, $extendedMetadataAttributes <lgl>,
+#> #   $orcidAuthors <lgl>
 ```
 
-But this mapping of a single term likely reflects both an increase in the use of the term "palynology" (coined in 1947), but also in the number of records within the CORE repository.  As such we need to use some sort of control, so let's take a very common word, for example "and":
+## Advanced Search
 
-```{r}
 
-query <- data.frame(
-  all_of_the_words = "and",
-  year_from = as.character(seq(1950, 2016)),
-  year_to   = as.character(seq(1951, 2017)),
-  stringsAsFactors = FALSE)
-
-control_bins <- core_advanced_search(query = query)
-
-plot(seq(1951, 2017), control_bins[[2]] / max(control_bins[[2]]),
-     xlab = "Published Year", ylab = "Articles", lty = 2, col = 'red', type = 'l')
-lines(seq(1951, 2017), paly_bins[[2]] / max(paly_bins[[2]]))
-
+```r
+res <- core_advanced_search(core_query(identifiers='"oai:aura.abdn.ac.uk:2164/3837"',
+  identifiers='"oai:aura.abdn.ac.uk:2164/3843"', op="OR"))
+tibble::as_tibble(res$data[[1]])
+#> # A tibble: 2 x 5
+#>   `_index` `_type` `_id` `_score` `_source`$id $authors $citations $contributors
+#>   <chr>    <chr>   <chr>    <dbl> <chr>        <list>   <list>     <list>       
+#> 1 article… article 2549…     15.7 25497597     <chr [5… <list [0]> <chr [4]>    
+#> 2 article… article 2549…     15.7 25497603     <chr [8… <list [0]> <chr [3]>    
+#> # … with 50 more variables: $datePublished <chr>, $deleted <chr>,
+#> #   $description <chr>, $fullText <chr>, $fullTextIdentifier <lgl>,
+#> #   $identifiers <list>, $journals <list>, $language <lgl>, $duplicateId <lgl>,
+#> #   $publisher <lgl>, $rawRecordXml <chr>, $relations <list>,
+#> #   $repositories <list>, $repositoryDocument$pdfStatus <int>,
+#> #   $$textStatus <int>, $$metadataAdded <dbl>, $$metadataUpdated <dbl>,
+#> #   $$timestamp <dbl>, $$depositedDate <dbl>, $$indexed <int>,
+#> #   $$deletedStatus <chr>, $$pdfSize <int>, $$tdmOnly <lgl>, $$pdfOrigin <lgl>,
+#> #   $similarities <lgl>, $subjects <list>, $title <chr>, $topics <list>,
+#> #   $types <list>, $urls <list>, $year <int>, $doi <chr>, $oai <chr>,
+#> #   $downloadUrl <chr>, $pdfHashValue <chr>, $documentType <chr>,
+#> #   $documentTypeConfidence <int>, $citationCount <lgl>,
+#> #   $estimatedCitationCount <lgl>, $acceptedDate <lgl>, $depositedDate <dbl>,
+#> #   $publishedDate <lgl>, $issn <lgl>, $attachmentCount <int>,
+#> #   $repositoryPublicReleaseDate <lgl>,
+#> #   $extendedMetadataAttributes$attachmentCount <int>,
+#> #   $$publicReleaseDate <lgl>, $crossrefDocument <lgl>, $magDocument <lgl>,
+#> #   $orcidAuthors <lgl>
 ```
 
-Given that the number of papers for both `"palynology"` & `"and"` are well matched, it seems like this curve is largely a function of available publications.  Given that `"and"` should represent the majority of all publications, let's look at a set of search strings.  Palynology is a branch of paleoecology.  Europeans often spell paleoecology as palaeoecology.  Let's look at all three terms as a function of th `"and"` results.  We'll wrap it into a function to streamline things:
+# Articles
 
-```{r}
 
-ann_query <- function(string, control = NULL) {
-  
-  query <- data.frame(
-    all_of_the_words = string,
-    year_from = as.character(seq(1950, 2016)),
-    year_to   = as.character(seq(1951, 2017)),
-    stringsAsFactors = FALSE)
-
-  hit_bins <- core_advanced_search(query = query)
-  
-  if (is.null(control)) control = hit_bins
-  
-  return(data.frame(years = seq(1951, 2017), 
-                    hits = hit_bins[[2]], 
-                    transformed = hit_bins[[2]] / control[[2]],
-                    string = string, 
-                    stringsAsFactors = FALSE))
-}
-
-string_sets <- do.call(rbind.data.frame, 
-  lapply(c("and", "palynology", "paleoecology", "palaeoecology"), 
-    ann_query, control = control_bins))
-
-string_sets <- string_sets[!string_sets$string %in% 'and',]
-
-plot(data = string_sets, 
-     transformed ~ years, 
-     col = factor(string_sets$string),
-     pch = 19, cex = 0.5)
-
+```r
+core_articles(id = 21132995)
+#> $status
+#> [1] "OK"
+#> 
+#> $data
+#> $data$id
+#> [1] "21132995"
+#> 
+#> $data$authors
+#> list()
+#> 
+#> $data$contributors
+#> [1] "The Pennsylvania State University CiteSeerX Archives"
+#> 
+#> $data$datePublished
+#> [1] "2010-02-17"
+#> 
+#> $data$description
+#> [1] "Abstract. This paper discusses the potential contribution of an eco-theology to the management of marine resources. The claim of the Christian gospel is that God has a plan for everything in the universe and we are to live to bring it about. The Hebrew/Christian world view is significantly different from naturalism and humanism, the prevailing Greek world views in natural resource management. Three biblical paradigms are examined with insights into key elements in the management of fisheries: dominion; regulation and valuation and caring. In dominion we see the strength of mankind&apos;s rule over other species, including fish, misused. Fisheries management generally fails to reign in this driving force, rewarding greed while calling for restraint. Regulation and its impact on mindsets and behaviour, is a theme evident in the Old and New Testaments- entering the promised land, keeping the law and caring for others, both humans and fish. The biblical view also emphasises life, death and resurrection as the process seen in nature. New fishery management paradigms may only develop after old ways and attitudes have died. Significant attitudinal change is essential to improve fisheries management and to achieve new management arrangements. Improved fishery stewardship may require &quot;a new fisher&quot;, relationally mature and societally accountable, to achieve the goals of sustainable fishery management through a variety of policy paradigms. The Christian world view promotes such attitudinal change to improve stewardship through reconciling issues in our relationship with God, neighbours and nature. It is worthy of further investigation"
+#> 
+#> $data$identifiers
+#> [1] "oai:CiteSeerX.psu:10.1.1.152.9831" NA                                 
+#> 
+#> $data$relations
+#> list()
+#> 
+#> $data$repositories
+#>    id openDoarId      name uri urlHomepage urlOaipmh uriJournals physicalName
+#> 1 145          0 CiteSeerX  NA          NA        NA          NA       noname
+#>   source software metadataFormat description journal roarId pdfStatus nrUpdates
+#> 1     NA       NA             NA          NA      NA      0        NA         0
+#>   disabled lastUpdateTime repositoryLocation
+#> 1    FALSE             NA                 NA
+#> 
+#> $data$repositoryDocument
+#> $data$repositoryDocument$pdfStatus
+#> [1] 0
+#> 
+#> $data$repositoryDocument$metadataAdded
+#> [1] 1.413993e+12
+#> 
+#> $data$repositoryDocument$metadataUpdated
+#> [1] 1.529412e+12
+#> 
+#> $data$repositoryDocument$depositedDate
+#> [1] 1.266365e+12
+#> 
+#> 
+#> $data$subjects
+#> [1] "text"
+#> 
+#> $data$topics
+#> [1] "Ecology"              "Theology"             "Eco-theology"        
+#> [4] "Fisheries Management"
+#> 
+#> $data$types
+#> list()
+#> 
+#> $data$year
+#> [1] 2010
+#> 
+#> $data$oai
+#> [1] "oai:CiteSeerX.psu:10.1.1.152.9831"
+#> 
+#> $data$downloadUrl
+#> [1] ""
 ```
 
-It's interesting to note the overall changes in the rates of publication.  In particular, the contined growth of the use of *palaeoecology* vs paleoecology.  Given the results we've pulled, it's possible to do further analysis of the publications, but this provides a simple overview of some of the capabilities of the package, and ways to generate simple analytics for search strings from the publically available papers within CORE.
+# Article history
+
+
+```r
+core_articles_history(id = '21132995')
+#> $status
+#> [1] "OK"
+#> 
+#> $data
+#>              datetime
+#> 1 2016-08-03 00:13:41
+#> 2 2014-10-22 16:42:14
+#>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               metadata
+#> 1                                                                                                               <record><header><identifier>\n    \n      \n        oai:CiteSeerX.psu:10.1.1.152.9831</identifier><datestamp>\n        2010-02-17</datestamp>\n      </header><metadata><oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd" ><dc:title>\n      \n        \n          </dc:title><dc:subject>\n          Ecology</dc:subject><dc:subject>\n          Theology</dc:subject><dc:subject>\n          Eco-theology</dc:subject><dc:subject>\n          Fisheries Management</dc:subject><dc:description>\n          Abstract. This paper discusses the potential contribution of an eco-theology to the management of marine resources. The claim of the Christian gospel is that God has a plan for everything in the universe and we are to live to bring it about. The Hebrew/Christian world view is significantly different from naturalism and humanism, the prevailing Greek world views in natural resource management. Three biblical paradigms are examined with insights into key elements in the management of fisheries: dominion; regulation and valuation and caring. In dominion we see the strength of mankind&apos;s rule over other species, including fish, misused. Fisheries management generally fails to reign in this driving force, rewarding greed while calling for restraint. Regulation and its impact on mindsets and behaviour, is a theme evident in the Old and New Testaments- entering the promised land, keeping the law and caring for others, both humans and fish. The biblical view also emphasises life, death and resurrection as the process seen in nature. New fishery management paradigms may only develop after old ways and attitudes have died. Significant attitudinal change is essential to improve fisheries management and to achieve new management arrangements. Improved fishery stewardship may require &quot;a new fisher&quot;, relationally mature and societally accountable, to achieve the goals of sustainable fishery management through a variety of policy paradigms. The Christian world view promotes such attitudinal change to improve stewardship through reconciling issues in our relationship with God, neighbours and nature. It is worthy of further investigation.</dc:description><dc:contributor>\n          The Pennsylvania State University CiteSeerX Archives</dc:contributor><dc:publisher>\n          </dc:publisher><dc:date>\n          2010-02-17</dc:date><dc:date>\n          2010-02-17</dc:date><dc:format>\n          application/pdf</dc:format><dc:type>\n          text</dc:type><dc:identifier>\n          http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.152.9831</dc:identifier><dc:source>\n          http://www.orst.edu/Dept/IIFET/2000/papers/mcilgorm.pdf</dc:source><dc:language>\n          en</dc:language><dc:rights>\n          Metadata may be used without restrictions as long as the oai identifier remains attached to it.</dc:rights>\n        </oai_dc:dc>\n      </metadata>\n    </record>
+#> 2 <record><header><identifier>\n        \n      \n    \n    \n      \n        oai:CiteSeerX.psu:10.1.1.152.9831</identifier><datestamp>\n        2010-02-17</datestamp>\n      </header><metadata><oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd" ><dc:title>\n      \n      \n        \n          </dc:title><dc:subject>\n      \n      \n        \n          \n          Ecology</dc:subject><dc:subject>\n          Theology</dc:subject><dc:subject>\n          Eco-theology</dc:subject><dc:subject>\n          Fisheries Management</dc:subject><dc:description>\n          Abstract. This paper discusses the potential contribution of an eco-theology to the management of marine resources. The claim of the Christian gospel is that God has a plan for everything in the universe and we are to live to bring it about. The Hebrew/Christian world view is significantly different from naturalism and humanism, the prevailing Greek world views in natural resource management. Three biblical paradigms are examined with insights into key elements in the management of fisheries: dominion; regulation and valuation and caring. In dominion we see the strength of mankind&apos;s rule over other species, including fish, misused. Fisheries management generally fails to reign in this driving force, rewarding greed while calling for restraint. Regulation and its impact on mindsets and behaviour, is a theme evident in the Old and New Testaments- entering the promised land, keeping the law and caring for others, both humans and fish. The biblical view also emphasises life, death and resurrection as the process seen in nature. New fishery management paradigms may only develop after old ways and attitudes have died. Significant attitudinal change is essential to improve fisheries management and to achieve new management arrangements. Improved fishery stewardship may require &quot;a new fisher&quot;, relationally mature and societally accountable, to achieve the goals of sustainable fishery management through a variety of policy paradigms. The Christian world view promotes such attitudinal change to improve stewardship through reconciling issues in our relationship with God, neighbours and nature. It is worthy of further investigation.</dc:description><dc:contributor>\n          The Pennsylvania State University CiteSeerX Archives</dc:contributor><dc:publisher>\n          </dc:publisher><dc:date>\n          \n          2010-02-17</dc:date><dc:date>\n          2010-02-17</dc:date><dc:format>\n          application/pdf</dc:format><dc:type>\n          text</dc:type><dc:identifier>\n          http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.152.9831</dc:identifier><dc:source>\n          http://www.orst.edu/Dept/IIFET/2000/papers/mcilgorm.pdf</dc:source><dc:language>\n          en</dc:language><dc:rights>\n          Metadata may be used without restrictions as long as the oai identifier remains attached to it.</dc:rights>\n        </oai_dc:dc>\n        \n      </metadata>\n        \n      \n    </record>
+```
+
+# Journals
+
+
+```r
+core_journals(id = '2220-721X')
+```
+
+# Get PDFs
+
+The `_` for these methods means that you get a file path back to the PDF, while the
+high level version without the `_` parses the pdf to text for you.
+
+
+```r
+core_articles_pdf_(11549557)
+```
