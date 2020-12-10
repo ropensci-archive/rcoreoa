@@ -5,7 +5,7 @@ Description: Client for the CORE API (<https://core.ac.uk/docs/>).
     CORE (<https://core.ac.uk>) aggregates open access research
     outputs from repositories and journals worldwide and make them
     available to the public.
-Version: 0.4.0
+Version: 0.4.0.91
 Authors@R: c(
      person("Scott", "Chamberlain", role = c("aut", "cre"),
        email = "myrmecocystus+r@gmail.com"),
@@ -13,7 +13,7 @@ Authors@R: c(
      person("Simon", "Goring", role = "ctb")
     )
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/rcoreoa, https://github.com/ropensci/rcoreoa
+URL: https://docs.ropensci.org/rcoreoa/, https://github.com/ropensci/rcoreoa
 BugReports: https://github.com/ropensci/rcoreoa/issues
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
