@@ -22,6 +22,7 @@ jobs:
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.rspm }}
+      CORE_KEY: ${{ secrets.CORE_KEY }}
 
     steps:
       - uses: actions/checkout@v2

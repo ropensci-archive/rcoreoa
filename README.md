@@ -4,7 +4,7 @@ rcoreoa
 
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
+[![R-CMD-check](https://github.com/ropensci/rcoreoa/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rcoreoa/actions?query=workflow%3AR-CMD-check)
 [![codecov.io](https://codecov.io/github/ropensci/rcoreoa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rcoreoa?branch=master)
 [![cran checks](https://cranchecks.info/badges/worst/rcoreoa)](https://cranchecks.info/pkgs/rcoreoa)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rcoreoa)](https://github.com/r-hub/cranlogs.app)
